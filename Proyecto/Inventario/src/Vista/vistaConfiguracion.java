@@ -32,7 +32,7 @@ public class vistaConfiguracion extends javax.swing.JFrame {
         BotonCrear = new javax.swing.JButton();
         BotonModificar = new javax.swing.JButton();
         BotonEliminar = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        ComboBox = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -67,8 +67,8 @@ public class vistaConfiguracion extends javax.swing.JFrame {
         BotonEliminar.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
         BotonEliminar.setText("Eliminar");
 
-        jComboBox1.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Usuario", "Administrador" }));
+        ComboBox.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Usuario", "Administrador" }));
 
         jLabel1.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
         jLabel1.setText("Tipo");
@@ -138,7 +138,7 @@ public class vistaConfiguracion extends javax.swing.JFrame {
                             .addComponent(BotonModificar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(BotonEliminar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(158, 158, 158)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(316, 316, 316)
                         .addComponent(jLabel1)))
@@ -175,7 +175,7 @@ public class vistaConfiguracion extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(BotonCrear)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(BotonModificar)
                         .addGap(18, 18, 18)
@@ -259,10 +259,10 @@ public class vistaConfiguracion extends javax.swing.JFrame {
     public javax.swing.JButton BotonModificar;
     public javax.swing.JButton BotonPedidos4;
     public javax.swing.JButton BotonProductos;
+    public javax.swing.JComboBox<String> ComboBox;
     public javax.swing.JPasswordField TextContraseña;
     public javax.swing.JTextField TextNombre;
     private javax.swing.JButton jButton4;
-    public javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

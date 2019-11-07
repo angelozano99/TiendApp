@@ -23,6 +23,7 @@ public class controladorInicio implements ActionListener{
     
     
     
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         

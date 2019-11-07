@@ -38,7 +38,7 @@ public class controladorConfiguracion implements ActionListener{
         
         this.vistaConfiguracion.setVisible(true);
         
-        
+      
         
     }
     

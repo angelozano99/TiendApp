@@ -40,6 +40,7 @@ public class controladorConfiguracion implements ActionListener{
         
       
         
+        
     }
     
     

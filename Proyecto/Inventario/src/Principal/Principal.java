@@ -10,7 +10,7 @@ import Vista.vistainicio;
 
 /**
  *
- * @author Labing
+ * @author Labingpush
  */
 public class Principal {
     

@@ -17,7 +17,7 @@ public class controladorConfiguracion implements ActionListener{
 
     private vistaConfiguracion vistaConfiguracion;
     
-    public ControladorConfiguracion(vistaConfiguracion vistaConfiguracion){
+    public controladorConfiguracion(vistaConfiguracion vistaConfiguracion){
         
         this.vistaConfiguracion = new vistaConfiguracion();
         
@@ -27,7 +27,16 @@ public class controladorConfiguracion implements ActionListener{
         this.vistaConfiguracion.BotonPedidos4.addActionListener(this);
         this.vistaConfiguracion.BotonConfiguracion4.addActionListener(this);
         
+        this.vistaConfiguracion.BotonCrear.addActionListener(this);
+        this.vistaConfiguracion.BotonModificar.addActionListener(this);
+        this.vistaConfiguracion.BotonEliminar.addActionListener(this);
         
+        this.vistaConfiguracion.TextNombre.addActionListener(this);
+        this.vistaConfiguracion.TextContraseña.addActionListener(this);
+        
+        this.vistaConfiguracion.ComboBox.addActionListener(this);
+        
+        this.vistaConfiguracion.setVisible(true);
         
         
     }

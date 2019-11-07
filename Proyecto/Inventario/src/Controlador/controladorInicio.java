@@ -15,6 +15,10 @@ public class controladorInicio implements ActionListener{
     
     private vistainicio vistainicio;
     
+    public controladorInicio(vistainicio vistainicio){
+        
+        
+    }
     
     
     

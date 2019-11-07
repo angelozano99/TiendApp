@@ -19,8 +19,13 @@ public class controladorConfiguracion implements ActionListener{
     
     public ControladorConfiguracion(vistaConfiguracion vistaConfiguracion){
         
+        this.vistaConfiguracion = new vistaConfiguracion();
         
-        
+        this.vistaConfiguracion.BotonProductos.addActionListener(this);
+        this.vistaConfiguracion.BotonContabilidad4.addActionListener(this);
+        this.vistaConfiguracion.BotonInventario4.addActionListener(this);
+        this.vistaConfiguracion.BotonPedidos4.addActionListener(this);
+        this.vistaConfiguracion.BotonConfiguracion4.addActionListener(this);
         
         
         

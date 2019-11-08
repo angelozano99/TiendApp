@@ -68,6 +68,11 @@ public class controladorConfiguracion implements ActionListener{
             
         }
         
+        if(e.getSource()==this.vistaConfiguracion.BotonProductos){
+            
+            controladorProductos controladorProductos = new controladorProductos(vistaProducto);
+        }
+        
         
         
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

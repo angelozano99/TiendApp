@@ -72,6 +72,13 @@ public class controladorProductos implements ActionListener{
             this.vistaProducto.dispose();
             controladorConfiguracion controladorConfiguracion = new controladorConfiguracion(vistaConfiguracion); 
         }
+        
+        if(e.getSource()==this.vistaProducto.BotonInventario4){
+            this.vistaProducto.dispose();
+            controladorInventario controladorInventario = new controladorInventario(vistaInventario);
+            
+        }
+            
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

@@ -33,6 +33,7 @@ public class controladorInicio implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == this.vistainicio2.BotonIngresar) {
+            
             if (vistainicio2.textNombre.equals("root") && vistainicio2.textContra.equals("root")) {
 
              controladorConfiguracion controladorConfiguracion = new controladorConfiguracion(vistaConfiguracion);

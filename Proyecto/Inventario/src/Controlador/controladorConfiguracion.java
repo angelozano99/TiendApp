@@ -31,7 +31,6 @@ public class controladorConfiguracion implements ActionListener{
     public controladorConfiguracion(vistaConfiguracion vistaConfiguracion){
         
         this.vistaConfiguracion = new vistaConfiguracion();
-        
         this.vistaProducto = new vistaProducto();
         this.vistaContabilidad = new vistaContabilidad();
         this.vistaInventario = new vistaInventario();
@@ -92,5 +91,7 @@ public class controladorConfiguracion implements ActionListener{
         
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+  
     
 }

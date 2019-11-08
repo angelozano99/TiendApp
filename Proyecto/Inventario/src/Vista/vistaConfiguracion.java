@@ -16,6 +16,7 @@ public class vistaConfiguracion extends javax.swing.JFrame {
      */
     public vistaConfiguracion() {
         initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**

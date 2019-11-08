@@ -16,6 +16,7 @@ public class vistaContabilidad extends javax.swing.JFrame {
      */
     public vistaContabilidad() {
         initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**

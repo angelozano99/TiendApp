@@ -16,6 +16,7 @@ public class vistaInventario extends javax.swing.JFrame {
      */
     public vistaInventario() {
         initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**

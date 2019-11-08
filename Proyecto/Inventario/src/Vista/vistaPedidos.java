@@ -16,6 +16,7 @@ public class vistaPedidos extends javax.swing.JFrame {
      */
     public vistaPedidos() {
         initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**

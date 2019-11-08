@@ -16,6 +16,7 @@ public class vistaProducto extends javax.swing.JFrame {
      */
     public vistaProducto() {
         initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**

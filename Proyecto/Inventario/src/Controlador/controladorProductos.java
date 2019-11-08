@@ -72,7 +72,7 @@ public class controladorProductos implements ActionListener{
             this.vistaProducto.dispose();
             controladorConfiguracion controladorConfiguracion = new controladorConfiguracion(vistaConfiguracion); 
         }
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

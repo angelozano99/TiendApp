@@ -6,6 +6,7 @@
 package Controlador;
 
 import Vista.vistaConfiguracion;
+import Vista.vistaInventario;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,9 +19,12 @@ public class controladorConfiguracion implements ActionListener{
 
     private vistaConfiguracion vistaConfiguracion;
     
+    private vistaInventario vistaInventario;
+    
     public controladorConfiguracion(vistaConfiguracion vistaConfiguracion){
         
         this.vistaConfiguracion = new vistaConfiguracion();
+        this.vistaInventario = new vistaInventario();
         
         this.vistaConfiguracion.BotonProductos.addActionListener(this);
         this.vistaConfiguracion.BotonContabilidad4.addActionListener(this);
@@ -38,15 +42,19 @@ public class controladorConfiguracion implements ActionListener{
         this.vistaConfiguracion.ComboBox.addActionListener(this);
         
         this.vistaConfiguracion.setVisible(true);
-        
-      
-        
-        
+       
     }
     
     
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+        if(e.getSource()==this.vistaConfiguracion.BotonInventario4){
+            
+        }
+        
+        
+        
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

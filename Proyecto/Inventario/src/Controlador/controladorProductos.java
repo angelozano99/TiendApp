@@ -22,8 +22,7 @@ public class controladorProductos implements ActionListener{
         
         this.vistaProducto = new vistaProducto();
         
-        this.vistaProducto.
-        
+
         
         
         

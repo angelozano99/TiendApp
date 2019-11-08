@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 
 /**
  *
+ * 
  * @author Labing
  */
 public class controladorConfiguracion implements ActionListener{

@@ -64,7 +64,7 @@ public class controladorConfiguracion implements ActionListener{
         
         if(e.getSource()==this.vistaConfiguracion.BotonInventario4){
             
-            
+            controladorInventario controladorInventario = new controladorInventario(vistaInventario);
             
         }
         

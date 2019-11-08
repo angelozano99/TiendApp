@@ -6,7 +6,7 @@
 package Principal;
 
 import Controlador.controladorInicio;
-import Vista.vistainicio;
+import Vista.vistaInicio2;
 
 /**
  *
@@ -16,7 +16,7 @@ public class Principal {
     
     public static void main(String []args){
         
-        vistainicio vistaInicio = new vistainicio();
+        vistaInicio2 vistaInicio = new vistaInicio2();
         controladorInicio controladorInicio = new controladorInicio(vistaInicio);
         
     }

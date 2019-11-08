@@ -34,13 +34,16 @@ public class controladorInicio implements ActionListener {
 
         if (e.getSource() == this.vistainicio2.BotonIngresar) {
             
-            if (vistainicio2.textNombre.equals("root") && vistainicio2.textContra.equals("root")) {
+            
+            if (this.vistainicio2.textNombre.getText().equals("root") && 
+                    this.vistainicio2.textContra.getText().equals("root")) {
+                
 
              controladorConfiguracion controladorConfiguracion = new controladorConfiguracion(vistaConfiguracion);
                 
             }
         }
 
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      
     }
 }

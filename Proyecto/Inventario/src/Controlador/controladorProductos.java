@@ -71,7 +71,7 @@ public class controladorProductos implements ActionListener{
         if(e.getSource()==this.vistaProducto.BotonConfiguracion4){
             this.vistaProducto.dispose();
             controladorConfiguracion controladorConfiguracion = new controladorConfiguracion(vistaConfiguracion); 
-        }
+        }   
         
         if(e.getSource()==this.vistaProducto.BotonInventario4){
             this.vistaProducto.dispose();

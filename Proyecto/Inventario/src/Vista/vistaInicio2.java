@@ -39,8 +39,10 @@ public class vistaInicio2 extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel4.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         jLabel4.setText("Nombre:");
 
+        jLabel5.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         jLabel5.setText("Contraseña:");
 
         textContra.addActionListener(new java.awt.event.ActionListener() {
@@ -49,6 +51,7 @@ public class vistaInicio2 extends javax.swing.JFrame {
             }
         });
 
+        BotonIngresar.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         BotonIngresar.setText("Ingresar");
         BotonIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,7 +97,7 @@ public class vistaInicio2 extends javax.swing.JFrame {
                     .addComponent(textContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addComponent(BotonIngresar)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

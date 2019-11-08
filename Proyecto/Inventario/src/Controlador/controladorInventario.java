@@ -51,6 +51,28 @@ public class controladorInventario implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+        
+        
+        if(e.getSource()==this.vistaInventario.BotonProductos){
+            this.vistaInventario.dispose();
+            controladorProductos controladorProductos = new controladorProductos(vistaProducto);
+        }
+        
+        if(e.getSource()==this.vistaInventario.BotonPedidos){
+            this.vistaInventario.dispose();
+            controladorPedidos controladorPedidos = new controladorPedidos(vistaPedidos);
+        }
+        
+        if(e.getSource()==this.vistaInventario.BotonContabilidad){
+            this.vistaInventario.dispose();
+            controladorContabilidad controladorContabilidad = new controladorContabilidad(vistaContabilidad);
+        }
+        
+        if(e.getSource()==this.vistaInventario.BotonConfiguracion){
+            this.vistaInventario.dispose();
+            controladorConfiguracion controladorConfiguracion = new controladorConfiguracion(vistaConfiguracion); 
+        }
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

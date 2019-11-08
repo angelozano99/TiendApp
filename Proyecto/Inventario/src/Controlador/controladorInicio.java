@@ -38,7 +38,7 @@ public class controladorInicio implements ActionListener {
             if (this.vistainicio2.textNombre.getText().equals("root") && 
                     this.vistainicio2.textContra.getText().equals("root")) {
                 
-
+             this.vistainicio2.dispose();
              controladorConfiguracion controladorConfiguracion = new controladorConfiguracion(vistaConfiguracion);
                 
             }

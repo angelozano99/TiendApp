@@ -63,23 +63,27 @@ public class controladorConfiguracion implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         
         if(e.getSource()==this.vistaConfiguracion.BotonInventario4){
-            
+            this.vistaConfiguracion.dispose();
             controladorInventario controladorInventario = new controladorInventario(vistaInventario);
             
         }
         
         if(e.getSource()==this.vistaConfiguracion.BotonProductos){
-            
+            this.vistaConfiguracion.dispose();
             controladorProductos controladorProductos = new controladorProductos(vistaProducto);
+            
         }
         
         if(e.getSource()==this.vistaConfiguracion.BotonPedidos4){
-            
+            this.vistaConfiguracion.dispose();
             controladorPedidos controladorPedidos = new controladorPedidos(vistaPedidos);
+            
         }
         
         if(e.getSource()==this.vistaConfiguracion.BotonContabilidad4){
+            this.vistaConfiguracion.dispose();
             controladorContabilidad controladorContabilidad = new controladorContabilidad(vistaContabilidad);
+            
         }
             
             

@@ -33,6 +33,15 @@ public class controladorProductos implements ActionListener{
         
         this.vistaProducto = new vistaProducto();
         
+        this.vistaProducto.BotonProductos4.addActionListener(this);
+        this.vistaProducto.BotonContabilidad4.addActionListener(this);
+        this.vistaProducto.BotonInventario4.addActionListener(this);
+        this.vistaProducto.BotonPedidos4.addActionListener(this);
+        this.vistaProducto.BotonConfiguracion4.addActionListener(this);
+        
+        this.vistaProducto.BotonAnadir.addActionListener(this);
+        this.vistaProducto.BotonDevolucion.addActionListener(this);
+        this.vistaProducto.BotonFoto.addActionListener(this);
 
         
         
@@ -43,6 +52,26 @@ public class controladorProductos implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+         if(e.getSource()==this.vistaProducto.BotonProductos4){
+            this.vistaProducto.dispose();
+            controladorProductos controladorProductos = new controladorProductos(vistaProducto);
+        }
+        
+        if(e.getSource()==this.vistaProducto.BotonPedidos4){
+            this.vistaProducto.dispose();
+            controladorPedidos controladorPedidos = new controladorPedidos(vistaPedidos);
+        }
+        
+        if(e.getSource()==this.vistaProducto.BotonContabilidad4){
+            this.vistaProducto.dispose();
+            controladorContabilidad controladorContabilidad = new controladorContabilidad(vistaContabilidad);
+        }
+        
+        if(e.getSource()==this.vistaProducto.BotonConfiguracion4){
+            this.vistaProducto.dispose();
+            controladorConfiguracion controladorConfiguracion = new controladorConfiguracion(vistaConfiguracion); 
+        }
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

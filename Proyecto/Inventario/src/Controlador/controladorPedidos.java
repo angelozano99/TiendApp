@@ -31,6 +31,15 @@ public class controladorPedidos implements ActionListener{
         
         this.vistaPedidos = new vistaPedidos();
         
+        this.vistaPedidos.BotonProductos4.addActionListener(this);
+        this.vistaPedidos.BotonContabilidad4.addActionListener(this);
+        this.vistaPedidos.BotonInventario4.addActionListener(this);
+        this.vistaPedidos.BotonPedidos4.addActionListener(this);
+        this.vistaPedidos.BotonConfiguracion4.addActionListener(this);
+        
+        this.vistaPedidos.BotonAnadir.addActionListener(this);
+        this.vistaPedidos.BotonRecordatorios.addActionListener(this);
+        
         this.vistaPedidos.setVisible(true);
         
     }
@@ -38,6 +47,28 @@ public class controladorPedidos implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+        
+        if(e.getSource()==this.vistaPedidos.BotonProductos4){
+            this.vistaPedidos.dispose();
+            controladorProductos controladorProductos = new controladorProductos(vistaProducto);
+        }
+        
+        if(e.getSource()==this.vistaPedidos.BotonInventario4){
+            this.vistaPedidos.dispose();
+            controladorInventario controladorInventario = new controladorInventario(vistaInventario);
+            
+        }
+        
+        if(e.getSource()==this.vistaPedidos.BotonContabilidad4){
+            this.vistaPedidos.dispose();
+            controladorContabilidad controladorContabilidad = new controladorContabilidad(vistaContabilidad);
+        }
+        
+        if(e.getSource()==this.vistaPedidos.BotonConfiguracion4){
+            this.vistaPedidos.dispose();
+            controladorConfiguracion controladorConfiguracion = new controladorConfiguracion(vistaConfiguracion); 
+        }
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

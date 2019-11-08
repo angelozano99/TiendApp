@@ -5,7 +5,11 @@
  */
 package Controlador;
 
+import Vista.vistaConfiguracion;
+import Vista.vistaContabilidad;
+import Vista.vistaInventario;
 import Vista.vistaPedidos;
+import Vista.vistaProducto;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,6 +20,12 @@ import java.awt.event.ActionListener;
 public class controladorPedidos implements ActionListener{
 
     private vistaPedidos vistaPedidos;
+    private vistaConfiguracion vistaConfiguracion;
+    
+    private vistaProducto vistaProducto;
+    private vistaContabilidad vistaContabilidad;
+    private vistaInventario vistaInventario;
+    
     
     public controladorPedidos(vistaPedidos vistaPedidos){
         

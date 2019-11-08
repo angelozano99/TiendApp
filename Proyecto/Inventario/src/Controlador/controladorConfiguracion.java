@@ -6,7 +6,9 @@
 package Controlador;
 
 import Vista.vistaConfiguracion;
+import Vista.vistaContabilidad;
 import Vista.vistaInventario;
+import Vista.vistaProducto;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,12 +21,20 @@ public class controladorConfiguracion implements ActionListener{
 
     private vistaConfiguracion vistaConfiguracion;
     
+    private vistaProducto vistaProducto;
+    private vistaContabilidad vistaContabilidad;
     private vistaInventario vistaInventario;
+    
     
     public controladorConfiguracion(vistaConfiguracion vistaConfiguracion){
         
         this.vistaConfiguracion = new vistaConfiguracion();
+        
+        this.vistaProducto = new vistaProducto();
+        this.vistaContabilidad = new vistaContabilidad();
         this.vistaInventario = new vistaInventario();
+        
+        
         
         this.vistaConfiguracion.BotonProductos.addActionListener(this);
         this.vistaConfiguracion.BotonContabilidad4.addActionListener(this);

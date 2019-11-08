@@ -29,6 +29,7 @@ public class controladorInicio implements ActionListener{
         
         if(vistainicio.usuariotext.equals("root")&& vistainicio.contratext.equals("root")){
         
+            
     }
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

@@ -8,6 +8,7 @@ package Controlador;
 import Vista.vistaConfiguracion;
 import Vista.vistaContabilidad;
 import Vista.vistaInventario;
+import Vista.vistaPedidos;
 import Vista.vistaProducto;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,6 +25,7 @@ public class controladorConfiguracion implements ActionListener{
     private vistaProducto vistaProducto;
     private vistaContabilidad vistaContabilidad;
     private vistaInventario vistaInventario;
+    private vistaPedidos vistaPedidos;
     
     
     public controladorConfiguracion(vistaConfiguracion vistaConfiguracion){
@@ -33,6 +35,7 @@ public class controladorConfiguracion implements ActionListener{
         this.vistaProducto = new vistaProducto();
         this.vistaContabilidad = new vistaContabilidad();
         this.vistaInventario = new vistaInventario();
+        this.vistaPedidos  = new vistaPedidos();
         
         
         

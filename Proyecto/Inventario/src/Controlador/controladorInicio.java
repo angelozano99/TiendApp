@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Controlador;
-import Vista.vistaInicio;
+import Vista.vistaInicio2;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 /**
@@ -13,12 +13,12 @@ import java.awt.event.ActionListener;
  */
 public class controladorInicio implements ActionListener{
     
-    private vistaInicio vistainicio;
-    public controladorInicio(vistaInicio vistainicio){
+    private vistaInicio2 vistainicio2;
+    public controladorInicio(vistaInicio2 vistainicio){
         
-        this.vistainicio = new vistaInicio();
-        this.vistainicio.botoningresar.addActionListener(this);
-        this.vistainicio.setVisible(true);
+        this.vistainicio2 = new vistaInicio2();
+        this.vistainicio2.BotonIngresar.addActionListener(this);
+        this.vistainicio2.setVisible(true);
     }
     
     
@@ -27,7 +27,7 @@ public class controladorInicio implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        if(vistainicio.usuariotext.equals("root")&& vistainicio.contratext.equals("root")){
+        if(vistainicio2.textNombre.equals("root")&& vistainicio2.textContra.equals("root")){
         
             
     }

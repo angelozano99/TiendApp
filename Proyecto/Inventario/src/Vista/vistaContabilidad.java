@@ -279,7 +279,7 @@ public class vistaContabilidad extends javax.swing.JFrame {
     public javax.swing.JButton BotonPedidos;
     public javax.swing.JButton BotonProductos;
     public javax.swing.JButton BotonSemanal;
-    private javax.swing.JComboBox<String> ComboBox;
+    public javax.swing.JComboBox<String> ComboBox;
     public javax.swing.JTable TableProductos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

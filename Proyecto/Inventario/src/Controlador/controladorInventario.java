@@ -32,6 +32,7 @@ public class controladorInventario implements ActionListener{
         this.vistaInventario.BotonModificar.addActionListener(this);
         this.vistaInventario.BotonEliminar.addActionListener(this);
         
+        
         this.vistaInventario.setVisible(true);
     }
     

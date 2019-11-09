@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class Conexion {
     
-    String bd= "facturacion";
+    String bd= "BaseTiendApp";
 	private final String url = "jdbc:mysql://localhost:3306/"+bd;
 	Connection con = null;
 

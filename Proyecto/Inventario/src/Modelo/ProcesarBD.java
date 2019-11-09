@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import java.sql.Statement;
 import java.util.Date;
-import vista.vistaClientes;
+//import vista.vistaClientes;
 
 public class ProcesarBD {
 
@@ -207,6 +207,8 @@ public class ProcesarBD {
         }
         return datos;
     }
+    
+    
     public void ingresarCliente(int nit, String nombre, String direccion, String telefono, String ciudad, String tipo) {
         String datos[] = {String.valueOf(nit), nombre, direccion, telefono, ciudad, tipo};
         insertar(datos, "INSERT INTO clientes (nit, nombre,direccion,telefono,ciudad,tipo) VALUES(?,?,?,?,?,?)");
@@ -217,7 +219,7 @@ public class ProcesarBD {
         String deleteSQL = "DELETE FROM clientes WHERE nit = ?";
         delete(String.valueOf(nit), deleteSQL);
     }
-
+/*
     public String[] leerCliente(int nit) {
 
         boolean resultado = false;
@@ -250,7 +252,7 @@ public class ProcesarBD {
         }
         return datos;
     }
-
+*/
     public void updateCliente(int nit, String nombre, String direccion, String telefono, String ciudad, String tipo) {
         int resultado = 0;
         try {
@@ -286,7 +288,7 @@ public class ProcesarBD {
         String deleteSQL = "DELETE FROM comprobante WHERE comprobante = ?";
         delete(comprobante, deleteSQL);
     }
-
+/*
     public String[] leerComprobante(String comprobante) {
 
         boolean resultado = false;
@@ -317,7 +319,7 @@ public class ProcesarBD {
         }
         return datos;
     }
-
+*/
     public void updateComprobante(String comprobante, String descripcion, String tipo, String cuenta) {
         int resultado = 0;
         try {
@@ -351,7 +353,7 @@ public class ProcesarBD {
         String deleteSQL = "DELETE FROM productos WHERE id = ?";
         delete(String.valueOf(id), deleteSQL);
     }
-
+/*
     public String[] leerProducto(int id) {
 
         boolean resultado = false;
@@ -382,7 +384,7 @@ public class ProcesarBD {
         }
         return datos;
     }
-
+*/
     public void updateProducto(int id, String descripcion, String linea, double precio) {
         int resultado = 0;
         try {

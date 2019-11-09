@@ -20,6 +20,193 @@ public class ProcesarBD {
 
     }
 
+   public void ingresarUsuario(String nombre, String contrasena,
+            String insertar, String buscar, String modificar, String eliminar) throws SQLException {
+
+        String datos[] = {nombre, contrasena, insertar, buscar, modificar, eliminar};
+        insertar(datos, "INSERT INTO usuarios (nombre, contrasena, "
+                + "insertar , buscar, modificar, eliminar) VALUES(?,?,?,?,?,?)");
+
+        String insert = "create user " + nombre + "@localhost identified by '" + contrasena + "'";
+
+        PreparedStatement ps = con.conectado().prepareStatement(insert);
+
+        ps.execute();
+
+        if (insertar == "y") {
+
+            String permiso = "GRANT insert ON tiendapp.* TO " + nombre + "@localhost";
+
+            ps = con.conectado().prepareStatement(permiso);
+
+            ps.execute();
+
+        }
+
+        if (buscar == "y") {
+
+            String permiso = "GRANT select ON tiendapp.* TO " + nombre + "@localhost";
+
+            ps = con.conectado().prepareStatement(permiso);
+
+            ps.execute();
+
+        }
+
+        if (modificar == "y") {
+
+            String permiso = "GRANT update ON tiendapp.* TO " + nombre + "@localhost";
+
+            ps = con.conectado().prepareStatement(permiso);
+
+            ps.execute();
+
+        }
+
+        if (eliminar == "y") {
+
+            String permiso = "GRANT delete ON tiendapp.* TO " + nombre + "@localhost";
+
+            ps = con.conectado().prepareStatement(permiso);
+
+            ps.execute();
+
+        }
+
+        ps.close();
+
+        JOptionPane.showMessageDialog(null, "Usuario creado");
+
+    }
+   
+   public void eliminarUsuario(String nombre) throws SQLException {
+
+        String deleteSQL = "DELETE FROM usuarios WHERE nombre = ?";
+        delete(nombre, deleteSQL);
+
+        String delete = "drop user " + nombre + " @" + "localhost";
+
+        PreparedStatement ps = con.conectado().prepareStatement(delete);
+        ps.execute();
+        ps.close();
+
+    }
+   
+    public void updateUsuario(String nombre,
+            String contrasena, String insertar, String buscar,
+            String modificar, String eliminar) {
+        int resultado = 0;
+        try {
+            String nombre2 = "n";
+            String contrasena2 = "n";
+            String insertar2 = "n";
+            String buscar2 = "n";
+            String modificar2 = "n";
+            String eliminar2 = "n";
+
+            PreparedStatement ps;
+            String updateSQL = "UPDATE usuarios SET  contrasena  = ?, insertar =  ? ,buscar =  ?,modificar= ?, eliminar = ?" + "  WHERE nombre =  ?";
+            ps = con.conectado().prepareStatement(updateSQL);
+
+            System.out.println("entra1");
+
+            ps.setString(1, contrasena);
+            ps.setString(2, insertar);
+            ps.setString(3, buscar);
+            ps.setString(4, modificar);
+            ps.setString(5, eliminar);
+            ps.setString(6, nombre);
+            ps.execute();
+
+            ps = con.conectado().prepareStatement("REVOKE ALL PRIVILEGES ON *.* FROM '"
+                    + nombre + "'@'localhost';");
+            ps.execute();
+
+            //System.out.println("entra1");
+
+            if (insertar == "y") {
+
+                String permiso = "GRANT insert ON tiendapp.* TO " + nombre + "@localhost";
+
+                ps = con.conectado().prepareStatement(permiso);
+
+                ps.execute();
+
+            }
+
+            if (buscar == "y") {
+
+                String permiso = "GRANT select ON tiendapp.* TO " + nombre + "@localhost";
+
+                ps = con.conectado().prepareStatement(permiso);
+
+                ps.execute();
+
+            }
+
+            if (modificar == "y") {
+
+                String permiso = "GRANT update ON tiendapp.* TO " + nombre + "@localhost";
+
+                ps = con.conectado().prepareStatement(permiso);
+
+                ps.execute();
+
+            }
+
+            if (eliminar == "y") {
+
+                String permiso = "GRANT delete ON tiendapp.* TO " + nombre + "@localhost";
+
+                ps = con.conectado().prepareStatement(permiso);
+
+                ps.execute();
+
+            }
+            ps.execute();
+            ps.close();
+
+            JOptionPane.showMessageDialog(null, "Usuario modificado");
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Problemas con la actualizacion de un Contacto Comuniquese con el Administrador");
+        }
+    }
+    
+    
+    public String[] leerUsuario(String nombre) {
+
+        boolean resultado = false;
+        String[] datos = new String[6];
+        try {
+            String read = "SELECT * FROM usuarios WHERE nombre = ?";
+            PreparedStatement ps = con.conectado().prepareStatement(read);
+
+            ps.setString(1, nombre);
+
+            ResultSet resultSet = ps.executeQuery();
+
+            while (resultSet.next()) {
+
+                datos[0] = resultSet.getString("nombre");
+                datos[1] = resultSet.getString("contrasena");
+                datos[2] = resultSet.getString("insertar");
+                datos[3] = resultSet.getString("buscar");
+                datos[4] = resultSet.getString("modificar");
+                datos[5] = resultSet.getString("eliminar");
+
+            }
+
+            ps.execute();
+            ps.close();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Problemas en la Consulta Comuniquese con el Administrador");
+        }
+        return datos;
+    }
     public void ingresarCliente(int nit, String nombre, String direccion, String telefono, String ciudad, String tipo) {
         String datos[] = {String.valueOf(nit), nombre, direccion, telefono, ciudad, tipo};
         insertar(datos, "INSERT INTO clientes (nit, nombre,direccion,telefono,ciudad,tipo) VALUES(?,?,?,?,?,?)");
@@ -417,110 +604,10 @@ public class ProcesarBD {
 
     }
 
-    public void ingresarUsuario(String nombre, String contraseña,
-            String insertar, String buscar, String modificar, String eliminar) throws SQLException {
+   
 
-        String datos[] = {nombre, contraseña, insertar, buscar, modificar, eliminar};
-        insertar(datos, "INSERT INTO usuario (nombre, contraseña, "
-                + "insertar , buscar, modificar, eliminar) VALUES(?,?,?,?,?,?)");
+    
 
-        String insert = "create user " + nombre + "@localhost identified by '" + contraseña + "'";
-
-        PreparedStatement ps = con.conectado().prepareStatement(insert);
-
-        ps.execute();
-
-        if (insertar == "y") {
-
-            String permiso = "GRANT insert ON facturacion.* TO " + nombre + "@localhost";
-
-            ps = con.conectado().prepareStatement(permiso);
-
-            ps.execute();
-
-        }
-
-        if (buscar == "y") {
-
-            String permiso = "GRANT select ON facturacion.* TO " + nombre + "@localhost";
-
-            ps = con.conectado().prepareStatement(permiso);
-
-            ps.execute();
-
-        }
-
-        if (modificar == "y") {
-
-            String permiso = "GRANT update ON facturacion.* TO " + nombre + "@localhost";
-
-            ps = con.conectado().prepareStatement(permiso);
-
-            ps.execute();
-
-        }
-
-        if (eliminar == "y") {
-
-            String permiso = "GRANT delete ON facturacion.* TO " + nombre + "@localhost";
-
-            ps = con.conectado().prepareStatement(permiso);
-
-            ps.execute();
-
-        }
-
-        ps.close();
-
-        JOptionPane.showMessageDialog(null, "Usuario creado");
-
-    }
-
-    public void eliminarUsuario(String nombre) throws SQLException {
-
-        String deleteSQL = "DELETE FROM usuario WHERE nombre = ?";
-        delete(nombre, deleteSQL);
-
-        String delete = "drop user " + nombre + " @" + "localhost";
-
-        PreparedStatement ps = con.conectado().prepareStatement(delete);
-        ps.execute();
-        ps.close();
-
-    }
-
-    public String[] leerUsuario(String nombre) {
-
-        boolean resultado = false;
-        String[] datos = new String[6];
-        try {
-            String read = "SELECT * FROM usuario WHERE nombre = ?";
-            PreparedStatement ps = con.conectado().prepareStatement(read);
-
-            ps.setString(1, nombre);
-
-            ResultSet resultSet = ps.executeQuery();
-
-            while (resultSet.next()) {
-
-                datos[0] = resultSet.getString("nombre");
-                datos[1] = resultSet.getString("contraseña");
-                datos[2] = resultSet.getString("insertar");
-                datos[3] = resultSet.getString("buscar");
-                datos[4] = resultSet.getString("modificar");
-                datos[5] = resultSet.getString("eliminar");
-
-            }
-
-            ps.execute();
-            ps.close();
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null, "Problemas en la Consulta Comuniquese con el Administrador");
-        }
-        return datos;
-    }
 
     /*
     public void eliminarUsuario(String nombre) {
@@ -530,87 +617,7 @@ public class ProcesarBD {
          PreparedStatement ps = con.conectado().prepareStatement(delete);
     }
      */
-    public void updateUsuario(String nombre,
-            String contraseña, String insertar, String buscar,
-            String modificar, String eliminar) {
-        int resultado = 0;
-        try {
-            String nombre2 = "n";
-            String contraseña2 = "n";
-            String insertar2 = "n";
-            String buscar2 = "n";
-            String modificar2 = "n";
-            String eliminar2 = "n";
-
-            PreparedStatement ps;
-            String updateSQL = "UPDATE usuario SET  contraseña  = ?, insertar =  ? ,buscar =  ?,modificar= ?, eliminar = ?" + "  WHERE nombre =  ?";
-            ps = con.conectado().prepareStatement(updateSQL);
-
-            System.out.println("entra1");
-
-            ps.setString(1, contraseña);
-            ps.setString(2, insertar);
-            ps.setString(3, buscar);
-            ps.setString(4, modificar);
-            ps.setString(5, eliminar);
-            ps.setString(6, nombre);
-            ps.execute();
-
-            ps = con.conectado().prepareStatement("REVOKE ALL PRIVILEGES ON *.* FROM '"
-                    + nombre + "'@'localhost';");
-            ps.execute();
-
-            System.out.println("entra1");
-
-            if (insertar == "y") {
-
-                String permiso = "GRANT insert ON facturacion.* TO " + nombre + "@localhost";
-
-                ps = con.conectado().prepareStatement(permiso);
-
-                ps.execute();
-
-            }
-
-            if (buscar == "y") {
-
-                String permiso = "GRANT select ON facturacion.* TO " + nombre + "@localhost";
-
-                ps = con.conectado().prepareStatement(permiso);
-
-                ps.execute();
-
-            }
-
-            if (modificar == "y") {
-
-                String permiso = "GRANT update ON facturacion.* TO " + nombre + "@localhost";
-
-                ps = con.conectado().prepareStatement(permiso);
-
-                ps.execute();
-
-            }
-
-            if (eliminar == "y") {
-
-                String permiso = "GRANT delete ON facturacion.* TO " + nombre + "@localhost";
-
-                ps = con.conectado().prepareStatement(permiso);
-
-                ps.execute();
-
-            }
-            ps.execute();
-            ps.close();
-
-            JOptionPane.showMessageDialog(null, "Usuario modificado");
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null, "Problemas con la actualizacion de un Contacto Comuniquese con el Administrador");
-        }
-    }
+   
 
     public void listar() {
         String strConsulta = "SELECT *FROM articulo";

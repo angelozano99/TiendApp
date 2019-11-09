@@ -83,12 +83,13 @@ public class controladorConfiguracion implements ActionListener{
                modificar = "y";
                eliminar = "y";
                
-               
+               System.out.println("Hola");
            }else{
                 insertar = "y";
                buscar = "y";
                modificar = "n";
                eliminar = "n";
+               System.out.println("Hola2");
                
            }
            

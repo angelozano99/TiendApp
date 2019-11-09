@@ -23,12 +23,15 @@ public class ProcesarBD {
    public void ingresarUsuario(String nombre, String contrasena,
             String insertar, String buscar, String modificar, String eliminar) throws SQLException {
 
+        
         String datos[] = {nombre, contrasena, insertar, buscar, modificar, eliminar};
+      
         insertar(datos, "INSERT INTO usuarios (nombre, contrasena, "
                 + "insertar , buscar, modificar, eliminar) VALUES(?,?,?,?,?,?)");
 
         String insert = "create user " + nombre + "@localhost identified by '" + contrasena + "'";
 
+        
         PreparedStatement ps = con.conectado().prepareStatement(insert);
 
         ps.execute();

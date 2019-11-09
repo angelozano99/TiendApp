@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import Modelo.ProcesarBD;
 import Vista.vistaConfiguracion;
 import Vista.vistaContabilidad;
 import Vista.vistaInventario;
@@ -12,6 +13,9 @@ import Vista.vistaPedidos;
 import Vista.vistaProducto;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -51,7 +55,7 @@ public class controladorConfiguracion implements ActionListener{
         this.vistaConfiguracion.TextNombre.addActionListener(this);
         this.vistaConfiguracion.TextContraseña.addActionListener(this);
         
-        this.vistaConfiguracion.ComboBox.addActionListener(this);
+        //this.vistaConfiguracion.ComboBox.addActionListener(this);
         
         this.vistaConfiguracion.setVisible(true);
        
@@ -60,6 +64,41 @@ public class controladorConfiguracion implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+        ProcesarBD procesarBD = new ProcesarBD();
+        
+        if(e.getSource()==this.vistaConfiguracion.BotonCrear){
+            
+            String nombre = this.vistaConfiguracion.TextNombre.getText();
+            String contrasena = this.vistaConfiguracion.TextContraseña.getText();
+            
+            String insertar;
+            String buscar;
+            String modificar;
+            String eliminar;
+            
+           if(this.vistaConfiguracion.Administrador.isSelected()) {
+               insertar = "y";
+               buscar = "y";
+               modificar = "y";
+               eliminar = "y";
+               
+               
+           }else{
+                insertar = "y";
+               buscar = "y";
+               modificar = "n";
+               eliminar = "n";
+               
+           }
+           
+            try {
+                procesarBD.ingresarUsuario(nombre, contrasena, insertar, buscar, modificar, eliminar);
+            } catch (SQLException ex) {
+                Logger.getLogger(controladorConfiguracion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
         
         if(e.getSource()==this.vistaConfiguracion.BotonInventario4){
             this.vistaConfiguracion.dispose();

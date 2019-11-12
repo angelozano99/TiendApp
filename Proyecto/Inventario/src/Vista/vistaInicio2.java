@@ -31,9 +31,9 @@ public class vistaInicio2 extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         textNombre = new javax.swing.JTextField();
-        textContra = new javax.swing.JTextField();
         BotonIngresar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        textContra = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -44,12 +44,6 @@ public class vistaInicio2 extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         jLabel5.setText("Contraseña:");
-
-        textContra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textContraActionPerformed(evt);
-            }
-        });
 
         BotonIngresar.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         BotonIngresar.setText("Ingresar");
@@ -119,10 +113,6 @@ public class vistaInicio2 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BotonIngresarActionPerformed
 
-    private void textContraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textContraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textContraActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -164,7 +154,7 @@ public class vistaInicio2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel4;
-    public javax.swing.JTextField textContra;
+    public javax.swing.JPasswordField textContra;
     public javax.swing.JTextField textNombre;
     // End of variables declaration//GEN-END:variables
 }

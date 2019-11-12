@@ -82,8 +82,9 @@ public class controladorPedidos implements ActionListener{
             int valortotal = Integer.parseInt(this.vistaPedidos.Costotext.getText());
             
             
-            
             procesarBD.ingresarPedido(proveedor,fecha,fecha_entrega,valortotal);
+            
+            
         }
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

@@ -48,10 +48,10 @@ public class vistaConfiguracion extends javax.swing.JFrame {
         TextContraseña = new javax.swing.JPasswordField();
         jButton4 = new javax.swing.JButton();
         BotonProductos = new javax.swing.JButton();
-        BotonContabilidad4 = new javax.swing.JButton();
-        BotonInventario4 = new javax.swing.JButton();
+        BotonContabilidad = new javax.swing.JButton();
+        BotonInventario = new javax.swing.JButton();
         BotonConfiguracion4 = new javax.swing.JButton();
-        BotonPedidos4 = new javax.swing.JButton();
+        BotonPedidos = new javax.swing.JButton();
         Usuario = new javax.swing.JRadioButton();
         Administrador = new javax.swing.JRadioButton();
 
@@ -102,21 +102,26 @@ public class vistaConfiguracion extends javax.swing.JFrame {
         BotonProductos.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
         BotonProductos.setText("Productos");
 
-        BotonContabilidad4.setBackground(new java.awt.Color(255, 255, 255));
-        BotonContabilidad4.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
-        BotonContabilidad4.setText("Contabilidad");
+        BotonContabilidad.setBackground(new java.awt.Color(255, 255, 255));
+        BotonContabilidad.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        BotonContabilidad.setText("Contabilidad");
+        BotonContabilidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonContabilidadActionPerformed(evt);
+            }
+        });
 
-        BotonInventario4.setBackground(new java.awt.Color(255, 255, 255));
-        BotonInventario4.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
-        BotonInventario4.setText("Inventario");
+        BotonInventario.setBackground(new java.awt.Color(255, 255, 255));
+        BotonInventario.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        BotonInventario.setText("Inventario");
 
         BotonConfiguracion4.setBackground(new java.awt.Color(153, 153, 255));
         BotonConfiguracion4.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
         BotonConfiguracion4.setText("Configuración");
 
-        BotonPedidos4.setBackground(new java.awt.Color(255, 255, 255));
-        BotonPedidos4.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
-        BotonPedidos4.setText("Registro de Pedidos");
+        BotonPedidos.setBackground(new java.awt.Color(255, 255, 255));
+        BotonPedidos.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        BotonPedidos.setText("Registro de Pedidos");
 
         Usuario.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
         Usuario.setText("Usuario");
@@ -167,11 +172,11 @@ public class vistaConfiguracion extends javax.swing.JFrame {
                 .addGap(111, 111, 111)
                 .addComponent(BotonProductos)
                 .addGap(122, 122, 122)
-                .addComponent(BotonContabilidad4)
+                .addComponent(BotonContabilidad)
                 .addGap(127, 127, 127)
-                .addComponent(BotonInventario4)
+                .addComponent(BotonInventario)
                 .addGap(144, 144, 144)
-                .addComponent(BotonPedidos4)
+                .addComponent(BotonPedidos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
                 .addComponent(BotonConfiguracion4)
                 .addGap(119, 119, 119))
@@ -182,9 +187,9 @@ public class vistaConfiguracion extends javax.swing.JFrame {
                 .addGap(77, 77, 77)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotonProductos)
-                    .addComponent(BotonContabilidad4)
-                    .addComponent(BotonInventario4)
-                    .addComponent(BotonPedidos4)
+                    .addComponent(BotonContabilidad)
+                    .addComponent(BotonInventario)
+                    .addComponent(BotonPedidos)
                     .addComponent(BotonConfiguracion4))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
@@ -242,6 +247,10 @@ public class vistaConfiguracion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_UsuarioActionPerformed
 
+    private void BotonContabilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonContabilidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonContabilidadActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -280,12 +289,12 @@ public class vistaConfiguracion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JRadioButton Administrador;
     public javax.swing.JButton BotonConfiguracion4;
-    public javax.swing.JButton BotonContabilidad4;
+    public javax.swing.JButton BotonContabilidad;
     public javax.swing.JButton BotonCrear;
     public javax.swing.JButton BotonEliminar;
-    public javax.swing.JButton BotonInventario4;
+    public javax.swing.JButton BotonInventario;
     public javax.swing.JButton BotonModificar;
-    public javax.swing.JButton BotonPedidos4;
+    public javax.swing.JButton BotonPedidos;
     public javax.swing.JButton BotonProductos;
     public javax.swing.JPasswordField TextContraseña;
     public javax.swing.JTextField TextNombre;

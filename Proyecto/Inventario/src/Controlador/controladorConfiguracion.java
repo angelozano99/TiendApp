@@ -13,9 +13,12 @@ import Vista.vistaPedidos;
 import Vista.vistaProducto;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JTextPane;
 
 /**
  *
@@ -43,9 +46,9 @@ public class controladorConfiguracion implements ActionListener{
         
         
         this.vistaConfiguracion.BotonProductos.addActionListener(this);
-        this.vistaConfiguracion.BotonContabilidad4.addActionListener(this);
-        this.vistaConfiguracion.BotonInventario4.addActionListener(this);
-        this.vistaConfiguracion.BotonPedidos4.addActionListener(this);
+        this.vistaConfiguracion.BotonContabilidad.addActionListener(this);
+        this.vistaConfiguracion.BotonInventario.addActionListener(this);
+        this.vistaConfiguracion.BotonPedidos.addActionListener(this);
         this.vistaConfiguracion.BotonConfiguracion4.addActionListener(this);
         
         this.vistaConfiguracion.BotonCrear.addActionListener(this);
@@ -66,6 +69,7 @@ public class controladorConfiguracion implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         
         ProcesarBD procesarBD = new ProcesarBD();
+        
         
         if(e.getSource()==this.vistaConfiguracion.BotonCrear){
             
@@ -101,7 +105,23 @@ public class controladorConfiguracion implements ActionListener{
             
         }
         
-        if(e.getSource()==this.vistaConfiguracion.BotonInventario4){
+        if(e.getSource()==this.vistaConfiguracion.BotonModificar){
+            String nombre = this.vistaConfiguracion.TextNombre.getText();
+            String contrasena = this.vistaConfiguracion.TextContraseña.getText();
+            
+            String datos[] = procesarBD.leerUsuario(nombre);
+            
+            
+            
+            
+            if (!datos[5].isEmpty()){
+                procesarBD.updateUsuario(nombre, contrasena, datos[2], datos[3], datos[4], datos[5]);
+            }else{
+                JOptionPane.showMessageDialog(null, "Usuario no encontrado");
+            }
+            
+        }
+        if(e.getSource()==this.vistaConfiguracion.BotonInventario){
             this.vistaConfiguracion.dispose();
             controladorInventario controladorInventario = new controladorInventario(vistaInventario);
             
@@ -113,13 +133,13 @@ public class controladorConfiguracion implements ActionListener{
             
         }
         
-        if(e.getSource()==this.vistaConfiguracion.BotonPedidos4){
+        if(e.getSource()==this.vistaConfiguracion.BotonPedidos){
             this.vistaConfiguracion.dispose();
             controladorPedidos controladorPedidos = new controladorPedidos(vistaPedidos);
             
         }
         
-        if(e.getSource()==this.vistaConfiguracion.BotonContabilidad4){
+        if(e.getSource()==this.vistaConfiguracion.BotonContabilidad){
             this.vistaConfiguracion.dispose();
             controladorContabilidad controladorContabilidad = new controladorContabilidad(vistaContabilidad);
             

@@ -17,61 +17,71 @@ import java.awt.event.ActionListener;
  *
  * @author Camilo Vargas
  */
-public class controladorInventario implements ActionListener{
-    
+public class controladorInventario implements ActionListener {
+
     private vistaInventario vistaInventario;
     private vistaConfiguracion vistaConfiguracion;
-    
+
     private vistaProducto vistaProducto;
     private vistaContabilidad vistaContabilidad;
     private vistaPedidos vistaPedidos;
-    
-    
-    public controladorInventario(vistaInventario vistaInventario){
-        
+
+    public controladorInventario(vistaInventario vistaInventario) {
+
         this.vistaInventario = new vistaInventario();
-        
+
         this.vistaInventario.BotonProductos.addActionListener(this);
         this.vistaInventario.BotonContabilidad.addActionListener(this);
         this.vistaInventario.BotonInventario.addActionListener(this);
         this.vistaInventario.BotonPedidos.addActionListener(this);
         this.vistaInventario.BotonConfiguracion.addActionListener(this);
-        
+
         this.vistaInventario.BotonBuscar.addActionListener(this);
         this.vistaInventario.BotonCrear.addActionListener(this);
         this.vistaInventario.BotonModificar.addActionListener(this);
         this.vistaInventario.BotonEliminar.addActionListener(this);
-        
-        
+
         this.vistaInventario.setVisible(true);
     }
-    
-    
-    
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        
-        
-        
-        if(e.getSource()==this.vistaInventario.BotonProductos){
+
+        if (e.getSource() == this.vistaInventario.BotonCrear) {
+
+            int i = 0;
+            do {
+                int id = Integer.valueOf(String.valueOf(this.vistaInventario.TableProductos.getValueAt(i, 0)));
+                String nombre = String.valueOf(this.vistaInventario.TableProductos.getValueAt(i, 1));
+                 int precioCompra = Integer.valueOf(String.valueOf(this.vistaInventario.TableProductos.getValueAt(i, 2)));
+                  int precioVenta = Integer.valueOf(String.valueOf(this.vistaInventario.TableProductos.getValueAt(i, 3)));
+                   int ganancia = precioVenta - precioCompra;
+                    String proveedor = String.valueOf(this.vistaInventario.TableProductos.getValueAt(i, 4));
+                    
+                    
+                i++;
+            } while (this.vistaInventario.TableProductos.getValueAt(i, 0) != null);
+
+        }
+
+        if (e.getSource() == this.vistaInventario.BotonProductos) {
             this.vistaInventario.dispose();
             controladorProductos controladorProductos = new controladorProductos(vistaProducto);
         }
-        
-        if(e.getSource()==this.vistaInventario.BotonPedidos){
+
+        if (e.getSource() == this.vistaInventario.BotonPedidos) {
             this.vistaInventario.dispose();
             controladorPedidos controladorPedidos = new controladorPedidos(vistaPedidos);
         }
-        
-        if(e.getSource()==this.vistaInventario.BotonContabilidad){
+
+        if (e.getSource() == this.vistaInventario.BotonContabilidad) {
             this.vistaInventario.dispose();
             controladorContabilidad controladorContabilidad = new controladorContabilidad(vistaContabilidad);
         }
-        
-        if(e.getSource()==this.vistaInventario.BotonConfiguracion){
+
+        if (e.getSource() == this.vistaInventario.BotonConfiguracion) {
             this.vistaInventario.dispose();
-            controladorConfiguracion controladorConfiguracion = new controladorConfiguracion(vistaConfiguracion); 
+            controladorConfiguracion controladorConfiguracion = new controladorConfiguracion(vistaConfiguracion);
         }
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

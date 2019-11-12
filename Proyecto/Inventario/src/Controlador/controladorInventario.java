@@ -58,12 +58,12 @@ public class controladorInventario implements ActionListener {
             do {
                 int id = Integer.valueOf(String.valueOf(this.vistaInventario.TableProductos.getValueAt(i, 0)));
                 String nombre = String.valueOf(this.vistaInventario.TableProductos.getValueAt(i, 1));
-                 int precioCompra = Integer.valueOf(String.valueOf(this.vistaInventario.TableProductos.getValueAt(i, 2)));
-                  int precioVenta = Integer.valueOf(String.valueOf(this.vistaInventario.TableProductos.getValueAt(i, 3)));
-                   int ganancia = precioVenta - precioCompra;
-                   int unidades = Integer.valueOf(String.valueOf(this.vistaInventario.TableProductos.getValueAt(i, 4)));
-                    String proveedor = String.valueOf(this.vistaInventario.TableProductos.getValueAt(i, 5));
-                    
+                int precioCompra = Integer.valueOf(String.valueOf(this.vistaInventario.TableProductos.getValueAt(i, 2)));
+                int precioVenta = Integer.valueOf(String.valueOf(this.vistaInventario.TableProductos.getValueAt(i, 3)));
+                int ganancia = precioVenta - precioCompra;
+                int unidades = Integer.valueOf(String.valueOf(this.vistaInventario.TableProductos.getValueAt(i, 4)));
+                String proveedor = String.valueOf(this.vistaInventario.TableProductos.getValueAt(i, 5));
+
                 try {
                     procesarBD.ingresarProducto(id, nombre, precioCompra, precioVenta, ganancia, unidades, proveedor);
                 } catch (SQLException ex) {

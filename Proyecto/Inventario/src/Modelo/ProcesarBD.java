@@ -1,5 +1,6 @@
 package Modelo;
 
+
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -211,12 +212,12 @@ public class ProcesarBD {
         return datos;
     }
     
-    
-    public void ingresarCliente(int nit, String nombre, String direccion, String telefono, String ciudad, String tipo) {
-        String datos[] = {String.valueOf(nit), nombre, direccion, telefono, ciudad, tipo};
-        insertar(datos, "INSERT INTO clientes (nit, nombre,direccion,telefono,ciudad,tipo) VALUES(?,?,?,?,?,?)");
+    public void ingresarPedido(String proveedor, String fecha, String fecha_entrega, int valortotal) {
+        String datos[] = {proveedor, fecha, fecha_entrega, String.valueOf(valortotal)};
+        insertar(datos, "INSERT INTO pedido(proveedor,fecha,fecha_entrega,valortotal) VALUES(?,?,?,?)");
         
     }
+  
 
     public void eliminarCliente(int nit) {
         String deleteSQL = "DELETE FROM clientes WHERE nit = ?";

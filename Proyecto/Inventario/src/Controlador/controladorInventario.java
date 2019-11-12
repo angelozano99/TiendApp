@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import Modelo.ProcesarBD;
 import Vista.vistaConfiguracion;
 import Vista.vistaContabilidad;
 import Vista.vistaInventario;
@@ -12,6 +13,9 @@ import Vista.vistaPedidos;
 import Vista.vistaProducto;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -47,6 +51,7 @@ public class controladorInventario implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        ProcesarBD procesarBD = new ProcesarBD();
         if (e.getSource() == this.vistaInventario.BotonCrear) {
 
             int i = 0;
@@ -56,9 +61,14 @@ public class controladorInventario implements ActionListener {
                  int precioCompra = Integer.valueOf(String.valueOf(this.vistaInventario.TableProductos.getValueAt(i, 2)));
                   int precioVenta = Integer.valueOf(String.valueOf(this.vistaInventario.TableProductos.getValueAt(i, 3)));
                    int ganancia = precioVenta - precioCompra;
-                    String proveedor = String.valueOf(this.vistaInventario.TableProductos.getValueAt(i, 4));
+                   int unidades = Integer.valueOf(String.valueOf(this.vistaInventario.TableProductos.getValueAt(i, 4)));
+                    String proveedor = String.valueOf(this.vistaInventario.TableProductos.getValueAt(i, 5));
                     
-                    
+                try {
+                    procesarBD.ingresarProducto(id, nombre, precioCompra, precioVenta, ganancia, unidades, proveedor);
+                } catch (SQLException ex) {
+                    Logger.getLogger(controladorInventario.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 i++;
             } while (this.vistaInventario.TableProductos.getValueAt(i, 0) != null);
 

@@ -223,6 +223,21 @@ public class ProcesarBD {
         String deleteSQL = "DELETE FROM clientes WHERE nit = ?";
         delete(String.valueOf(nit), deleteSQL);
     }
+    
+      public void ingresarProducto(Integer id, String nombre,
+           Integer precioCompra, Integer precioVenta, Integer ganancia,Integer unidades, String proveedor) throws SQLException {
+
+        
+        String datos[] = {String.valueOf(id), nombre, String.valueOf(precioCompra),
+            String.valueOf(precioVenta), String.valueOf(ganancia),String.valueOf(unidades) ,proveedor};
+      
+        insertar(datos, "INSERT INTO productos (id_producto, nom_producto, "
+                + "preciocompra , precioventa, ganancia, unidades, proveedor) VALUES(?,?,?,?,?,?,?)");
+
+
+        JOptionPane.showMessageDialog(null, "Producto creado");
+
+    }
 /*
     public String[] leerCliente(int nit) {
 

@@ -66,26 +66,26 @@ public class vistaInventario extends javax.swing.JFrame {
         TableProductos.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         TableProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nombre", "P. Venta", "P. Compra", "Unidades", "Proveedor"
+                "Nombre", "P. Compra", "P. venta", "Unidades", "Proveedor"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -94,7 +94,7 @@ public class vistaInventario extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(TableProductos);
         if (TableProductos.getColumnModel().getColumnCount() > 0) {
-            TableProductos.getColumnModel().getColumn(2).setPreferredWidth(123);
+            TableProductos.getColumnModel().getColumn(1).setPreferredWidth(123);
         }
 
         BotonCrear.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N

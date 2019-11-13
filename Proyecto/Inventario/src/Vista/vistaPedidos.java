@@ -39,7 +39,7 @@ public class vistaPedidos extends javax.swing.JFrame {
         Fechatext = new javax.swing.JTextField();
         Fecha2text = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Tablaproduc = new javax.swing.JTable();
         BotonAnadir = new javax.swing.JButton();
         BotonRecordatorios = new javax.swing.JButton();
         BotonProductos4 = new javax.swing.JButton();
@@ -79,31 +79,31 @@ public class vistaPedidos extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Tablaproduc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Producto", "Cantidad", "Precio", "IVA"
+                "Producto", "Cantidad"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(Tablaproduc);
 
         BotonAnadir.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
         BotonAnadir.setText("Añadir");
@@ -280,12 +280,12 @@ public class vistaPedidos extends javax.swing.JFrame {
     public javax.swing.JTextField Fecha2text;
     public javax.swing.JTextField Fechatext;
     public javax.swing.JTextField Proveedortext;
+    public javax.swing.JTable Tablaproduc;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

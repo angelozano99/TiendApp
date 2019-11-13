@@ -84,9 +84,23 @@ public class controladorPedidos implements ActionListener{
             String fecha = this.vistaPedidos.Fechatext.getText();
             String fecha_entrega = this.vistaPedidos.Fecha2text.getText();
             int valortotal = Integer.parseInt(this.vistaPedidos.Costotext.getText());
-            
-            
+            int i=0;
             procesarBD.ingresarPedido(id,proveedor,fecha,fecha_entrega,valortotal);
+            do{
+                String nom_producto=String.valueOf(this.vistaPedidos.Tablaproduc.getValueAt(i, 0));
+                int cantidad = Integer.valueOf(String.valueOf(this.vistaPedidos.Tablaproduc.getValueAt(i, 1)));
+                
+                try {
+                    procesarBD.ingresarPedido_producto(id,nom_producto,cantidad);
+                } catch (Exception ex) {
+                    Logger.getLogger(controladorInventario.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                i++;
+            }while (this.vistaPedidos.Tablaproduc.getValueAt(i, 0) != null);
+           
+            
+            
+           
             
             
         }

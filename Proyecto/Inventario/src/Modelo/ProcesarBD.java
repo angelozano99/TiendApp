@@ -218,6 +218,13 @@ public class ProcesarBD {
         insertar(datos, "INSERT INTO pedido(id_pedido,proveedor,fecha,fecha_entrega,valortotal) VALUES(?,?,?,?,?)");
         
     }
+   
+    public void ingresarPedido_producto(int id_pedido,String nom_producto, int cantidad) {
+        
+        String datos[] = {String.valueOf(id_pedido),nom_producto, String.valueOf(cantidad)};
+        insertar(datos, "INSERT INTO pedido_productos(id_pedido,nom_producto,cantidad) VALUES(?,?,?)");
+        
+    }
   
 
     public void eliminarCliente(int nit) {
@@ -225,15 +232,15 @@ public class ProcesarBD {
         delete(String.valueOf(nit), deleteSQL);
     }
     
-      public void ingresarProducto(Integer id, String nombre,
+      public void ingresarProducto(String nombre,
            Integer precioCompra, Integer precioVenta, Integer ganancia,Integer unidades, String proveedor) throws SQLException {
 
         
-        String datos[] = {String.valueOf(id), nombre, String.valueOf(precioCompra),
+        String datos[] = {nombre, String.valueOf(precioCompra),
             String.valueOf(precioVenta), String.valueOf(ganancia),String.valueOf(unidades) ,proveedor};
       
-        insertar(datos, "INSERT INTO productos (id_producto, nom_producto, "
-                + "preciocompra , precioventa, ganancia, unidades, proveedor) VALUES(?,?,?,?,?,?,?)");
+        insertar(datos, "INSERT INTO productos (nom_producto, "
+                + "preciocompra , precioventa, ganancia, unidades, proveedor) VALUES(?,?,?,?,?,?)");
 
 
         JOptionPane.showMessageDialog(null, "Producto creado");
@@ -587,7 +594,7 @@ public class ProcesarBD {
             //PreparedStatement ps = dbC.prepareStatement(insert);	
             PreparedStatement ps = con.conectado().prepareStatement(insert);
 
-            System.out.println(datos.length);
+            //System.out.println(datos.length);
             for (int i = 0; i <= datos.length - 1; i++) {
                 ps.setString(i + 1, datos[i]);
 

@@ -8,6 +8,7 @@ package Controlador;
 import Modelo.ProcesarBD;
 import Vista.vistaConfiguracion;
 import Vista.vistaContabilidad;
+import Vista.vistaInicio2;
 import Vista.vistaInventario;
 import Vista.vistaPedidos;
 import Vista.vistaProducto;
@@ -33,6 +34,7 @@ public class controladorConfiguracion implements ActionListener{
     private vistaContabilidad vistaContabilidad;
     private vistaInventario vistaInventario;
     private vistaPedidos vistaPedidos;
+    private vistaInicio2  vistaInicio;
     
     
     public controladorConfiguracion(vistaConfiguracion vistaConfiguracion){
@@ -42,6 +44,7 @@ public class controladorConfiguracion implements ActionListener{
         this.vistaContabilidad = new vistaContabilidad();
         this.vistaInventario = new vistaInventario();
         this.vistaPedidos  = new vistaPedidos();
+        this.vistaInicio = new vistaInicio2();
         
         
         
@@ -57,6 +60,8 @@ public class controladorConfiguracion implements ActionListener{
         
         this.vistaConfiguracion.TextNombre.addActionListener(this);
         this.vistaConfiguracion.TextContraseña.addActionListener(this);
+        
+        this.vistaConfiguracion.butonSalir.addActionListener(this);
         
         //this.vistaConfiguracion.ComboBox.addActionListener(this);
         
@@ -113,12 +118,23 @@ public class controladorConfiguracion implements ActionListener{
             
             
             
-            
-            if (!datos[5].isEmpty()){
+           
+            if (datos[5]!=(null)){
                 procesarBD.updateUsuario(nombre, contrasena, datos[2], datos[3], datos[4], datos[5]);
             }else{
                 JOptionPane.showMessageDialog(null, "Usuario no encontrado");
             }
+            
+        }
+        if(e.getSource()==this.vistaConfiguracion.BotonEliminar){
+            String nombre = this.vistaConfiguracion.TextNombre.getText();
+            
+            try {
+                procesarBD.eliminarUsuario(nombre);
+            } catch (SQLException ex) {
+                Logger.getLogger(controladorConfiguracion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
             
         }
         if(e.getSource()==this.vistaConfiguracion.BotonInventario){
@@ -142,6 +158,11 @@ public class controladorConfiguracion implements ActionListener{
         if(e.getSource()==this.vistaConfiguracion.BotonContabilidad){
             this.vistaConfiguracion.dispose();
             controladorContabilidad controladorContabilidad = new controladorContabilidad(vistaContabilidad);
+            
+        }
+        if(e.getSource()==this.vistaConfiguracion.butonSalir){
+            this.vistaConfiguracion.dispose();
+            controladorInicio controladorInicio = new controladorInicio(vistaInicio);
             
         }
             

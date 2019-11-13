@@ -46,7 +46,7 @@ public class vistaConfiguracion extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         TextNombre = new javax.swing.JTextField();
         TextContraseña = new javax.swing.JPasswordField();
-        jButton4 = new javax.swing.JButton();
+        butonSalir = new javax.swing.JButton();
         BotonProductos = new javax.swing.JButton();
         BotonContabilidad = new javax.swing.JButton();
         BotonInventario = new javax.swing.JButton();
@@ -95,8 +95,13 @@ public class vistaConfiguracion extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
-        jButton4.setText("Salir");
+        butonSalir.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        butonSalir.setText("Salir");
+        butonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butonSalirActionPerformed(evt);
+            }
+        });
 
         BotonProductos.setBackground(new java.awt.Color(255, 255, 255));
         BotonProductos.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
@@ -150,7 +155,7 @@ public class vistaConfiguracion extends javax.swing.JFrame {
                             .addComponent(TextContraseña)
                             .addComponent(TextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel5)
-                    .addComponent(jButton4))
+                    .addComponent(butonSalir))
                 .addGap(69, 69, 69))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(100, 100, 100)
@@ -217,7 +222,7 @@ public class vistaConfiguracion extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Administrador)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
-                .addComponent(jButton4)
+                .addComponent(butonSalir)
                 .addGap(78, 78, 78))
         );
 
@@ -250,6 +255,10 @@ public class vistaConfiguracion extends javax.swing.JFrame {
     private void BotonContabilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonContabilidadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BotonContabilidadActionPerformed
+
+    private void butonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonSalirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_butonSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -299,8 +308,8 @@ public class vistaConfiguracion extends javax.swing.JFrame {
     public javax.swing.JPasswordField TextContraseña;
     public javax.swing.JTextField TextNombre;
     public javax.swing.JRadioButton Usuario;
+    public javax.swing.JButton butonSalir;
     private javax.swing.ButtonGroup buttonGroup4;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

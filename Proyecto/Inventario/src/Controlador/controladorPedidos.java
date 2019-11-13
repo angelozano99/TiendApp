@@ -79,7 +79,7 @@ public class controladorPedidos implements ActionListener{
             Increment incre=new Increment();
             int id;
             id=incre.id_increment();
-            System.out.println(id);
+            //System.out.println(id);
             String proveedor = this.vistaPedidos.Proveedortext.getText();
             String fecha = this.vistaPedidos.Fechatext.getText();
             String fecha_entrega = this.vistaPedidos.Fecha2text.getText();
@@ -96,13 +96,8 @@ public class controladorPedidos implements ActionListener{
                     Logger.getLogger(controladorInventario.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 i++;
-            }while (this.vistaPedidos.Tablaproduc.getValueAt(i, 0) != null);
+            }while(this.vistaPedidos.Tablaproduc.getValueAt(i, 0) != null);
            
-            
-            
-           
-            
-            
         }
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

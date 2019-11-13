@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import Componentes.Increment;
 import Modelo.ProcesarBD;
 import Vista.vistaConfiguracion;
 import Vista.vistaContabilidad;
@@ -75,14 +76,17 @@ public class controladorPedidos implements ActionListener{
             controladorConfiguracion controladorConfiguracion = new controladorConfiguracion(vistaConfiguracion); 
         }
         if(e.getSource()==this.vistaPedidos.BotonAnadir){
-            
+            Increment incre=new Increment();
+            int id;
+            id=incre.id_increment();
+            System.out.println(id);
             String proveedor = this.vistaPedidos.Proveedortext.getText();
             String fecha = this.vistaPedidos.Fechatext.getText();
             String fecha_entrega = this.vistaPedidos.Fecha2text.getText();
             int valortotal = Integer.parseInt(this.vistaPedidos.Costotext.getText());
             
             
-            procesarBD.ingresarPedido(proveedor,fecha,fecha_entrega,valortotal);
+            procesarBD.ingresarPedido(id,proveedor,fecha,fecha_entrega,valortotal);
             
             
         }

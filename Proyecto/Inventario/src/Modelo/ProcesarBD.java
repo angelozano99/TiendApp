@@ -212,9 +212,10 @@ public class ProcesarBD {
         return datos;
     }
     
-    public void ingresarPedido(String proveedor, String fecha, String fecha_entrega, int valortotal) {
-        String datos[] = {proveedor, fecha, fecha_entrega, String.valueOf(valortotal)};
-        insertar(datos, "INSERT INTO pedido(proveedor,fecha,fecha_entrega,valortotal) VALUES(?,?,?,?)");
+    public void ingresarPedido(int id,String proveedor, String fecha, String fecha_entrega, int valortotal) {
+        
+        String datos[] = {String.valueOf(id),proveedor, fecha, fecha_entrega, String.valueOf(valortotal)};
+        insertar(datos, "INSERT INTO pedido(id_pedido,proveedor,fecha,fecha_entrega,valortotal) VALUES(?,?,?,?,?)");
         
     }
   
@@ -590,7 +591,7 @@ public class ProcesarBD {
             for (int i = 0; i <= datos.length - 1; i++) {
                 ps.setString(i + 1, datos[i]);
 
-                System.out.println("Entra");
+                //System.out.println("Entra");
             }
 
             ps.execute();

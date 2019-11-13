@@ -49,7 +49,7 @@ public class vistaProducto extends javax.swing.JFrame {
 
         BotonProductos4.setBackground(new java.awt.Color(153, 153, 255));
         BotonProductos4.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
-        BotonProductos4.setText("Productos");
+        BotonProductos4.setText("Ventas");
 
         BotonContabilidad4.setBackground(new java.awt.Color(255, 255, 255));
         BotonContabilidad4.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
@@ -73,7 +73,7 @@ public class vistaProducto extends javax.swing.JFrame {
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Tiendapp.png"))); // NOI18N
 
         BotonAnadir.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
-        BotonAnadir.setText("Añadir a Pedido");
+        BotonAnadir.setText("Añadir al carrito");
         BotonAnadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonAnadirActionPerformed(evt);
@@ -119,7 +119,7 @@ public class vistaProducto extends javax.swing.JFrame {
                         .addComponent(BotonInventario4)
                         .addGap(144, 144, 144)
                         .addComponent(BotonPedidos4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
                         .addComponent(BotonConfiguracion4)
                         .addGap(52, 52, 52)))
                 .addGap(68, 68, 68))

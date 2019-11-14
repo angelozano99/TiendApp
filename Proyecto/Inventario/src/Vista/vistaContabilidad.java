@@ -86,7 +86,7 @@ public class vistaContabilidad extends javax.swing.JFrame {
 
         BotonProductos.setBackground(new java.awt.Color(255, 255, 255));
         BotonProductos.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
-        BotonProductos.setText("Productos");
+        BotonProductos.setText("Ventas");
 
         BotonContabilidad.setBackground(new java.awt.Color(153, 153, 255));
         BotonContabilidad.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
@@ -144,8 +144,8 @@ public class vistaContabilidad extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(102, 102, 102)
-                .addComponent(BotonProductos)
+                .addGap(85, 85, 85)
+                .addComponent(BotonProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(122, 122, 122)
                 .addComponent(BotonContabilidad)
                 .addGap(127, 127, 127)

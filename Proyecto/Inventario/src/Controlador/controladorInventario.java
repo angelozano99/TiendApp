@@ -17,6 +17,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -47,6 +48,7 @@ public class controladorInventario implements ActionListener {
         this.vistaInventario.BotonCrear.addActionListener(this);
         this.vistaInventario.BotonModificar.addActionListener(this);
         this.vistaInventario.BotonEliminar.addActionListener(this);
+        this.vistaInventario.BotonAñadirFila.addActionListener(this);
         
         this.vistaInventario.ButonSalir.addActionListener(this);
 
@@ -67,8 +69,52 @@ public class controladorInventario implements ActionListener {
     }
 
     @Override
+    @SuppressWarnings("empty-statement")
     public void actionPerformed(ActionEvent e) {
 
+        
+        String[] datos = new String[6];
+        
+        if(e.getSource()==this.vistaInventario.BotonAñadirFila){
+            
+            DefaultTableModel model = (DefaultTableModel) this.vistaInventario.TableProductos.getModel();
+            
+            Object filas [] = {null,null,null,null,null,null};
+            
+            model.addRow(filas);
+           
+        }
+        
+        
+        
+        if(e.getSource()==this.vistaInventario.BotonBuscar){
+            
+            String nombre = this.vistaInventario.textBuscar.getText();
+            
+            DefaultTableModel model = (DefaultTableModel) this.vistaInventario.TableProductos.getModel();
+            
+            
+            int i=0;
+            
+            do{
+              model.removeRow(0);
+                System.out.println("Entra");
+            i++;            
+           
+            }while(this.vistaInventario.TableProductos.getValueAt(i, 0) == null);
+
+     
+                
+            datos = procesarBD.leerProducto(nombre);
+            
+            Object filas [] = {datos[0],Integer.valueOf(datos[1]), Integer.valueOf(datos[2]),
+            Integer.valueOf(datos[3]),Integer.valueOf(datos[4]), datos[5]};
+            
+             model.addRow(filas);
+            
+            
+            
+        }
         
         if (e.getSource() == this.vistaInventario.BotonCrear) {
 

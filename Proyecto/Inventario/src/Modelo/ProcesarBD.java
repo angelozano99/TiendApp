@@ -283,27 +283,29 @@ public class ProcesarBD {
         JOptionPane.showMessageDialog(null, "Producto creado");
 
     }
-/*
-    public String[] leerCliente(int nit) {
+
+    public String[] leerProducto(String nombre) {
 
         boolean resultado = false;
-        String[] datos = new String[5];
+        String[] datos = new String[6];
         try {
-            vistaClientes vistaClientes;
-            String read = "SELECT * FROM clientes WHERE nit = ?";
+            //vistaClientes vistaClientes;
+            String read = "SELECT * FROM productos WHERE nom_producto = ?";
             PreparedStatement ps = con.conectado().prepareStatement(read);
 
-            ps.setString(1, String.valueOf(nit));
+           
+            ps.setString(1, nombre);
 
             ResultSet resultSet = ps.executeQuery();
 
             while (resultSet.next()) {
 
-                datos[0] = resultSet.getString("nombre");
-                datos[1] = resultSet.getString("direccion");
-                datos[2] = resultSet.getString("telefono");
-                datos[3] = resultSet.getString("ciudad");
-                datos[4] = resultSet.getString("tipo");
+                datos[0] = resultSet.getString("nom_producto");
+                datos[1] = resultSet.getString("preciocompra");
+                datos[2] = resultSet.getString("precioventa");
+                datos[3] = resultSet.getString("ganancia");
+                datos[4] = resultSet.getString("unidades");
+                datos[5] = resultSet.getString("proveedor");
 
             }
 
@@ -316,7 +318,7 @@ public class ProcesarBD {
         }
         return datos;
     }
-*/
+
     public void updateCliente(int nit, String nombre, String direccion, String telefono, String ciudad, String tipo) {
         int resultado = 0;
         try {

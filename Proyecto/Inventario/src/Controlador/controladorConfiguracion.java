@@ -81,29 +81,29 @@ public class controladorConfiguracion implements ActionListener{
             String nombre = this.vistaConfiguracion.TextNombre.getText();
             String contrasena = this.vistaConfiguracion.TextContraseña.getText();
             
-            String insertar;
-            String buscar;
-            String modificar;
-            String eliminar;
-            
+            String insertar="";
+            String buscar="";
+            String modificar="";
+            String eliminar="";
+            try{
            if(this.vistaConfiguracion.Administrador.isSelected()) {
                insertar = "y";
                buscar = "y";
                modificar = "y";
                eliminar = "y";
-               
-               System.out.println("Hola");
-           }else{
+               procesarBD.ingresarUsuario(nombre, contrasena, insertar, buscar, modificar, eliminar);
+               //System.out.println("Hola");
+           }else if(this.vistaConfiguracion.Usuario.isSelected()){
                 insertar = "y";
                buscar = "y";
                modificar = "n";
                eliminar = "n";
-               System.out.println("Hola2");
-               
+               //System.out.println("Hola2");
+               procesarBD.ingresarUsuario(nombre, contrasena, insertar, buscar, modificar, eliminar);
+           }else{
+               JOptionPane.showMessageDialog(null, "Seleccionar Tipo de Usuario");
            }
            
-            try {
-                procesarBD.ingresarUsuario(nombre, contrasena, insertar, buscar, modificar, eliminar);
             } catch (SQLException ex) {
                 Logger.getLogger(controladorConfiguracion.class.getName()).log(Level.SEVERE, null, ex);
             }

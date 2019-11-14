@@ -46,8 +46,9 @@ public class controladorInicio implements ActionListener {
         if (e.getSource() == this.vistainicio2.BotonIngresar) {
             String nombre=this.vistainicio2.textNombre.getText();
             String contrasena=this.vistainicio2.textContra.getText();
-            if (nombre.equals("root") && 
-                    contrasena.equals("root")) {
+            boolean a = ProcesarDB.tipoUsuario(nombre);
+            if ((nombre.equals("root") && 
+                    contrasena.equals("root"))||(a)) {
                 
              this.vistainicio2.dispose();
              controladorConfiguracion controladorConfiguracion = new controladorConfiguracion(vistaConfiguracion,nombre);   

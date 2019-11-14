@@ -243,7 +243,7 @@ public class ProcesarBD {
         String datos[]=leerUsuario(nombre);
         if (nombre.equals("root")) {
             return true;
-        }else if(datos[5]==("y")){
+        }else if(datos[5].equals("y")){
             return true;
         }else
             return false;

@@ -41,6 +41,7 @@ public class vistaProducto extends javax.swing.JFrame {
         BotonDevolucion = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         BotonFoto = new javax.swing.JButton();
+        ButonSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Productos");
@@ -87,6 +88,8 @@ public class vistaProducto extends javax.swing.JFrame {
 
         BotonFoto.setText("Foto del Producto");
 
+        ButonSalir.setText("Salir");
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -94,6 +97,17 @@ public class vistaProducto extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(102, 102, 102)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(BotonProductos4)
+                        .addGap(122, 122, 122)
+                        .addComponent(BotonContabilidad4)
+                        .addGap(127, 127, 127)
+                        .addComponent(BotonInventario4)
+                        .addGap(144, 144, 144)
+                        .addComponent(BotonPedidos4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
+                        .addComponent(BotonConfiguracion4)
+                        .addGap(120, 120, 120))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10)
@@ -110,19 +124,11 @@ public class vistaProducto extends javax.swing.JFrame {
                                     .addComponent(BotonDevolucion)
                                     .addComponent(BotonAnadir))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel11))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(BotonProductos4)
-                        .addGap(122, 122, 122)
-                        .addComponent(BotonContabilidad4)
-                        .addGap(127, 127, 127)
-                        .addComponent(BotonInventario4)
-                        .addGap(144, 144, 144)
-                        .addComponent(BotonPedidos4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
-                        .addComponent(BotonConfiguracion4)
-                        .addGap(52, 52, 52)))
-                .addGap(68, 68, 68))
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                                .addComponent(ButonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(60, 60, 60))))))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,9 +156,15 @@ public class vistaProducto extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BotonFoto)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BotonFoto)
+                        .addContainerGap(45, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ButonSalir)
+                        .addGap(23, 23, 23))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -218,6 +230,7 @@ public class vistaProducto extends javax.swing.JFrame {
     public javax.swing.JButton BotonInventario4;
     public javax.swing.JButton BotonPedidos4;
     public javax.swing.JButton BotonProductos4;
+    public javax.swing.JButton ButonSalir;
     public javax.swing.JTextField Productotext;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

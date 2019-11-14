@@ -8,6 +8,7 @@ package Controlador;
 import Modelo.ProcesarBD;
 import Vista.vistaConfiguracion;
 import Vista.vistaContabilidad;
+import Vista.vistaInicio2;
 import Vista.vistaInventario;
 import Vista.vistaPedidos;
 import Vista.vistaProducto;
@@ -25,10 +26,10 @@ public class controladorInventario implements ActionListener {
 
     private vistaInventario vistaInventario;
     private vistaConfiguracion vistaConfiguracion;
-
     private vistaProducto vistaProducto;
     private vistaContabilidad vistaContabilidad;
     private vistaPedidos vistaPedidos;
+    private vistaInicio2 vistaInicio;
 
     public controladorInventario(vistaInventario vistaInventario) {
 
@@ -44,6 +45,8 @@ public class controladorInventario implements ActionListener {
         this.vistaInventario.BotonCrear.addActionListener(this);
         this.vistaInventario.BotonModificar.addActionListener(this);
         this.vistaInventario.BotonEliminar.addActionListener(this);
+        
+        this.vistaInventario.ButonSalir.addActionListener(this);
 
         this.vistaInventario.setVisible(true);
     }
@@ -92,6 +95,11 @@ public class controladorInventario implements ActionListener {
         if (e.getSource() == this.vistaInventario.BotonConfiguracion) {
             this.vistaInventario.dispose();
             controladorConfiguracion controladorConfiguracion = new controladorConfiguracion(vistaConfiguracion);
+        }
+        if(e.getSource()==this.vistaInventario.ButonSalir){
+            this.vistaInventario.dispose();
+            controladorInicio controladorInicio = new controladorInicio(vistaInicio);
+            
         }
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

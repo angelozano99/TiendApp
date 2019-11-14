@@ -6,6 +6,7 @@
 package Controlador;
 import Vista.vistaConfiguracion;
 import Vista.vistaContabilidad;
+import Vista.vistaInicio2;
 import Vista.vistaInventario;
 import Vista.vistaPedidos;
 import Vista.vistaProducto;
@@ -23,6 +24,7 @@ public class controladorContabilidad implements ActionListener{
     private vistaProducto vistaProducto;
     private vistaInventario vistaInventario;
     private vistaPedidos vistaPedidos;
+    private vistaInicio2 vistaInicio;
     
     public controladorContabilidad(vistaContabilidad vistaContabilidad){
         
@@ -40,6 +42,9 @@ public class controladorContabilidad implements ActionListener{
         this.vistaContabilidad.BotonMensual.addActionListener(this);
         this.vistaContabilidad.ComboBox.addActionListener(this);
         this.vistaContabilidad.BotonAnual.addActionListener(this);
+        
+        this.vistaContabilidad.ButtonSalir.addActionListener(this);
+        
         
         this.vistaContabilidad.setVisible(true);
     }
@@ -66,6 +71,11 @@ public class controladorContabilidad implements ActionListener{
         if(e.getSource()==this.vistaContabilidad.BotonPedidos){
             this.vistaContabilidad.dispose();
             controladorPedidos controladorPedidos = new controladorPedidos(vistaPedidos);
+        }
+        if(e.getSource()==this.vistaContabilidad.ButtonSalir){
+            this.vistaContabilidad.dispose();
+            controladorInicio controladorInicio = new controladorInicio(vistaInicio);
+            
         }
         
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

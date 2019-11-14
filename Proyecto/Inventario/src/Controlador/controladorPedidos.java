@@ -9,6 +9,7 @@ import Componentes.Increment;
 import Modelo.ProcesarBD;
 import Vista.vistaConfiguracion;
 import Vista.vistaContabilidad;
+import Vista.vistaInicio2;
 import Vista.vistaInventario;
 import Vista.vistaPedidos;
 import Vista.vistaProducto;
@@ -31,6 +32,8 @@ public class controladorPedidos implements ActionListener{
     private vistaProducto vistaProducto;
     private vistaContabilidad vistaContabilidad;
     private vistaInventario vistaInventario;
+    private vistaInicio2 vistaInicio;
+    
     
     
     public controladorPedidos(vistaPedidos vistaPedidos){
@@ -45,6 +48,7 @@ public class controladorPedidos implements ActionListener{
         
         this.vistaPedidos.BotonAnadir.addActionListener(this);
         this.vistaPedidos.BotonRecordatorios.addActionListener(this);
+        this.vistaPedidos.ButonSalir.addActionListener(this);
         
         this.vistaPedidos.setVisible(true);
         
@@ -98,6 +102,11 @@ public class controladorPedidos implements ActionListener{
                 i++;
             }while(this.vistaPedidos.Tablaproduc.getValueAt(i, 0) != null);
            
+        }
+        if(e.getSource()==this.vistaPedidos.ButonSalir){
+            this.vistaPedidos.dispose();
+            controladorInicio controladorInicio = new controladorInicio(vistaInicio);
+            
         }
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

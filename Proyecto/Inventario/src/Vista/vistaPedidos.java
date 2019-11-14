@@ -47,6 +47,7 @@ public class vistaPedidos extends javax.swing.JFrame {
         BotonPedidos4 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         Tablaproduc = new javax.swing.JTable();
+        ButonSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Pedidos");
@@ -136,6 +137,8 @@ public class vistaPedidos extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(Tablaproduc);
 
+        ButonSalir.setText("Salir");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -178,6 +181,10 @@ public class vistaPedidos extends javax.swing.JFrame {
                             .addComponent(jLabel5))
                         .addGap(19, 19, 19)))
                 .addGap(50, 50, 50))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(ButonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,7 +223,9 @@ public class vistaPedidos extends javax.swing.JFrame {
                 .addComponent(BotonAnadir)
                 .addGap(48, 48, 48)
                 .addComponent(BotonRecordatorios)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(ButonSalir)
+                .addGap(16, 16, 16))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -284,6 +293,7 @@ public class vistaPedidos extends javax.swing.JFrame {
     public javax.swing.JButton BotonPedidos4;
     public javax.swing.JButton BotonProductos4;
     public javax.swing.JButton BotonRecordatorios;
+    public javax.swing.JButton ButonSalir;
     public javax.swing.JTextField Costotext;
     public javax.swing.JTextField Fecha2text;
     public javax.swing.JTextField Fechatext;

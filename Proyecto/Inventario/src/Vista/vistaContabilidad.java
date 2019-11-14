@@ -46,6 +46,7 @@ public class vistaContabilidad extends javax.swing.JFrame {
         BotonAnual = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         ComboBox = new javax.swing.JComboBox<>();
+        ButtonSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Contabilidad");
@@ -136,6 +137,8 @@ public class vistaContabilidad extends javax.swing.JFrame {
         ComboBox.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
         ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Diaria\t\t", "Semanal", "Mensual", "Anual" }));
 
+        ButtonSalir.setText("Salir");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -177,7 +180,8 @@ public class vistaContabilidad extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(BotonBuscar)
                         .addGap(55, 55, 55)
-                        .addComponent(jLabel5)))
+                        .addComponent(jLabel5))
+                    .addComponent(ButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(69, 69, 69))
         );
         jPanel1Layout.setVerticalGroup(
@@ -213,7 +217,9 @@ public class vistaContabilidad extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(BotonAnual))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addComponent(ButtonSalir)
+                .addGap(23, 23, 23))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -280,6 +286,7 @@ public class vistaContabilidad extends javax.swing.JFrame {
     public javax.swing.JButton BotonPedidos;
     public javax.swing.JButton BotonProductos;
     public javax.swing.JButton BotonSemanal;
+    public javax.swing.JButton ButtonSalir;
     public javax.swing.JComboBox<String> ComboBox;
     public javax.swing.JTable TableProductos;
     private javax.swing.JLabel jLabel1;

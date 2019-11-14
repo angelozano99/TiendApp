@@ -7,6 +7,7 @@ package Controlador;
 
 import Vista.vistaConfiguracion;
 import Vista.vistaContabilidad;
+import Vista.vistaInicio2;
 import Vista.vistaInventario;
 import Vista.vistaPedidos;
 import Vista.vistaProducto;
@@ -26,6 +27,7 @@ public class controladorProductos implements ActionListener{
     private vistaContabilidad vistaContabilidad;
     private vistaInventario vistaInventario;
     private vistaPedidos vistaPedidos;
+    private vistaInicio2 vistaInicio;
     
     
     
@@ -42,10 +44,9 @@ public class controladorProductos implements ActionListener{
         this.vistaProducto.BotonAnadir.addActionListener(this);
         this.vistaProducto.BotonDevolucion.addActionListener(this);
         this.vistaProducto.BotonFoto.addActionListener(this);
+        
+        this.vistaProducto.ButonSalir.addActionListener(this);
 
-        
-        
-        
         this.vistaProducto.setVisible(true);
         
     }
@@ -76,6 +77,11 @@ public class controladorProductos implements ActionListener{
         if(e.getSource()==this.vistaProducto.BotonInventario4){
             this.vistaProducto.dispose();
             controladorInventario controladorInventario = new controladorInventario(vistaInventario);
+            
+        }
+        if(e.getSource()==this.vistaProducto.ButonSalir){
+            this.vistaProducto.dispose();
+            controladorInicio controladorInicio = new controladorInicio(vistaInicio);
             
         }
             

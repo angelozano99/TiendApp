@@ -27,6 +27,7 @@ public class vistaInicio2 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jToggleButton1 = new javax.swing.JToggleButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -34,6 +35,8 @@ public class vistaInicio2 extends javax.swing.JFrame {
         BotonIngresar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         textContra = new javax.swing.JPasswordField();
+
+        jToggleButton1.setText("jToggleButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -154,6 +157,7 @@ public class vistaInicio2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JToggleButton jToggleButton1;
     public javax.swing.JPasswordField textContra;
     public javax.swing.JTextField textNombre;
     // End of variables declaration//GEN-END:variables

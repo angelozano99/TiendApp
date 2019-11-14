@@ -4,9 +4,11 @@ package Modelo;
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
 //import vista.vistaClientes;
 
@@ -14,6 +16,7 @@ public class ProcesarBD {
 
     private Conexion con;
     private PreparedStatement preparedStatement;
+    private ArrayList array = new ArrayList();
 
     public ProcesarBD() {
 
@@ -210,6 +213,29 @@ public class ProcesarBD {
             JOptionPane.showMessageDialog(null, "Problemas en la Consulta Comuniquese con el Administrador");
         }
         return datos;
+    }
+    public ArrayList buscar (String Nit,String insert){
+        this.array=new ArrayList();
+        try{
+        PreparedStatement ps = con.conectado().prepareStatement(insert);
+        if(Nit!=null){
+            ps.setString(1, Nit);
+        }
+        ResultSet rs = ps.executeQuery(); 
+        while(rs.next()){;
+            ResultSetMetaData pss = rs.getMetaData(); 
+            int columnCount = pss.getColumnCount(); 
+            for (int i = 1; i <= columnCount; i++) { 
+                String name = pss.getColumnName(i);
+                array.add(rs.getString(name));
+            }
+        }
+        }catch(SQLException e){
+             System.out.println(e);
+        }
+        
+  
+        return array;
     }
     
     public void ingresarPedido(int id,String proveedor, String fecha, String fecha_entrega, int valortotal) {
@@ -674,127 +700,5 @@ public class ProcesarBD {
 
     String result = "";
 
-    public String query1(String nit) throws SQLException {
-
-        PreparedStatement ps;
-        String query1 = "select M.numfactura,M.fechaFactura,M.cantidad,M.valorFactura  "
-                + "from clientes as C, movimientos as M where C.nit = M.nit and M.nit = " + nit;
-
-        ps = con.conectado().prepareStatement(query1);
-        ResultSet resultSet = ps.executeQuery();
-
-        while (resultSet.next()) {
-
-            
-            result += " " + " Numero Factura: " + resultSet.getString("numfactura");
-            result += " " + " Fecha Factura: " + resultSet.getString("fechaFactura");
-            result += " " + " Cantidad: " + resultSet.getString("cantidad");
-            result += " " + " valor Factura: " + resultSet.getString("valorFactura") + " ||| ";
-
-        }
-
-        ps.execute();
-        ps.close();
-
-        return result;
-    }
     
-        public String query2(String date1, String date2) throws SQLException {
-
-        PreparedStatement ps;
-        String query1 = "select M.numfactura,M.fechaFactura,M.cantidad,M.valorFactura "
-                + "from movimientos as M where M.fechaFactura between '"+date1+"' and '"+date2+"'";
-
-        ps = con.conectado().prepareStatement(query1);
-        ResultSet resultSet = ps.executeQuery();
-
-        while (resultSet.next()) {
-
-            
-            result += " " + " Numero Factura: " + resultSet.getString("numfactura");
-            result += " " + " Fecha Factura: " + resultSet.getString("fechaFactura");
-            result += " " + " Cantidad: " + resultSet.getString("cantidad");
-            result += " " + " valor Factura: " + resultSet.getString("valorFactura") + " ||| ";
-
-        }
-
-        ps.execute();
-        ps.close();
-
-        return result;
-    }
-        
-          public String query3(String numFactura) throws SQLException {
-
-        PreparedStatement ps;
-        String query1 = "select P.id, P.descripcion, P.linea, P.precio  "
-                + "from productos as P, movimientos as M where P.id = M.id and M.numFactura = " + numFactura;
-
-        ps = con.conectado().prepareStatement(query1);
-        ResultSet resultSet = ps.executeQuery();
-
-        while (resultSet.next()) {
-
-            
-            result += " " + " id: " + resultSet.getString("id");
-            result += " " + " Descripcion: " + resultSet.getString("descripcion");
-            result += " " + " Linea: " + resultSet.getString("linea");
-            result += " " + " Precio: " + resultSet.getString("precio") + " ||| ";
-
-        }
-
-        ps.execute();
-        ps.close();
-
-        return result;
-    }
-          
-        
-        public String query4(int id_vdor) throws SQLException {
-
-        PreparedStatement ps;
-        String query1 = " select sum(M.valorFactura)  "
-                + "from movimientos as M,vendedor as V where V.id_Vdor = " + id_vdor+" and M.id_Vdor= "+id_vdor;
-
-        ps = con.conectado().prepareStatement(query1);
-        ResultSet resultSet = ps.executeQuery();
-
-        while (resultSet.next()) {
-
-            
-            result += " " + " Valor total de ventas: " + resultSet.getString("sum(M.valorFactura)");
-        
-        }
-
-        ps.execute();
-        ps.close();
-
-        return result;
-    }
-        
-  
-
-        
-        public String query5() throws SQLException {
-
-        PreparedStatement ps;
-        String query1 = " select M.id,count(M.id) as total  "
-                + "from movimientos as M group by M.id order by 2 desc";
-
-        ps = con.conectado().prepareStatement(query1);
-        ResultSet resultSet = ps.executeQuery();
-
-        while (resultSet.next()) {
-
-            
-            result += " " + " Id_producto: " + resultSet.getString("id");
-            result += " " + " total: " + resultSet.getString("total");
-            result += " " + " /////////" ;
-        }
-
-        ps.execute();
-        ps.close();
-
-        return result;
-    }
 }

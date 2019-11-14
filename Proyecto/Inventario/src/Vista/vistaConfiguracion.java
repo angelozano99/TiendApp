@@ -105,7 +105,12 @@ public class vistaConfiguracion extends javax.swing.JFrame {
 
         BotonProductos.setBackground(new java.awt.Color(255, 255, 255));
         BotonProductos.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
-        BotonProductos.setText("Productos");
+        BotonProductos.setText("Ventas");
+        BotonProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonProductosActionPerformed(evt);
+            }
+        });
 
         BotonContabilidad.setBackground(new java.awt.Color(255, 255, 255));
         BotonContabilidad.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
@@ -175,14 +180,14 @@ public class vistaConfiguracion extends javax.swing.JFrame {
                 .addGap(0, 885, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(111, 111, 111)
-                .addComponent(BotonProductos)
-                .addGap(122, 122, 122)
+                .addComponent(BotonProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(111, 111, 111)
                 .addComponent(BotonContabilidad)
                 .addGap(127, 127, 127)
                 .addComponent(BotonInventario)
                 .addGap(144, 144, 144)
                 .addComponent(BotonPedidos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
                 .addComponent(BotonConfiguracion4)
                 .addGap(119, 119, 119))
         );
@@ -259,6 +264,10 @@ public class vistaConfiguracion extends javax.swing.JFrame {
     private void butonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonSalirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_butonSalirActionPerformed
+
+    private void BotonProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonProductosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonProductosActionPerformed
 
     /**
      * @param args the command line arguments

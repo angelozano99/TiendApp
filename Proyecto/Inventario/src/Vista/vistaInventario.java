@@ -109,6 +109,11 @@ public class vistaInventario extends javax.swing.JFrame {
         BotonProductos.setBackground(new java.awt.Color(255, 255, 255));
         BotonProductos.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
         BotonProductos.setText("Productos");
+        BotonProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonProductosActionPerformed(evt);
+            }
+        });
 
         BotonContabilidad.setBackground(new java.awt.Color(255, 255, 255));
         BotonContabilidad.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
@@ -231,6 +236,10 @@ public class vistaInventario extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void BotonProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonProductosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonProductosActionPerformed
 
     /**
      * @param args the command line arguments

@@ -238,6 +238,17 @@ public class ProcesarBD {
         return array;
     }
     
+    
+    public boolean tipoUsuario(String nombre){
+        String datos[]=leerUsuario(nombre);
+        if (nombre.equals("root")) {
+            return true;
+        }else if(datos[5]==("y")){
+            return true;
+        }else
+            return false;
+    }   
+    
     public void ingresarPedido(int id,String proveedor, String fecha, String fecha_entrega, int valortotal) {
         
         String datos[] = {String.valueOf(id),proveedor, fecha, fecha_entrega, String.valueOf(valortotal)};

@@ -50,7 +50,7 @@ public class controladorInicio implements ActionListener {
                     contrasena.equals("root")) {
                 
              this.vistainicio2.dispose();
-             controladorConfiguracion controladorConfiguracion = new controladorConfiguracion(vistaConfiguracion);   
+             controladorConfiguracion controladorConfiguracion = new controladorConfiguracion(vistaConfiguracion,nombre);   
             }else{
                 
                 ArrayList array = new ArrayList();
@@ -60,7 +60,7 @@ public class controladorInicio implements ActionListener {
             }else{
                 if(array.get(1).equals(contrasena)){
                    
-                    controladorProductos vistaProductos = new controladorProductos(vistaProducto);
+                    controladorProductos vistaProductos = new controladorProductos(vistaProducto, nombre);
                     this.vistainicio2.dispose();
                 }else{
                      JOptionPane.showMessageDialog(null, "Contraseña Incorrecta");

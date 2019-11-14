@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import Modelo.ProcesarBD;
 import Vista.vistaConfiguracion;
 import Vista.vistaContabilidad;
 import Vista.vistaInicio2;
@@ -28,10 +29,12 @@ public class controladorProductos implements ActionListener{
     private vistaInventario vistaInventario;
     private vistaPedidos vistaPedidos;
     private vistaInicio2 vistaInicio;
+    private ProcesarBD procesarBD = new ProcesarBD();
+    private String globalNombre;
     
     
     
-    public controladorProductos (vistaProducto vistaProducto){
+    public controladorProductos (vistaProducto vistaProducto, String nombre){
         
         this.vistaProducto = new vistaProducto();
         
@@ -49,34 +52,45 @@ public class controladorProductos implements ActionListener{
 
         this.vistaProducto.setVisible(true);
         
+        this.globalNombre=nombre;
+        
+        evaluarUsuario();
+        
+    }
+    
+    public void evaluarUsuario(){
+        
+        boolean a = procesarBD.tipoUsuario(globalNombre);
+        //System.out.println("a ->" + a);
+        if (a && !this.vistaProducto.BotonConfiguracion4.isEnabled()) {
+            this.vistaProducto.BotonConfiguracion4.setEnabled(true);
+         }else if(!a && this.vistaProducto.BotonConfiguracion4.isEnabled()){
+            this.vistaProducto.BotonConfiguracion4.setEnabled(false);
+        }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         
-         if(e.getSource()==this.vistaProducto.BotonProductos4){
-            this.vistaProducto.dispose();
-            controladorProductos controladorProductos = new controladorProductos(vistaProducto);
-        }
         
         if(e.getSource()==this.vistaProducto.BotonPedidos4){
             this.vistaProducto.dispose();
-            controladorPedidos controladorPedidos = new controladorPedidos(vistaPedidos);
+            controladorPedidos controladorPedidos = new controladorPedidos(vistaPedidos, globalNombre);
         }
         
         if(e.getSource()==this.vistaProducto.BotonContabilidad4){
             this.vistaProducto.dispose();
-            controladorContabilidad controladorContabilidad = new controladorContabilidad(vistaContabilidad);
+            controladorContabilidad controladorContabilidad = new controladorContabilidad(vistaContabilidad, globalNombre);
         }
         
         if(e.getSource()==this.vistaProducto.BotonConfiguracion4){
             this.vistaProducto.dispose();
-            controladorConfiguracion controladorConfiguracion = new controladorConfiguracion(vistaConfiguracion); 
+            controladorConfiguracion controladorConfiguracion = new controladorConfiguracion(vistaConfiguracion, globalNombre); 
         }   
         
         if(e.getSource()==this.vistaProducto.BotonInventario4){
             this.vistaProducto.dispose();
-            controladorInventario controladorInventario = new controladorInventario(vistaInventario);
+            controladorInventario controladorInventario = new controladorInventario(vistaInventario, globalNombre);
             
         }
         if(e.getSource()==this.vistaProducto.ButonSalir){

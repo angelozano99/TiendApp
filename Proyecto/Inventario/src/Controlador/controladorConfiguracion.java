@@ -35,9 +35,10 @@ public class controladorConfiguracion implements ActionListener{
     private vistaInventario vistaInventario;
     private vistaPedidos vistaPedidos;
     private vistaInicio2  vistaInicio;
+    private ProcesarBD procesarBD = new ProcesarBD();
+    private String globalNombre;
     
-    
-    public controladorConfiguracion(vistaConfiguracion vistaConfiguracion){
+    public controladorConfiguracion(vistaConfiguracion vistaConfiguracion,String nombre){
         
         this.vistaConfiguracion = new vistaConfiguracion();
         this.vistaProducto = new vistaProducto();
@@ -66,20 +67,25 @@ public class controladorConfiguracion implements ActionListener{
         //this.vistaConfiguracion.ComboBox.addActionListener(this);
         
         this.vistaConfiguracion.setVisible(true);
+        
+        this.globalNombre = nombre;
        
+        
     }
+    
     
     
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        ProcesarBD procesarBD = new ProcesarBD();
+        
+        String nombre = this.vistaConfiguracion.TextNombre.getText();
+        String contrasena = this.vistaConfiguracion.TextContraseña.getText();
         
         
         if(e.getSource()==this.vistaConfiguracion.BotonCrear){
             
-            String nombre = this.vistaConfiguracion.TextNombre.getText();
-            String contrasena = this.vistaConfiguracion.TextContraseña.getText();
+            
             
             String insertar="";
             String buscar="";
@@ -111,8 +117,7 @@ public class controladorConfiguracion implements ActionListener{
         }
         
         if(e.getSource()==this.vistaConfiguracion.BotonModificar){
-            String nombre = this.vistaConfiguracion.TextNombre.getText();
-            String contrasena = this.vistaConfiguracion.TextContraseña.getText();
+            
             
             String datos[] = procesarBD.leerUsuario(nombre);
             
@@ -127,7 +132,7 @@ public class controladorConfiguracion implements ActionListener{
             
         }
         if(e.getSource()==this.vistaConfiguracion.BotonEliminar){
-            String nombre = this.vistaConfiguracion.TextNombre.getText();
+            
             
             try {
                 procesarBD.eliminarUsuario(nombre);
@@ -139,25 +144,25 @@ public class controladorConfiguracion implements ActionListener{
         }
         if(e.getSource()==this.vistaConfiguracion.BotonInventario){
             this.vistaConfiguracion.dispose();
-            controladorInventario controladorInventario = new controladorInventario(vistaInventario);
+            controladorInventario controladorInventario = new controladorInventario(vistaInventario,globalNombre);
             
         }
         
         if(e.getSource()==this.vistaConfiguracion.BotonProductos){
             this.vistaConfiguracion.dispose();
-            controladorProductos controladorProductos = new controladorProductos(vistaProducto);
+            controladorProductos controladorProductos = new controladorProductos(vistaProducto, globalNombre);
             
         }
         
         if(e.getSource()==this.vistaConfiguracion.BotonPedidos){
             this.vistaConfiguracion.dispose();
-            controladorPedidos controladorPedidos = new controladorPedidos(vistaPedidos);
+            controladorPedidos controladorPedidos = new controladorPedidos(vistaPedidos ,globalNombre);
             
         }
         
         if(e.getSource()==this.vistaConfiguracion.BotonContabilidad){
             this.vistaConfiguracion.dispose();
-            controladorContabilidad controladorContabilidad = new controladorContabilidad(vistaContabilidad);
+            controladorContabilidad controladorContabilidad = new controladorContabilidad(vistaContabilidad, globalNombre);
             
         }
         if(e.getSource()==this.vistaConfiguracion.butonSalir){

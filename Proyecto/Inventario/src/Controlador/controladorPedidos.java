@@ -33,10 +33,11 @@ public class controladorPedidos implements ActionListener{
     private vistaContabilidad vistaContabilidad;
     private vistaInventario vistaInventario;
     private vistaInicio2 vistaInicio;
+    private ProcesarBD procesarBD = new ProcesarBD();
+    private String globalNombre;
     
     
-    
-    public controladorPedidos(vistaPedidos vistaPedidos){
+    public controladorPedidos(vistaPedidos vistaPedidos, String nombre){
         
         this.vistaPedidos = new vistaPedidos();
         
@@ -52,8 +53,20 @@ public class controladorPedidos implements ActionListener{
         
         this.vistaPedidos.setVisible(true);
         
+        this.globalNombre=nombre;
+        evaluarUsuario();
+        
     }
     
+    public void evaluarUsuario(){
+        
+        boolean a = procesarBD.tipoUsuario(globalNombre);
+        if (a) {
+            this.vistaPedidos.BotonConfiguracion4.setEnabled(true);
+         }else{
+            this.vistaPedidos.BotonConfiguracion4.setEnabled(false);
+        }
+    }
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -61,23 +74,23 @@ public class controladorPedidos implements ActionListener{
         ProcesarBD procesarBD = new ProcesarBD();
         if(e.getSource()==this.vistaPedidos.BotonProductos4){
             this.vistaPedidos.dispose();
-            controladorProductos controladorProductos = new controladorProductos(vistaProducto);
+            controladorProductos controladorProductos = new controladorProductos(vistaProducto, globalNombre);
         }
         
         if(e.getSource()==this.vistaPedidos.BotonInventario4){
             this.vistaPedidos.dispose();
-            controladorInventario controladorInventario = new controladorInventario(vistaInventario);
+            controladorInventario controladorInventario = new controladorInventario(vistaInventario, globalNombre);
             
         }
         
         if(e.getSource()==this.vistaPedidos.BotonContabilidad4){
             this.vistaPedidos.dispose();
-            controladorContabilidad controladorContabilidad = new controladorContabilidad(vistaContabilidad);
+            controladorContabilidad controladorContabilidad = new controladorContabilidad(vistaContabilidad, globalNombre);
         }
         
         if(e.getSource()==this.vistaPedidos.BotonConfiguracion4){
             this.vistaPedidos.dispose();
-            controladorConfiguracion controladorConfiguracion = new controladorConfiguracion(vistaConfiguracion); 
+            controladorConfiguracion controladorConfiguracion = new controladorConfiguracion(vistaConfiguracion, globalNombre); 
         }
         if(e.getSource()==this.vistaPedidos.BotonAnadir){
             Increment incre=new Increment();

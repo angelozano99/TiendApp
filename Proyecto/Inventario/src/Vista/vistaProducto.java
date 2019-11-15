@@ -237,15 +237,7 @@ public class vistaProducto extends javax.swing.JFrame {
        
     }
     
-    public void addCheckBox (int column, JTable table){
-        TableColumn tc = table.getColumnModel().getColumn(column);
-        tc.setCellEditor(table.getDefaultEditor(Boolean.class));
-        tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));    
-    }
     
-    public boolean IsSelected(int row,int column,JTable table){
-        return table.getValueAt(row, column) != null;
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton BotonAnadir;

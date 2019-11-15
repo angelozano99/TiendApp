@@ -10,6 +10,8 @@ import javax.swing.JOptionPane;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 //import vista.vistaClientes;
 
 public class ProcesarBD {
@@ -348,16 +350,16 @@ public class ProcesarBD {
         }
     }
 
-    public void ingresarComprobante(String comprobante, String descripcion, String tipo, int cuenta) {
-        String datos[] = {comprobante, descripcion, tipo, String.valueOf(cuenta)};
-        insertar(datos, "INSERT INTO comprobante (comprobante, descripcion,tipo,cuenta) VALUES(?,?,?,?)");
-
-    }
-
-    public void eliminarComprobante(String comprobante) {
-        String deleteSQL = "DELETE FROM comprobante WHERE comprobante = ?";
-        delete(comprobante, deleteSQL);
-    }
+//    public void ingresarComprobante(String comprobante, String descripcion, String tipo, int cuenta) {
+//        String datos[] = {comprobante, descripcion, tipo, String.valueOf(cuenta)};
+//        insertar(datos, "INSERT INTO comprobante (comprobante, descripcion,tipo,cuenta) VALUES(?,?,?,?)");
+//
+//    }
+//
+//    public void eliminarComprobante(String comprobante) {
+//        String deleteSQL = "DELETE FROM comprobante WHERE comprobante = ?";
+//        delete(comprobante, deleteSQL);
+//    }
 /*
     public String[] leerComprobante(String comprobante) {
 
@@ -390,28 +392,28 @@ public class ProcesarBD {
         return datos;
     }
 */
-    public void updateComprobante(String comprobante, String descripcion, String tipo, String cuenta) {
-        int resultado = 0;
-        try {
-
-            String updateSQL = "UPDATE comprobante SET  descripcion  = ?, tipo =  ? ,cuenta =  ?" + "  WHERE comprobante =  ?";
-            PreparedStatement ps = con.conectado().prepareStatement(updateSQL);
-
-            ps.setString(1, descripcion);
-            ps.setString(2, tipo);
-            ps.setString(3, cuenta);
-            ps.setString(4, comprobante);
-
-            ps.execute();
-            ps.close();
-
-            JOptionPane.showMessageDialog(null, "Comprobante modificado");
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null, "Problemas con la actualizacion de un Contacto Comuniquese con el Administrador");
-        }
-    }
+//    public void updateComprobante(String comprobante, String descripcion, String tipo, String cuenta) {
+//        int resultado = 0;
+//        try {
+//
+//            String updateSQL = "UPDATE comprobante SET  descripcion  = ?, tipo =  ? ,cuenta =  ?" + "  WHERE comprobante =  ?";
+//            PreparedStatement ps = con.conectado().prepareStatement(updateSQL);
+//
+//            ps.setString(1, descripcion);
+//            ps.setString(2, tipo);
+//            ps.setString(3, cuenta);
+//            ps.setString(4, comprobante);
+//
+//            ps.execute();
+//            ps.close();
+//
+//            JOptionPane.showMessageDialog(null, "Comprobante modificado");
+//
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//            JOptionPane.showMessageDialog(null, "Problemas con la actualizacion de un Contacto Comuniquese con el Administrador");
+//        }
+//    }
 
     public void ingresarProducto(int id, String descripcion, String linea, double precio) {
         String datos[] = {String.valueOf(id), descripcion, linea, String.valueOf(precio)};
@@ -691,20 +693,27 @@ public class ProcesarBD {
      */
    
 
-    public void listar() {
-        String strConsulta = "SELECT *FROM articulo";
+    public DefaultTableModel listar(DefaultTableModel tabla) {
+        String strConsulta = "SELECT *FROM productos";
         try {
             PreparedStatement ps = con.conectado().prepareStatement(strConsulta);
             ResultSet res = ps.executeQuery();
+            
+            
 
-            String codigo = "";
-            String nombre = "";
-            int precio = 0;
+            String nom_producto = "";
+            String proveedor ="";
+            int unidades = 0;
+            int precio_venta = 0;
+            
             while (res.next()) {
-                codigo = res.getString("id_arti");
-                nombre = res.getString("nom_art");
-                precio = res.getInt("precio_art");
-                System.out.println(codigo + "\t" + nombre + "\t" + precio);
+                nom_producto = res.getString("nom_producto");
+                proveedor = res.getString("proveedor");
+                unidades = res.getInt("unidades");
+                precio_venta = res.getInt("precioventa");
+                Object entrada[]={nom_producto,proveedor,unidades,precio_venta};
+                //System.out.println(codigo + "\t" + nombre + "\t" + precio);
+                tabla.addRow(entrada);
             }
             res.close();
 
@@ -713,6 +722,8 @@ public class ProcesarBD {
         } catch (Exception ex) {
             System.out.println(ex.toString());
         }
+        
+        return tabla;
     }
 
     String result = "";

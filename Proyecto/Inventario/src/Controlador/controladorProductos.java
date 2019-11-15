@@ -14,6 +14,9 @@ import Vista.vistaPedidos;
 import Vista.vistaProducto;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -55,6 +58,7 @@ public class controladorProductos implements ActionListener{
         this.globalNombre=nombre;
         
         evaluarUsuario();
+        llenarTabla();
         
     }
     
@@ -67,6 +71,20 @@ public class controladorProductos implements ActionListener{
          }else if(!a && this.vistaProducto.BotonConfiguracion4.isEnabled()){
             this.vistaProducto.BotonConfiguracion4.setEnabled(false);
         }
+    }
+    public void addCheckBox (int column, JTable table){
+        TableColumn tc = table.getColumnModel().getColumn(column);
+        tc.setCellEditor(table.getDefaultEditor(Boolean.class));
+        tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));    
+    }
+    
+    public boolean IsSelected(int row,int column,JTable table){
+        return table.getValueAt(row, column) != null;
+    }
+    public void llenarTabla(){
+        DefaultTableModel tabla = (DefaultTableModel) vistaProducto.jTableproductos.getModel();
+        vistaProducto.jTableproductos.setModel(procesarBD.listar(tabla));
+        addCheckBox(4, vistaProducto.jTableproductos);
     }
 
     @Override

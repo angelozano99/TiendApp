@@ -46,7 +46,7 @@ public class controladorProductos implements ActionListener{
         
         this.vistaProducto.BotonAnadir.addActionListener(this);
         this.vistaProducto.BotonDevolucion.addActionListener(this);
-        this.vistaProducto.BotonFoto.addActionListener(this);
+        
         
         this.vistaProducto.ButonSalir.addActionListener(this);
 

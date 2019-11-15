@@ -5,6 +5,9 @@
  */
 package Vista;
 
+import javax.swing.JTable;
+import javax.swing.table.TableColumn;
+
 /**
  *
  * @author angel
@@ -17,6 +20,7 @@ public class vistaProducto extends javax.swing.JFrame {
     public vistaProducto() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
+         
     }
 
     /**
@@ -36,12 +40,12 @@ public class vistaProducto extends javax.swing.JFrame {
         BotonConfiguracion4 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        Productotext = new javax.swing.JTextField();
         BotonAnadir = new javax.swing.JButton();
         BotonDevolucion = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        BotonFoto = new javax.swing.JButton();
         ButonSalir = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableproductos = new javax.swing.JTable();
+        jtextBuscar = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Productos");
@@ -84,11 +88,28 @@ public class vistaProducto extends javax.swing.JFrame {
         BotonDevolucion.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
         BotonDevolucion.setText("Devolución");
 
-        jLabel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        BotonFoto.setText("Foto del Producto");
-
         ButonSalir.setText("Salir");
+
+        jTableproductos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Nombre de Productos", "Proveedor", "Unidades Disponibles", "Precio $", "Seleccionar"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTableproductos);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -113,13 +134,11 @@ public class vistaProducto extends javax.swing.JFrame {
                             .addComponent(jLabel10)
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Productotext, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel6Layout.createSequentialGroup()
-                                        .addGap(21, 21, 21)
-                                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(BotonFoto, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                                .addGap(92, 92, 92)
+                                        .addGap(6, 6, 6)
+                                        .addComponent(jtextBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(BotonDevolucion)
                                     .addComponent(BotonAnadir))))
@@ -143,28 +162,24 @@ public class vistaProducto extends javax.swing.JFrame {
                 .addGap(60, 60, 60)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
+                        .addComponent(jLabel11)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Productotext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BotonAnadir)))
-                    .addComponent(jLabel11))
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(BotonDevolucion))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BotonFoto)
-                        .addContainerGap(45, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addComponent(BotonDevolucion)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(ButonSalir)
-                        .addGap(23, 23, 23))))
+                        .addGap(23, 23, 23))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(BotonAnadir))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(jtextBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(138, 138, 138))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -175,7 +190,7 @@ public class vistaProducto extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -219,6 +234,17 @@ public class vistaProducto extends javax.swing.JFrame {
                 new vistaProducto().setVisible(true);
             }
         });
+       
+    }
+    
+    public void addCheckBox (int column, JTable table){
+        TableColumn tc = table.getColumnModel().getColumn(column);
+        tc.setCellEditor(table.getDefaultEditor(Boolean.class));
+        tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));    
+    }
+    
+    public boolean IsSelected(int row,int column,JTable table){
+        return table.getValueAt(row, column) != null;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -226,14 +252,14 @@ public class vistaProducto extends javax.swing.JFrame {
     public javax.swing.JButton BotonConfiguracion4;
     public javax.swing.JButton BotonContabilidad4;
     public javax.swing.JButton BotonDevolucion;
-    public javax.swing.JButton BotonFoto;
     public javax.swing.JButton BotonInventario4;
     public javax.swing.JButton BotonPedidos4;
     public javax.swing.JButton BotonProductos4;
     public javax.swing.JButton ButonSalir;
-    public javax.swing.JTextField Productotext;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JTable jTableproductos;
+    private javax.swing.JTextField jtextBuscar;
     // End of variables declaration//GEN-END:variables
 }

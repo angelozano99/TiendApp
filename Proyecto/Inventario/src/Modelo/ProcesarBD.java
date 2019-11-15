@@ -39,6 +39,8 @@ public class ProcesarBD {
         PreparedStatement ps = con.conectado().prepareStatement(insert);
 
         ps.execute();
+        
+        //show grants for angel@localhost  ,  comando para obtener los permisos de determinado usuario, devuelve tabla, y sacar la linea.
 
         if (insertar == "y") {
 
@@ -50,6 +52,8 @@ public class ProcesarBD {
 
         }
 
+        
+        
         if (buscar == "y") {
 
             String permiso = "GRANT select ON tiendapp.* TO " + nombre + "@localhost";

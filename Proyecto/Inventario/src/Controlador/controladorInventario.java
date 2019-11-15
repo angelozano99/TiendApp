@@ -154,8 +154,7 @@ public class controladorInventario implements ActionListener {
                 }
             }
 
-            System.out.println(i);
-
+          
             for (int j = 0; j < i; j++) {
                 String nombre = String.valueOf(this.vistaInventario.TableProductos.getValueAt(j, 0));
                 int precioCompra = Integer.valueOf(String.valueOf(this.vistaInventario.TableProductos.getValueAt(j, 1)));

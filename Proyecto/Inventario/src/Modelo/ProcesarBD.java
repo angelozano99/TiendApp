@@ -345,10 +345,10 @@ public class ProcesarBD {
     public void leerTablaProducto(DefaultTableModel model) {
 
         boolean resultado = false;
- 
+
         vistaInventario vistaInventario = new vistaInventario();
-        String [] datos = null;
-     
+        String[] datos = null;
+
         try {
             String read = "SELECT * FROM productos";
             PreparedStatement ps = con.conectado().prepareStatement(read);
@@ -356,28 +356,21 @@ public class ProcesarBD {
             ResultSet resultSet = ps.executeQuery();
 
             while (resultSet.next()) {
-                 datos = new String[6];
-               datos[0] = resultSet.getString("nom_producto");
+                datos = new String[6];
+                datos[0] = resultSet.getString("nom_producto");
                 datos[1] = resultSet.getString("preciocompra");
-                 datos[2] = resultSet.getString("precioventa");
-                  datos[3] = resultSet.getString("ganancia");
-                   datos[4] = resultSet.getString("unidades");
-                    datos[5] = resultSet.getString("proveedor");
-                    
-                   Object filas[] = {datos[0], Integer.valueOf(datos[1]), Integer.valueOf(datos[2]),
-                Integer.valueOf(datos[4]), datos[5]};
-                      
-                 model.addRow(filas);
-             
-                   System.out.println("entra");
+                datos[2] = resultSet.getString("precioventa");
+                datos[3] = resultSet.getString("ganancia");
+                datos[4] = resultSet.getString("unidades");
+                datos[5] = resultSet.getString("proveedor");
 
+                Object filas[] = {datos[0], Integer.valueOf(datos[1]), Integer.valueOf(datos[2]),
+                    Integer.valueOf(datos[4]), datos[5]};
+
+                model.addRow(filas);
 
             }
-            
-            
 
-            
-            
             ps.execute();
             ps.close();
 
@@ -547,7 +540,6 @@ public class ProcesarBD {
         return datos;
     }
      */
-
     public void ingresarVendedor(int id_Vdor, String nombre, String direccion, int telefono, String ciudad) {
         String datos[] = {String.valueOf(id_Vdor), nombre, direccion, String.valueOf(telefono), ciudad};
         insertar(datos, "INSERT INTO vendedor (id_Vdor, nombre,direccion,telefono,ciudad) VALUES(?,?,?,?,?)");

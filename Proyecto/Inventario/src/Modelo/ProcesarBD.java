@@ -1,6 +1,6 @@
 package Modelo;
 
-
+import Vista.vistaInventario;
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,24 +26,21 @@ public class ProcesarBD {
 
     }
 
-   public void ingresarUsuario(String nombre, String contrasena,
+    public void ingresarUsuario(String nombre, String contrasena,
             String insertar, String buscar, String modificar, String eliminar) throws SQLException {
 
-        
         String datos[] = {nombre, contrasena, insertar, buscar, modificar, eliminar};
-      
+
         insertar(datos, "INSERT INTO usuarios (nombre, contrasena, "
                 + "insertar , buscar, modificar, eliminar) VALUES(?,?,?,?,?,?)");
 
         String insert = "create user " + nombre + "@localhost identified by '" + contrasena + "'";
 
-        
         PreparedStatement ps = con.conectado().prepareStatement(insert);
 
         ps.execute();
-        
-        //show grants for angel@localhost  ,  comando para obtener los permisos de determinado usuario, devuelve tabla, y sacar la linea.
 
+        //show grants for angel@localhost  ,  comando para obtener los permisos de determinado usuario, devuelve tabla, y sacar la linea.
         if (insertar == "y") {
 
             String permiso = "GRANT insert ON tiendapp.* TO " + nombre + "@localhost";
@@ -54,8 +51,6 @@ public class ProcesarBD {
 
         }
 
-        
-        
         if (buscar == "y") {
 
             String permiso = "GRANT select ON tiendapp.* TO " + nombre + "@localhost";
@@ -91,8 +86,8 @@ public class ProcesarBD {
         JOptionPane.showMessageDialog(null, "Usuario creado");
 
     }
-   
-   public void eliminarUsuario(String nombre) throws SQLException {
+
+    public void eliminarUsuario(String nombre) throws SQLException {
 
         String deleteSQL = "DELETE FROM usuarios WHERE nombre = ?";
         delete(nombre, deleteSQL);
@@ -104,7 +99,7 @@ public class ProcesarBD {
         ps.close();
 
     }
-   
+
     public void updateUsuario(String nombre,
             String contrasena, String insertar, String buscar,
             String modificar, String eliminar) {
@@ -136,7 +131,6 @@ public class ProcesarBD {
             ps.execute();
 
             //System.out.println("entra1");
-
             if (insertar == "y") {
 
                 String permiso = "GRANT insert ON tiendapp.* TO " + nombre + "@localhost";
@@ -186,8 +180,7 @@ public class ProcesarBD {
             JOptionPane.showMessageDialog(null, "Problemas con la actualizacion de un Contacto Comuniquese con el Administrador");
         }
     }
-    
-    
+
     public String[] leerUsuario(String nombre) {
 
         boolean resultado = false;
@@ -220,71 +213,68 @@ public class ProcesarBD {
         }
         return datos;
     }
-    public ArrayList buscar (String Nit,String insert){
-        this.array=new ArrayList();
-        try{
-        PreparedStatement ps = con.conectado().prepareStatement(insert);
-        if(Nit!=null){
-            ps.setString(1, Nit);
-        }
-        ResultSet rs = ps.executeQuery(); 
-        while(rs.next()){;
-            ResultSetMetaData pss = rs.getMetaData(); 
-            int columnCount = pss.getColumnCount(); 
-            for (int i = 1; i <= columnCount; i++) { 
-                String name = pss.getColumnName(i);
-                array.add(rs.getString(name));
+
+    public ArrayList buscar(String Nit, String insert) {
+        this.array = new ArrayList();
+        try {
+            PreparedStatement ps = con.conectado().prepareStatement(insert);
+            if (Nit != null) {
+                ps.setString(1, Nit);
             }
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {;
+                ResultSetMetaData pss = rs.getMetaData();
+                int columnCount = pss.getColumnCount();
+                for (int i = 1; i <= columnCount; i++) {
+                    String name = pss.getColumnName(i);
+                    array.add(rs.getString(name));
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
         }
-        }catch(SQLException e){
-             System.out.println(e);
-        }
-        
-  
+
         return array;
     }
-    
-    
-    public boolean tipoUsuario(String nombre){
-        String datos[]=leerUsuario(nombre);
+
+    public boolean tipoUsuario(String nombre) {
+        String datos[] = leerUsuario(nombre);
         if (nombre.equals("root")) {
             return true;
-        }else if(datos[5].equals("y")){
+        } else if (datos[5].equals("y")) {
             return true;
-        }else
+        } else {
             return false;
-    }   
-    
-    public void ingresarPedido(int id,String proveedor, String fecha, String fecha_entrega, int valortotal) {
-        
-        String datos[] = {String.valueOf(id),proveedor, fecha, fecha_entrega, String.valueOf(valortotal)};
+        }
+    }
+
+    public void ingresarPedido(int id, String proveedor, String fecha, String fecha_entrega, int valortotal) {
+
+        String datos[] = {String.valueOf(id), proveedor, fecha, fecha_entrega, String.valueOf(valortotal)};
         insertar(datos, "INSERT INTO pedido(id_pedido,proveedor,fecha,fecha_entrega,valortotal) VALUES(?,?,?,?,?)");
-        
+
     }
-   
-    public void ingresarPedido_producto(int id_pedido,String nom_producto, int cantidad) {
-        
-        String datos[] = {String.valueOf(id_pedido),nom_producto, String.valueOf(cantidad)};
+
+    public void ingresarPedido_producto(int id_pedido, String nom_producto, int cantidad) {
+
+        String datos[] = {String.valueOf(id_pedido), nom_producto, String.valueOf(cantidad)};
         insertar(datos, "INSERT INTO pedido_productos(id_pedido,nom_producto,cantidad) VALUES(?,?,?)");
-        
+
     }
-  
 
     public void eliminarCliente(int nit) {
         String deleteSQL = "DELETE FROM clientes WHERE nit = ?";
         delete(String.valueOf(nit), deleteSQL);
     }
-    
-      public void ingresarProducto(String nombre,
-           Integer precioCompra, Integer precioVenta, Integer ganancia,Integer unidades, String proveedor) throws SQLException {
 
-        
+    public void ingresarProducto(String nombre,
+            Integer precioCompra, Integer precioVenta, Integer ganancia, Integer unidades, String proveedor) throws SQLException {
+
         String datos[] = {nombre, String.valueOf(precioCompra),
-            String.valueOf(precioVenta), String.valueOf(ganancia),String.valueOf(unidades) ,proveedor};
-      
+            String.valueOf(precioVenta), String.valueOf(ganancia), String.valueOf(unidades), proveedor};
+
         insertar(datos, "INSERT INTO productos (nom_producto, "
                 + "preciocompra , precioventa, ganancia, unidades, proveedor) VALUES(?,?,?,?,?,?)");
-
 
         JOptionPane.showMessageDialog(null, "Producto creado");
 
@@ -299,7 +289,6 @@ public class ProcesarBD {
             String read = "SELECT * FROM productos WHERE nom_producto = ?";
             PreparedStatement ps = con.conectado().prepareStatement(read);
 
-           
             ps.setString(1, nombre);
 
             ResultSet resultSet = ps.executeQuery();
@@ -324,37 +313,23 @@ public class ProcesarBD {
         }
         return datos;
     }
-    
-    public ArrayList leerTablaProducto() {
-       
-           this.array = new ArrayList();
+    int i = 0;
+
+    public int leerNumeroProductos() {
+
         boolean resultado = false;
-       
+
         try {
-            
+
             String read = "SELECT * FROM productos";
             PreparedStatement ps = con.conectado().prepareStatement(read);
-
 
             ResultSet resultSet = ps.executeQuery();
 
             while (resultSet.next()) {
-                String []datos = new String[6];
-                datos[0] = resultSet.getString("nom_producto");
-                datos[1] = resultSet.getString("preciocompra");
-                datos[2] = resultSet.getString("precioventa");
-                datos[3] = resultSet.getString("ganancia");
-                datos[4] = resultSet.getString("unidades");
-                datos[5] = resultSet.getString("proveedor");
-              
-                
-                
-                for (int i = 0; i < datos.length; i++) {
-                     this.array.add(datos[i]);
-                    
-                }
-               
-             
+
+                i++;
+
             }
 
             ps.execute();
@@ -364,23 +339,68 @@ public class ProcesarBD {
             System.out.println(e.getMessage());
             JOptionPane.showMessageDialog(null, "Problemas en la Consulta Comuniquese con el Administrador");
         }
-     return array;   
+        return i;
     }
-    
-      public void updateProducto(String nombre,
-           Integer precioCompra, Integer precioVenta, Integer ganancia,Integer unidades, String proveedor) {
+
+    public void leerTablaProducto(DefaultTableModel model) {
+
+        boolean resultado = false;
+ 
+        vistaInventario vistaInventario = new vistaInventario();
+        String [] datos = null;
+     
+        try {
+            String read = "SELECT * FROM productos";
+            PreparedStatement ps = con.conectado().prepareStatement(read);
+
+            ResultSet resultSet = ps.executeQuery();
+
+            while (resultSet.next()) {
+                 datos = new String[6];
+               datos[0] = resultSet.getString("nom_producto");
+                datos[1] = resultSet.getString("preciocompra");
+                 datos[2] = resultSet.getString("precioventa");
+                  datos[3] = resultSet.getString("ganancia");
+                   datos[4] = resultSet.getString("unidades");
+                    datos[5] = resultSet.getString("proveedor");
+                    
+                   Object filas[] = {datos[0], Integer.valueOf(datos[1]), Integer.valueOf(datos[2]),
+                Integer.valueOf(datos[4]), datos[5]};
+                      
+                 model.addRow(filas);
+             
+                   System.out.println("entra");
+
+
+            }
+            
+            
+
+            
+            
+            ps.execute();
+            ps.close();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Problemas en la Consulta Comuniquese con el Administrador");
+        }
+    }
+
+    public void updateProducto(String nombre,
+            Integer precioCompra, Integer precioVenta, Integer ganancia, Integer unidades, String proveedor) {
         int resultado = 0;
         try {
 
             String updateSQL = "UPDATE productos SET  preciocompra = ?, precioventa =  ? , ganancia =  ?,"
                     + "unidades = ?, proveedor = ?" + "  WHERE nom_producto =  ?";
-            
+
             PreparedStatement ps = con.conectado().prepareStatement(updateSQL);
 
             ps.setInt(1, precioCompra);
             ps.setInt(2, precioVenta);
             ps.setInt(3, ganancia);
-            ps.setInt(4,unidades);
+            ps.setInt(4, unidades);
             ps.setString(5, proveedor);
             ps.setString(6, nombre);
 
@@ -461,7 +481,7 @@ public class ProcesarBD {
         }
         return datos;
     }
-*/
+     */
 //    public void updateComprobante(String comprobante, String descripcion, String tipo, String cuenta) {
 //        int resultado = 0;
 //        try {
@@ -484,7 +504,6 @@ public class ProcesarBD {
 //            JOptionPane.showMessageDialog(null, "Problemas con la actualizacion de un Contacto Comuniquese con el Administrador");
 //        }
 //    }
-
     public void ingresarProducto(int id, String descripcion, String linea, double precio) {
         String datos[] = {String.valueOf(id), descripcion, linea, String.valueOf(precio)};
         insertar(datos, "INSERT INTO productos (id, descripcion,linea,precio) VALUES(?,?,?,?)");
@@ -495,7 +514,8 @@ public class ProcesarBD {
         String deleteSQL = "DELETE FROM productos WHERE nom_producto = ?";
         delete(nombre, deleteSQL);
     }
-/*
+
+    /*
     public String[] leerProducto(int id) {
 
         boolean resultado = false;
@@ -526,8 +546,7 @@ public class ProcesarBD {
         }
         return datos;
     }
-*/
-  
+     */
 
     public void ingresarVendedor(int id_Vdor, String nombre, String direccion, int telefono, String ciudad) {
         String datos[] = {String.valueOf(id_Vdor), nombre, direccion, String.valueOf(telefono), ciudad};
@@ -603,7 +622,7 @@ public class ProcesarBD {
             String.valueOf(valorFactura), FPago, comprobante};
 
         insertar(datos, "INSERT INTO movimientos (numFactura,id_Vdor ,nit,fechaFactura,id,cantidad,valorFactura,FPago,comprobante) VALUES(?,?,?,?,?,?,?,?,?)");
-      
+
     }
 
     public void eliminarMovimiento(int numFactura) {
@@ -727,11 +746,6 @@ public class ProcesarBD {
 
     }
 
-   
-
-    
-
-
     /*
     public void eliminarUsuario(String nombre) {
         String delete = "DELETE FROM usuario WHERE nombre = ?";
@@ -740,27 +754,23 @@ public class ProcesarBD {
          PreparedStatement ps = con.conectado().prepareStatement(delete);
     }
      */
-   
-
     public DefaultTableModel listar(DefaultTableModel tabla) {
         String strConsulta = "SELECT *FROM productos";
         try {
             PreparedStatement ps = con.conectado().prepareStatement(strConsulta);
             ResultSet res = ps.executeQuery();
-            
-            
 
             String nom_producto = "";
-            String proveedor ="";
+            String proveedor = "";
             int unidades = 0;
             int precio_venta = 0;
-            
+
             while (res.next()) {
                 nom_producto = res.getString("nom_producto");
                 proveedor = res.getString("proveedor");
                 unidades = res.getInt("unidades");
                 precio_venta = res.getInt("precioventa");
-                Object entrada[]={nom_producto,proveedor,unidades,precio_venta};
+                Object entrada[] = {nom_producto, proveedor, unidades, precio_venta};
                 //System.out.println(codigo + "\t" + nombre + "\t" + precio);
                 tabla.addRow(entrada);
             }
@@ -771,11 +781,10 @@ public class ProcesarBD {
         } catch (Exception ex) {
             System.out.println(ex.toString());
         }
-        
+
         return tabla;
     }
 
     String result = "";
 
-    
 }

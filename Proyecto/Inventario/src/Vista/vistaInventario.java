@@ -49,6 +49,8 @@ public class vistaInventario extends javax.swing.JFrame {
         textBuscar = new javax.swing.JTextField();
         ButonSalir = new javax.swing.JButton();
         BotonAñadirFila = new javax.swing.JButton();
+        BotonLimpiar = new javax.swing.JButton();
+        BotonProductosDisponibles = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
 
         jLabel1.setText("Inventario");
@@ -152,27 +154,21 @@ public class vistaInventario extends javax.swing.JFrame {
         BotonAñadirFila.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
         BotonAñadirFila.setText("Añadir Fila");
 
+        BotonLimpiar.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        BotonLimpiar.setText("Limpiar Tabla");
+
+        BotonProductosDisponibles.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        BotonProductosDisponibles.setText("Productos Disponibles");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(BotonProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(96, 96, 96)
-                        .addComponent(BotonContabilidad)
-                        .addGap(127, 127, 127)
-                        .addComponent(BotonInventario)
-                        .addGap(144, 144, 144)
-                        .addComponent(BotonPedidos)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BotonConfiguracion)
-                        .addGap(52, 52, 52))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(ButonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
@@ -181,18 +177,37 @@ public class vistaInventario extends javax.swing.JFrame {
                                 .addComponent(BotonBuscar)
                                 .addGap(56, 56, 56)
                                 .addComponent(jLabel5))
+                            .addComponent(ButonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(BotonProductosDisponibles)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 842, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(117, 117, 117)
+                                .addGap(33, 33, 33)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(BotonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(BotonCrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(BotonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(24, 24, 24)))))
+                                .addGap(24, 24, 24))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(BotonProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(112, 112, 112)
+                                .addComponent(BotonContabilidad)
+                                .addGap(109, 109, 109)
+                                .addComponent(BotonInventario)
+                                .addGap(102, 102, 102)
+                                .addComponent(BotonPedidos)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BotonConfiguracion)
+                                .addGap(52, 52, 52)))))
                 .addGap(68, 68, 68))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(113, 113, 113)
                 .addComponent(BotonAñadirFila)
+                .addGap(64, 64, 64)
+                .addComponent(BotonLimpiar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -212,18 +227,24 @@ public class vistaInventario extends javax.swing.JFrame {
                         .addComponent(BotonBuscar)
                         .addComponent(textBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel5))
-                .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(113, 113, 113)
+                        .addGap(132, 132, 132)
                         .addComponent(BotonCrear)
                         .addGap(18, 18, 18)
                         .addComponent(BotonModificar)
                         .addGap(18, 18, 18)
-                        .addComponent(BotonEliminar)))
-                .addGap(33, 33, 33)
-                .addComponent(BotonAñadirFila)
+                        .addComponent(BotonEliminar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(BotonProductosDisponibles)))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BotonAñadirFila)
+                    .addComponent(BotonLimpiar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(ButonSalir)
                 .addGap(40, 40, 40))
@@ -235,7 +256,9 @@ public class vistaInventario extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,9 +323,11 @@ public class vistaInventario extends javax.swing.JFrame {
     public javax.swing.JButton BotonCrear;
     public javax.swing.JButton BotonEliminar;
     public javax.swing.JButton BotonInventario;
+    public javax.swing.JButton BotonLimpiar;
     public javax.swing.JButton BotonModificar;
     public javax.swing.JButton BotonPedidos;
     public javax.swing.JButton BotonProductos;
+    public javax.swing.JButton BotonProductosDisponibles;
     public javax.swing.JButton ButonSalir;
     public javax.swing.JTable TableProductos;
     private javax.swing.JLabel jLabel1;

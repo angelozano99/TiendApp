@@ -324,6 +324,76 @@ public class ProcesarBD {
         }
         return datos;
     }
+    
+    public ArrayList leerTablaProducto() {
+       
+           this.array = new ArrayList();
+        boolean resultado = false;
+       
+        try {
+            
+            String read = "SELECT * FROM productos";
+            PreparedStatement ps = con.conectado().prepareStatement(read);
+
+
+            ResultSet resultSet = ps.executeQuery();
+
+            while (resultSet.next()) {
+                String []datos = new String[6];
+                datos[0] = resultSet.getString("nom_producto");
+                datos[1] = resultSet.getString("preciocompra");
+                datos[2] = resultSet.getString("precioventa");
+                datos[3] = resultSet.getString("ganancia");
+                datos[4] = resultSet.getString("unidades");
+                datos[5] = resultSet.getString("proveedor");
+              
+                
+                
+                for (int i = 0; i < datos.length; i++) {
+                     this.array.add(datos[i]);
+                    
+                }
+               
+             
+            }
+
+            ps.execute();
+            ps.close();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Problemas en la Consulta Comuniquese con el Administrador");
+        }
+     return array;   
+    }
+    
+      public void updateProducto(String nombre,
+           Integer precioCompra, Integer precioVenta, Integer ganancia,Integer unidades, String proveedor) {
+        int resultado = 0;
+        try {
+
+            String updateSQL = "UPDATE productos SET  preciocompra = ?, precioventa =  ? , ganancia =  ?,"
+                    + "unidades = ?, proveedor = ?" + "  WHERE nom_producto =  ?";
+            
+            PreparedStatement ps = con.conectado().prepareStatement(updateSQL);
+
+            ps.setInt(1, precioCompra);
+            ps.setInt(2, precioVenta);
+            ps.setInt(3, ganancia);
+            ps.setInt(4,unidades);
+            ps.setString(5, proveedor);
+            ps.setString(6, nombre);
+
+            ps.execute();
+            ps.close();
+
+            JOptionPane.showMessageDialog(null, "Producto modificado");
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Problemas con la actualizacion de un Contacto Comuniquese con el Administrador");
+        }
+    }
 
     public void updateCliente(int nit, String nombre, String direccion, String telefono, String ciudad, String tipo) {
         int resultado = 0;
@@ -421,9 +491,9 @@ public class ProcesarBD {
 
     }
 
-    public void eliminarProducto(int id) {
-        String deleteSQL = "DELETE FROM productos WHERE id = ?";
-        delete(String.valueOf(id), deleteSQL);
+    public void eliminarProducto(String nombre) {
+        String deleteSQL = "DELETE FROM productos WHERE nom_producto = ?";
+        delete(nombre, deleteSQL);
     }
 /*
     public String[] leerProducto(int id) {
@@ -457,28 +527,7 @@ public class ProcesarBD {
         return datos;
     }
 */
-    public void updateProducto(int id, String descripcion, String linea, double precio) {
-        int resultado = 0;
-        try {
-
-            String updateSQL = "UPDATE productos SET  descripcion = ?, linea =  ? , precio =  ?" + "  WHERE id =  ?";
-            PreparedStatement ps = con.conectado().prepareStatement(updateSQL);
-
-            ps.setString(1, descripcion);
-            ps.setString(2, linea);
-            ps.setDouble(3, precio);
-            ps.setInt(4, id);
-
-            ps.execute();
-            ps.close();
-
-            JOptionPane.showMessageDialog(null, "Producto modificado");
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null, "Problemas con la actualizacion de un Contacto Comuniquese con el Administrador");
-        }
-    }
+  
 
     public void ingresarVendedor(int id_Vdor, String nombre, String direccion, int telefono, String ciudad) {
         String datos[] = {String.valueOf(id_Vdor), nombre, direccion, String.valueOf(telefono), ciudad};

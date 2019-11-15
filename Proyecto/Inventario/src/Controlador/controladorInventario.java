@@ -15,8 +15,10 @@ import Vista.vistaProducto;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -33,6 +35,10 @@ public class controladorInventario implements ActionListener {
     private vistaInicio2 vistaInicio;
     private ProcesarBD procesarBD = new ProcesarBD();
     private String globalNombre;
+    private String[] datos = new String[6];
+    private ArrayList datos2 = new ArrayList();
+    private String[] datos3 = new String[6];
+    
 
     public controladorInventario(vistaInventario vistaInventario, String nombre) {
 
@@ -55,7 +61,11 @@ public class controladorInventario implements ActionListener {
         this.vistaInventario.setVisible(true);
 
         this.globalNombre = nombre;
-        evaluarUsuario();
+        
+        datos2 = procesarBD.leerTablaProducto();
+        System.out.println(datos2);
+        
+        
     }
 
     public void evaluarUsuario() {
@@ -72,7 +82,7 @@ public class controladorInventario implements ActionListener {
     @SuppressWarnings("empty-statement")
     public void actionPerformed(ActionEvent e) {
 
-        String[] datos = new String[5];
+        
 
         if (e.getSource() == this.vistaInventario.BotonAñadirFila) {
 
@@ -86,7 +96,9 @@ public class controladorInventario implements ActionListener {
 
         if (e.getSource() == this.vistaInventario.BotonBuscar) {
 
-            String nombre = this.vistaInventario.textBuscar.getText();
+            
+            try {
+                String nombre = this.vistaInventario.textBuscar.getText();
 
             DefaultTableModel model = (DefaultTableModel) this.vistaInventario.TableProductos.getModel();
 
@@ -96,17 +108,24 @@ public class controladorInventario implements ActionListener {
                 model.removeRow(0);
             }
 
-            datos = procesarBD.leerProducto(nombre);
+            datos = procesarBD.leerProducto(nombre.toLowerCase());
 
             Object filas[] = {datos[0], Integer.valueOf(datos[1]), Integer.valueOf(datos[2]),
                 Integer.valueOf(datos[4]), datos[5]};
 
             model.addRow(filas);
+            } catch (Exception l) {
+                 JOptionPane.showMessageDialog(null, "Producto No Existente");
+                
+            }
+            
 
         }
 
         if (e.getSource() == this.vistaInventario.BotonCrear) {
 
+            
+              
             int i = 0;
             do {
 
@@ -118,13 +137,45 @@ public class controladorInventario implements ActionListener {
                 String proveedor = String.valueOf(this.vistaInventario.TableProductos.getValueAt(i, 4));
 
                 try {
-                    procesarBD.ingresarProducto(nombre, precioCompra, precioVenta, ganancia, unidades, proveedor);
+                    procesarBD.ingresarProducto(nombre.toLowerCase(), precioCompra, precioVenta, ganancia, unidades, proveedor.toLowerCase());
                 } catch (SQLException ex) {
                     Logger.getLogger(controladorInventario.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 i++;
             } while (this.vistaInventario.TableProductos.getValueAt(i, 0) != null);
 
+        }
+        
+        if(e.getSource()==this.vistaInventario.BotonModificar){
+            DefaultTableModel model = (DefaultTableModel) this.vistaInventario.TableProductos.getModel();
+            
+            int p = model.getRowCount();
+            
+            for (int i = 0; i < p; i++) {
+                 String nombre = String.valueOf(this.vistaInventario.TableProductos.getValueAt(i, 0));
+                int precioCompra = Integer.valueOf(String.valueOf(this.vistaInventario.TableProductos.getValueAt(i, 1)));
+                int precioVenta = Integer.valueOf(String.valueOf(this.vistaInventario.TableProductos.getValueAt(i, 2)));
+                int ganancia = precioVenta - precioCompra;
+                int unidades = Integer.valueOf(String.valueOf(this.vistaInventario.TableProductos.getValueAt(i, 3)));
+                String proveedor = String.valueOf(this.vistaInventario.TableProductos.getValueAt(i, 4));
+                         
+                procesarBD.updateProducto(nombre.toLowerCase(), precioCompra, precioVenta, ganancia, unidades, proveedor.toLowerCase());
+            }
+        }
+        
+        if(e.getSource()==this.vistaInventario.BotonEliminar){
+             DefaultTableModel model = (DefaultTableModel) this.vistaInventario.TableProductos.getModel();
+            
+            int p = model.getRowCount();
+            
+            for (int i = 0; i < p; i++) {
+                 String nombre = String.valueOf(this.vistaInventario.TableProductos.getValueAt(i, 0));
+
+                procesarBD.eliminarProducto(nombre.toLowerCase());
+                model.removeRow(0);
+            }
+            
+            
         }
 
         if (e.getSource() == this.vistaInventario.BotonProductos) {

@@ -31,7 +31,7 @@ public class controladorRecordatorio implements ActionListener{
     
         this.vistaRecordatorio.setVisible(true);
         
-        
+        llenarTabla();
         
     }
  

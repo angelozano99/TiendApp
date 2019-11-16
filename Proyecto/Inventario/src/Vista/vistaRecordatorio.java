@@ -38,10 +38,7 @@ public class vistaRecordatorio extends javax.swing.JFrame {
 
         tablaRecordatorio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Proveedor", "Fecha Pedido", "Fecha Entrega", "Costo"

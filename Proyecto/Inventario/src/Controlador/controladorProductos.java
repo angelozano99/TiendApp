@@ -81,6 +81,7 @@ public class controladorProductos implements ActionListener{
     public boolean IsSelected(int row,int column,JTable table){
         return table.getValueAt(row, column) != null;
     }
+    
     public void llenarTabla(){
         DefaultTableModel tabla = (DefaultTableModel) vistaProducto.jTableproductos.getModel();
         vistaProducto.jTableproductos.setModel(procesarBD.listar(tabla));

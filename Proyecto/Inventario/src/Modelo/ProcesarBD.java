@@ -787,6 +787,12 @@ public class ProcesarBD {
             String proveedor = "";
             int unidades = 0;
             int precio_venta = 0;
+            
+            int p = tabla.getRowCount();
+            
+            for (int j = 0; j < p; j++) {
+                tabla.removeRow(0);
+            }
 
             while (res.next()) {
                 nom_producto = res.getString("nom_producto");
@@ -795,6 +801,7 @@ public class ProcesarBD {
                 precio_venta = res.getInt("precioventa");
                 Object entrada[] = {nom_producto, proveedor, unidades, precio_venta};
                 //System.out.println(codigo + "\t" + nombre + "\t" + precio);
+               
                 tabla.addRow(entrada);
             }
             res.close();

@@ -277,8 +277,6 @@ public class ProcesarBD {
         insertar(datos, "INSERT INTO productos (nom_producto, "
                 + "preciocompra , precioventa, ganancia, unidades, proveedor) VALUES(?,?,?,?,?,?)");
 
-        JOptionPane.showMessageDialog(null, "Producto creado");
-
     }
 
     public String[] leerProducto(String nombre) {
@@ -711,7 +709,7 @@ public class ProcesarBD {
             ps.execute();
             ps.close();
             estado = true;
-            JOptionPane.showMessageDialog(null, "agregado exitoso");
+            JOptionPane.showMessageDialog(null, "Agregado Exitoso");
         } catch (SQLException e) {
             System.out.println(e);
             JOptionPane.showMessageDialog(null, "Problemas con el agregado");

@@ -36,6 +36,7 @@ public class controladorInventario implements ActionListener {
     private ProcesarBD procesarBD = new ProcesarBD();
     private String globalNombre;
     private String[] datos;
+     int x = 0;
 
     public controladorInventario(vistaInventario vistaInventario, String nombre) {
 
@@ -51,7 +52,7 @@ public class controladorInventario implements ActionListener {
         this.vistaInventario.BotonCrear.addActionListener(this);
         this.vistaInventario.BotonModificar.addActionListener(this);
         this.vistaInventario.BotonEliminar.addActionListener(this);
-        this.vistaInventario.BotonAñadirFila.addActionListener(this);
+        this.vistaInventario.BotonAñadirProducto.addActionListener(this);
         this.vistaInventario.BotonLimpiar.addActionListener(this);
         this.vistaInventario.BotonProductosDisponibles.addActionListener(this);
 
@@ -105,10 +106,25 @@ public class controladorInventario implements ActionListener {
             }
         }
 
-        if (e.getSource() == this.vistaInventario.BotonAñadirFila) {
+       
+        if (e.getSource() == this.vistaInventario.BotonAñadirProducto) {
+           DefaultTableModel model = (DefaultTableModel) this.vistaInventario.TableProductos.getModel();
+            if(x==0){
+                
+                
+                  int p = model.getRowCount();
+            
+            for (int i = 0; i < p; i++) {
+                model.removeRow(0);
+            }
+            }
+                
+                x++;
+            
+ 
 
-            DefaultTableModel model = (DefaultTableModel) this.vistaInventario.TableProductos.getModel();
-
+          
+            
             Object filas[] = {null, null, null, null, null, null};
 
             model.addRow(filas);

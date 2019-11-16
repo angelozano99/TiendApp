@@ -13,6 +13,7 @@ import Vista.vistaInicio2;
 import Vista.vistaInventario;
 import Vista.vistaPedidos;
 import Vista.vistaProducto;
+import Vista.vistaRecordatorio;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
@@ -28,6 +29,7 @@ public class controladorPedidos implements ActionListener{
 
     private vistaPedidos vistaPedidos;
     private vistaConfiguracion vistaConfiguracion;
+    private vistaRecordatorio vistaRecordatorio;
     
     private vistaProducto vistaProducto;
     private vistaContabilidad vistaContabilidad;
@@ -119,6 +121,11 @@ public class controladorPedidos implements ActionListener{
         if(e.getSource()==this.vistaPedidos.ButonSalir){
             this.vistaPedidos.dispose();
             controladorInicio controladorInicio = new controladorInicio(vistaInicio);
+            
+        }
+        if(e.getSource()==this.vistaPedidos.BotonRecordatorios){
+            
+            controladorRecordatorio controladorRecordatorio = new controladorRecordatorio(vistaRecordatorio);
             
         }
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

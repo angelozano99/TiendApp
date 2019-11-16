@@ -1,6 +1,7 @@
 package Modelo;
 
 import Vista.vistaInventario;
+import Vista.vistaRecordatorio;
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -380,6 +381,7 @@ public class ProcesarBD {
         }
     }
 
+   
     public void updateProducto(String nombre,
             Integer precioCompra, Integer precioVenta, Integer ganancia, Integer unidades, String proveedor) {
         int resultado = 0;
@@ -745,7 +747,38 @@ public class ProcesarBD {
         
          PreparedStatement ps = con.conectado().prepareStatement(delete);
     }
-     */
+     */public DefaultTableModel listarpedido(DefaultTableModel tabla) {
+        String strConsulta = "SELECT *FROM pedido";
+        try {
+            PreparedStatement ps = con.conectado().prepareStatement(strConsulta);
+            ResultSet res = ps.executeQuery();
+
+            String proveedor = "";
+            String fecha = "";
+            String fecha_entrega = "";
+            int valortotal = 0;
+            
+
+            while (res.next()) {
+                proveedor = res.getString("proveedor");
+                fecha = res.getString("fecha");
+                fecha_entrega = res.getString("fecha_entrega");
+                valortotal = res.getInt("valortotal");
+                Object entrada[] = {proveedor, fecha, fecha_entrega, valortotal};
+                //System.out.println(codigo + "\t" + nombre + "\t" + precio);
+                tabla.addRow(entrada);
+            }
+            res.close();
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        }
+
+        return tabla;
+    }
+     
     public DefaultTableModel listar(DefaultTableModel tabla) {
         String strConsulta = "SELECT *FROM productos";
         try {

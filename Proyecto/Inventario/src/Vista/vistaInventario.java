@@ -149,6 +149,7 @@ public class vistaInventario extends javax.swing.JFrame {
             }
         });
 
+        ButonSalir.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         ButonSalir.setText("Salir");
 
         BotonAñadirProducto.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
@@ -202,19 +203,18 @@ public class vistaInventario extends javax.swing.JFrame {
                                 .addGap(102, 102, 102)
                                 .addComponent(BotonPedidos)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(ButonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(66, 66, 66))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(BotonConfiguracion))
-                                .addGap(118, 118, 118))))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5)
+                            .addComponent(BotonConfiguracion))
+                        .addGap(118, 118, 118))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(557, 557, 557)
                 .addComponent(BotonLimpiar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ButonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(184, 184, 184))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,9 +254,9 @@ public class vistaInventario extends javax.swing.JFrame {
                         .addComponent(BotonProductosDisponibles)))
                 .addGap(18, 18, 18)
                 .addComponent(BotonLimpiar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addComponent(ButonSalir)
-                .addGap(40, 40, 40))
+                .addGap(49, 49, 49))
         );
 
         setJMenuBar(jMenuBar1);

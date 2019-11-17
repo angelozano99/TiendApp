@@ -161,9 +161,7 @@ public class controladorInventario implements ActionListener {
             try {
                 Statement st = (Statement) con.conectado().createStatement();
                 ResultSet rs = st.executeQuery(sql);
-                
-             
-                
+ 
                 while (rs.next()) {
                      
                     registros[0] = rs.getString("nom_producto");
@@ -175,8 +173,7 @@ public class controladorInventario implements ActionListener {
                     model.addRow(registros);
                   
                 }   
-                 //this.vistaInventario.TableProductos.setModel(model);
-
+             
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, ex);
             }

@@ -70,10 +70,12 @@ public class controladorRecordatorio implements ActionListener {
             }
             
             
-            int po=numeros.size()-1;
-            while(po<0){
-                
+            for(int i4=numeros.size()-1;i4<0;i4--){
+                tabla2.removeRow(numeros.get(i4));
             }
+            
+            //int po=numeros.size()-1;
+            //tabla2.removeRow(po);
             
               
             //System.out.println("Sale");

@@ -312,6 +312,7 @@ public class ProcesarBD {
         }
         return datos;
     }
+    
     int i = 0;
 
     public int leerNumeroProductos() {
@@ -776,7 +777,40 @@ public class ProcesarBD {
 
         return tabla;
     }
-     
+     /*public String[] leerPedido(String fecha) {
+
+        boolean resultado = false;
+        String[] datos = new String[4];
+        try {
+            //vistaClientes vistaClientes;
+            String read = "SELECT * FROM pedido WHERE fecha_entrega = ?";
+            PreparedStatement ps = con.conectado().prepareStatement(read);
+
+            ps.setString(1, fecha);
+
+            ResultSet resultSet = ps.executeQuery();
+
+            while (resultSet.next()) {
+
+                datos[0] = resultSet.getString("proveedor");
+                datos[1] = resultSet.getString("fecha");
+                datos[2] = resultSet.getString("fecha_entrega");
+                datos[3] = resultSet.getString("valortotal");
+                
+
+            }
+            System.out.println(datos[0]);
+            System.out.println(datos[3]);
+            ps.execute();
+            ps.close();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Problemas en la Consulta Comuniquese con el Administrador");
+        }
+        return datos;
+    }
+     */
     public DefaultTableModel listar(DefaultTableModel tabla) {
         String strConsulta = "SELECT *FROM productos";
         try {

@@ -20,6 +20,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -117,6 +118,28 @@ public class controladorPedidos implements ActionListener{
                 i++;
             }while(this.vistaPedidos.Tablaproduc.getValueAt(i, 0) != null);
            
+            this.vistaPedidos.Proveedortext.setText("");
+            this.vistaPedidos.Fechatext.setText("");
+            this.vistaPedidos.Fecha2text.setText("");
+            this.vistaPedidos.Costotext.setText("");
+            
+            DefaultTableModel model = (DefaultTableModel) this.vistaPedidos.Tablaproduc.getModel();
+            
+            
+            int p = model.getRowCount();
+            
+            for (int i3 = 0; i3 < p; i3++) {
+                model.removeRow(0);
+            }
+            
+        
+            Object filas[] = {null, null};
+
+            for (int i4 = 0; i4 < 20; i4++) {
+                model.addRow(filas);
+            }
+      
+            
         }
         if(e.getSource()==this.vistaPedidos.ButonSalir){
             this.vistaPedidos.dispose();

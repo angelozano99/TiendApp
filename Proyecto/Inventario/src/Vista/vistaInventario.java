@@ -5,6 +5,13 @@
  */
 package Vista;
 
+import Modelo.Conexion;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Labing
@@ -148,6 +155,14 @@ public class vistaInventario extends javax.swing.JFrame {
                 textBuscarActionPerformed(evt);
             }
         });
+        textBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textBuscarKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textBuscarKeyTyped(evt);
+            }
+        });
 
         ButonSalir.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         ButonSalir.setText("Salir");
@@ -287,6 +302,50 @@ public class vistaInventario extends javax.swing.JFrame {
     private void BotonProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonProductosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BotonProductosActionPerformed
+
+    private void textBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textBuscarKeyPressed
+          /*  String[] titulos = {"Nombre","P.Compra","P.Venta","Unidades","Proveedor"}; 
+            String[] registros = new String[5];
+
+            String sql = "SELECT *FROM productos WHERE nom_producto LIKE '%" + textBuscar.getText() + "%' ";
+            
+        
+            DefaultTableModel model = new DefaultTableModel(null,titulos);
+          
+            
+            Conexion con = new Conexion();
+            
+          
+          
+           
+            try {
+                Statement st = (Statement) con.conectado().createStatement();
+                ResultSet rs = st.executeQuery(sql);
+                
+             
+                
+                while (rs.next()) {
+                     
+                    registros[0] = rs.getString("nom_producto");
+                    registros[1] = rs.getString("preciocompra");
+                    registros[2] = rs.getString("precioventa");
+                    registros[3] = rs.getString("unidades");
+                    registros[4] = rs.getString("proveedor");
+                    
+                    model.addRow(registros);
+                  
+                }   
+                 TableProductos.setModel(model);
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+        */
+    }//GEN-LAST:event_textBuscarKeyPressed
+
+    private void textBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textBuscarKeyTyped
+       
+    }//GEN-LAST:event_textBuscarKeyTyped
 
     /**
      * @param args the command line arguments

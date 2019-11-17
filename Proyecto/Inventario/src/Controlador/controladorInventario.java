@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import Modelo.Conexion;
 import Modelo.ProcesarBD;
 import Vista.vistaConfiguracion;
 import Vista.vistaContabilidad;
@@ -14,7 +15,9 @@ import Vista.vistaPedidos;
 import Vista.vistaProducto;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -132,7 +135,52 @@ public class controladorInventario implements ActionListener {
         }
 
         if (e.getSource() == this.vistaInventario.BotonBuscar) {
+            
+             //String[] titulos = {"Nombre","P.Compra","P.Venta","Unidades","Proveedor"}; 
+            String[] registros = new String[5];
 
+            String sql = "SELECT *FROM productos WHERE nom_producto LIKE '%" + this.vistaInventario.textBuscar.getText() + "%' "
+                      + "OR proveedor LIKE '%" + this.vistaInventario.textBuscar.getText() + "%'";
+            
+       
+            DefaultTableModel model = new DefaultTableModel();
+            model = (DefaultTableModel) this.vistaInventario.TableProductos.getModel();
+            //DefaultTableModel model = new DefaultTableModel(null,titulos);
+          
+            
+            Conexion con = new Conexion();
+            
+            int p = model.getRowCount();
+            
+            for (int i = 0; i < p; i++) {
+                model.removeRow(0);
+            }
+          
+          
+           
+            try {
+                Statement st = (Statement) con.conectado().createStatement();
+                ResultSet rs = st.executeQuery(sql);
+                
+             
+                
+                while (rs.next()) {
+                     
+                    registros[0] = rs.getString("nom_producto");
+                    registros[1] = rs.getString("preciocompra");
+                    registros[2] = rs.getString("precioventa");
+                    registros[3] = rs.getString("unidades");
+                    registros[4] = rs.getString("proveedor");
+                    
+                    model.addRow(registros);
+                  
+                }   
+                 //this.vistaInventario.TableProductos.setModel(model);
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+/*
             try {
                 String nombre = this.vistaInventario.textBuscar.getText();
 
@@ -154,7 +202,7 @@ public class controladorInventario implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Producto No Existente");
 
             }
-
+*/
         }
 
         if (e.getSource() == this.vistaInventario.BotonCrear) {

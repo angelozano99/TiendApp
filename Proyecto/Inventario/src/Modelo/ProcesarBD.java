@@ -556,6 +556,44 @@ public class ProcesarBD {
             }
             return model;
     }
+     
+          public DefaultTableModel leerproducto(JTable tabla,String nombre) {
+        String[] registros = new String[5];
+
+              String sql = "SELECT *FROM productos WHERE nom_producto LIKE '%" + nombre + "%' "
+                      + "OR proveedor LIKE '%" + nombre + "%'";
+       
+            DefaultTableModel model = new DefaultTableModel();
+            model = (DefaultTableModel) tabla.getModel();
+            //DefaultTableModel model = new DefaultTableModel(null,titulos);
+       
+            int p = model.getRowCount();
+            
+            for (int i = 0; i < p; i++) {
+                model.removeRow(0);
+            
+            }
+                 
+            try {
+                Statement st = (Statement) con.conectado().createStatement();
+                ResultSet rs = st.executeQuery(sql);
+ 
+                while (rs.next()) {
+                     
+                    registros[0] = rs.getString("nom_producto");
+                    registros[1] = rs.getString("preciocompra");
+                    registros[2] = rs.getString("precioventa");
+                    registros[3] = rs.getString("unidades");
+                    registros[4] = rs.getString("proveedor");
+                    
+                    model.addRow(registros);
+                }   
+             
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+            return model;
+    }
 
      
     public DefaultTableModel listar(DefaultTableModel tabla) {

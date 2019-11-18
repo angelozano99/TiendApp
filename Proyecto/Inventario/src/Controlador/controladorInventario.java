@@ -136,70 +136,14 @@ public class controladorInventario implements ActionListener {
 
         if (e.getSource() == this.vistaInventario.BotonBuscar) {
             
-             //String[] titulos = {"Nombre","P.Compra","P.Venta","Unidades","Proveedor"}; 
-            String[] registros = new String[5];
-
-            String sql = "SELECT *FROM productos WHERE nom_producto LIKE '%" + this.vistaInventario.textBuscar.getText() + "%' "
-                      + "OR proveedor LIKE '%" + this.vistaInventario.textBuscar.getText() + "%'";
-            
-       
             DefaultTableModel model = new DefaultTableModel();
-            model = (DefaultTableModel) this.vistaInventario.TableProductos.getModel();
-            //DefaultTableModel model = new DefaultTableModel(null,titulos);
-          
             
-            Conexion con = new Conexion();
+            String variable = this.vistaInventario.textBuscar.getText();
             
-            int p = model.getRowCount();
+            model = procesarBD.leerproducto(this.vistaInventario.TableProductos, variable);
+    
             
-            for (int i = 0; i < p; i++) {
-                model.removeRow(0);
-            }
-          
-          
-           
-            try {
-                Statement st = (Statement) con.conectado().createStatement();
-                ResultSet rs = st.executeQuery(sql);
- 
-                while (rs.next()) {
-                     
-                    registros[0] = rs.getString("nom_producto");
-                    registros[1] = rs.getString("preciocompra");
-                    registros[2] = rs.getString("precioventa");
-                    registros[3] = rs.getString("unidades");
-                    registros[4] = rs.getString("proveedor");
-                    
-                    model.addRow(registros);
-                  
-                }   
-             
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, ex);
-            }
-/*
-            try {
-                String nombre = this.vistaInventario.textBuscar.getText();
-
-                DefaultTableModel model = (DefaultTableModel) this.vistaInventario.TableProductos.getModel();
-
-                int p = model.getRowCount();
-
-                for (int j = 0; j < p; j++) {
-                    model.removeRow(0);
-                }
-
-                datos = procesarBD.leerProducto(nombre.toLowerCase());
-
-                Object filas[] = {datos[0], Integer.valueOf(datos[1]), Integer.valueOf(datos[2]),
-                    Integer.valueOf(datos[4]), datos[5]};
-
-                model.addRow(filas);
-            } catch (Exception l) {
-                JOptionPane.showMessageDialog(null, "Producto No Existente");
-
-            }
-*/
+            
         }
 
         if (e.getSource() == this.vistaInventario.BotonCrear) {

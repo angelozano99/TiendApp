@@ -56,19 +56,7 @@ public class vistaContabilidad extends javax.swing.JFrame {
         TableProductos.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         TableProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Cantidad", "Producto", "Precio de Venta", "Precio de Compra", "Ganancia"

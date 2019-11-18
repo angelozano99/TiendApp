@@ -13,6 +13,7 @@ import Vista.vistaPedidos;
 import Vista.vistaProducto;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -53,6 +54,10 @@ public class controladorContabilidad implements ActionListener{
         
         this.globalNombre=nombre;
         evaluarUsuario();
+        
+          DefaultTableModel model = (DefaultTableModel) this.vistaContabilidad.TableProductos.getModel();
+        
+        procesarBD.leerTablaVentas(model);
         
     }
     

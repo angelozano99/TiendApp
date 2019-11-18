@@ -5,7 +5,15 @@
  */
 package Vista;
 
+import Controlador.controladorInventario;
+import Modelo.Conexion;
+import Modelo.ProcesarBD;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 /**
@@ -111,6 +119,12 @@ public class vistaProducto extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableproductos);
 
+        jtextBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtextBuscarKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -200,6 +214,11 @@ public class vistaProducto extends javax.swing.JFrame {
     private void BotonAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAnadirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BotonAnadirActionPerformed
+
+    private void jtextBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtextBuscarKeyPressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jtextBuscarKeyPressed
 
     /**
      * @param args the command line arguments

@@ -5,11 +5,15 @@
  */
 package Controlador;
 
+import Modelo.Conexion;
 import java.util.ArrayList;
 import Modelo.ProcesarBD;
 import Vista.vistaRecordatorio;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -52,7 +56,49 @@ public class controladorRecordatorio implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == this.vistaRecordatorio.BotonFiltrar) {
+            
+            String[] registros = new String[5];
+
+            String sql = "SELECT *FROM pedido WHERE fecha_entrega LIKE '%" + this.vistaRecordatorio.fechatext.getText() + "%' ";
+            
+       
+            DefaultTableModel model = new DefaultTableModel();
+            model = (DefaultTableModel) this.vistaRecordatorio.tablaRecordatorio.getModel();
+            //DefaultTableModel model = new DefaultTableModel(null,titulos);
+          
+            Conexion con = new Conexion();
+            
+            int p = model.getRowCount();
+            
+            for (int i = 0; i < p; i++) {
+                model.removeRow(0);
+            
+               
+            }
+                 
+           
+            try {
+                Statement st = (Statement) con.conectado().createStatement();
+                ResultSet rs = st.executeQuery(sql);
+ 
+                while (rs.next()) {
+                     
+                    registros[0] = rs.getString("proveedor");
+                    registros[1] = rs.getString("fecha");
+                    registros[2] = rs.getString("fecha_entrega");
+                    registros[3] = rs.getString("valortotal");
+                 
+                    
+                    model.addRow(registros);
+                  
+                }   
+             
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+            
             //llenarTabla();
+            /*
             ArrayList<Integer> numeros = new ArrayList<Integer>();
             String fecha = this.vistaRecordatorio.fechatext.getText();
             DefaultTableModel tabla2 = (DefaultTableModel) this.vistaRecordatorio.tablaRecordatorio.getModel();
@@ -74,14 +120,16 @@ public class controladorRecordatorio implements ActionListener {
                 tabla2.removeRow(numeros.get(i4));
             }
             
-            //int po=numeros.size()-1;
-            //tabla2.removeRow(po);
+             
+            int po=numeros.size()-2;
+            tabla2.removeRow(po);
             
               
             //System.out.println("Sale");
             //tabla2.removeRow(1);
             this.vistaRecordatorio.tablaRecordatorio.setModel(tabla2);
 
+            /*
             /* int i =0;
              do{
                 String fecha_entrega=String.valueOf(tabla2.getValueAt(i, 2));

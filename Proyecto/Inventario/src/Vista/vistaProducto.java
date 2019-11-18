@@ -280,6 +280,6 @@ public class vistaProducto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable jTableproductos;
-    private javax.swing.JTextField jtextBuscar;
+    public javax.swing.JTextField jtextBuscar;
     // End of variables declaration//GEN-END:variables
 }

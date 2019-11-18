@@ -565,8 +565,7 @@ public class ProcesarBD {
 
         return tabla;
     }
-
-    public DefaultTableModel leerpedido(JTable tabla, String fecha) {
+ public DefaultTableModel leerpedido(JTable tabla, String fecha) {
         String[] registros = new String[5];
 
         String sql = "SELECT *FROM pedido WHERE fecha_entrega LIKE '%" + fecha + "%' ";
@@ -594,6 +593,44 @@ public class ProcesarBD {
                 registros[1] = rs.getString("fecha");
                 registros[2] = rs.getString("fecha_entrega");
                 registros[3] = rs.getString("valortotal");
+
+                model.addRow(registros);
+
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        return model;
+    }
+    public DefaultTableModel filtrar(JTable tabla, String texto) {
+        String[] registros = new String[4];
+
+        String sql = "SELECT *FROM productos WHERE nom_producto LIKE '%" + texto + "%' OR proveedor LIKE '%"+ texto+"%'";
+
+        DefaultTableModel model = new DefaultTableModel();
+        model = (DefaultTableModel) tabla.getModel();
+        //DefaultTableModel model = new DefaultTableModel(null,titulos);
+
+        //Conexion con = new Conexion();
+
+        int p = model.getRowCount();
+
+        for (int i = 0; i < p; i++) {
+            model.removeRow(0);
+
+        }
+
+        try {
+            Statement st = (Statement) con.conectado().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+
+                registros[0] = rs.getString("nom_producto");
+                registros[1] = rs.getString("proveedor");
+                registros[2] = String.valueOf(rs.getInt("unidades"));
+                registros[3] = String.valueOf(rs.getInt("precioventa"));
 
                 model.addRow(registros);
 

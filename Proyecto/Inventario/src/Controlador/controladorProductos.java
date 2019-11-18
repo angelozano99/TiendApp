@@ -49,6 +49,7 @@ public class controladorProductos implements ActionListener{
         
         this.vistaProducto.BotonAnadir.addActionListener(this);
         this.vistaProducto.BotonDevolucion.addActionListener(this);
+        this.vistaProducto.BotonBuscar.addActionListener(this);
         
         
         this.vistaProducto.ButonSalir.addActionListener(this);
@@ -115,6 +116,16 @@ public class controladorProductos implements ActionListener{
         if(e.getSource()==this.vistaProducto.ButonSalir){
             this.vistaProducto.dispose();
             controladorInicio controladorInicio = new controladorInicio(vistaInicio);
+            
+        }
+        if(e.getSource()==this.vistaProducto.BotonBuscar){
+            String text=this.vistaProducto.jtextBuscar.getText();
+            DefaultTableModel tabla = new DefaultTableModel();
+            tabla=procesarBD.filtrar(this.vistaProducto.jTableproductos,text);
+            
+            this.vistaProducto.jTableproductos.setModel(tabla);
+            addCheckBox(4,vistaProducto.jTableproductos);
+            
             
         }
             

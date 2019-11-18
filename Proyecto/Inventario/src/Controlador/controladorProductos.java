@@ -50,6 +50,7 @@ public class controladorProductos implements ActionListener{
         this.vistaProducto.BotonAnadir.addActionListener(this);
         this.vistaProducto.BotonDevolucion.addActionListener(this);
         this.vistaProducto.BotonBuscar.addActionListener(this);
+        this.vistaProducto.BotonConfirmar.addActionListener(this);
         
         
         this.vistaProducto.ButonSalir.addActionListener(this);
@@ -145,6 +146,11 @@ public class controladorProductos implements ActionListener{
                 }
             }
             this.vistaProducto.tablaVenta.setModel(model);
+            
+        }
+        if(e.getSource()==this.vistaProducto.BotonConfirmar){
+            
+          
             
         }
             

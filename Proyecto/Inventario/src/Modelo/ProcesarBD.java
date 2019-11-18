@@ -680,6 +680,7 @@ public class ProcesarBD {
         return model;
     }
 
+    
     public DefaultTableModel listar(DefaultTableModel tabla) {
         String strConsulta = "SELECT *FROM productos";
         try {

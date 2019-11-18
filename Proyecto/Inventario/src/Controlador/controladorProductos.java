@@ -86,7 +86,7 @@ public class controladorProductos implements ActionListener{
     public void llenarTabla(){
         DefaultTableModel tabla = (DefaultTableModel) vistaProducto.jTableproductos.getModel();
         vistaProducto.jTableproductos.setModel(procesarBD.listar(tabla));
-        addCheckBox(4, vistaProducto.jTableproductos);
+        addCheckBox(5, vistaProducto.jTableproductos);
     }
 
     @Override
@@ -124,8 +124,27 @@ public class controladorProductos implements ActionListener{
             tabla=procesarBD.filtrar(this.vistaProducto.jTableproductos,text);
             
             this.vistaProducto.jTableproductos.setModel(tabla);
-            addCheckBox(4,vistaProducto.jTableproductos);
+            addCheckBox(5,vistaProducto.jTableproductos);
             
+            
+        }
+        if(e.getSource()==this.vistaProducto.BotonAnadir){
+            String[] datos=new String[3];
+            DefaultTableModel model= new DefaultTableModel();
+            model = (DefaultTableModel) this.vistaProducto.tablaVenta.getModel();
+            for(int i=0;i<this.vistaProducto.jTableproductos.getRowCount();i++){
+                if(IsSelected(i, 5, this.vistaProducto.jTableproductos)){
+                    datos[0]=String.valueOf(this.vistaProducto.jTableproductos.getValueAt(i, 0));
+                    datos[1]=String.valueOf(this.vistaProducto.jTableproductos.getValueAt(i, 4));
+                    int cant=Integer.valueOf(String.valueOf(this.vistaProducto.jTableproductos.getValueAt(i, 4)));
+                    int pre=Integer.valueOf(String.valueOf(this.vistaProducto.jTableproductos.getValueAt(i, 3)));
+                    int to=cant*pre;
+                    datos[2]=String.valueOf(to);
+                    model.addRow(datos);
+                    
+                }
+            }
+            this.vistaProducto.tablaVenta.setModel(model);
             
         }
             

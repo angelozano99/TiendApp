@@ -58,6 +58,7 @@ public class controladorRecordatorio implements ActionListener {
         if (e.getSource() == this.vistaRecordatorio.BotonFiltrar) {
             
             String fecha=this.vistaRecordatorio.fechatext.getText();
+            
             DefaultTableModel model = new DefaultTableModel();
             model=procesarBD.leerpedido(this.vistaRecordatorio.tablaRecordatorio,fecha);
             

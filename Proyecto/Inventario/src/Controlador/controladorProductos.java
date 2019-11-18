@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import Componentes.Increment;
 import Modelo.ProcesarBD;
 import Vista.vistaConfiguracion;
 import Vista.vistaContabilidad;
@@ -14,6 +15,7 @@ import Vista.vistaPedidos;
 import Vista.vistaProducto;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -130,6 +132,7 @@ public class controladorProductos implements ActionListener{
             
         }
         if(e.getSource()==this.vistaProducto.BotonAnadir){
+            int total=0;
             String[] datos=new String[3];
             DefaultTableModel model= new DefaultTableModel();
             model = (DefaultTableModel) this.vistaProducto.tablaVenta.getModel();
@@ -140,16 +143,28 @@ public class controladorProductos implements ActionListener{
                     int cant=Integer.valueOf(String.valueOf(this.vistaProducto.jTableproductos.getValueAt(i, 4)));
                     int pre=Integer.valueOf(String.valueOf(this.vistaProducto.jTableproductos.getValueAt(i, 3)));
                     int to=cant*pre;
+                    total+=to;
                     datos[2]=String.valueOf(to);
                     model.addRow(datos);
                     
                 }
             }
+            
             this.vistaProducto.tablaVenta.setModel(model);
+            this.vistaProducto.Totaltext.setText(String.valueOf(total));
             
         }
         if(e.getSource()==this.vistaProducto.BotonConfirmar){
-            
+            Increment incre=new Increment();
+            int id;
+            id=incre.id_increment();
+            Calendar c1 = Calendar.getInstance();
+            String dia = Integer.toString(c1.get(Calendar.DATE));
+            int mes = c1.get(Calendar.MONTH);
+            String annio = Integer.toString(c1.get(Calendar.YEAR));
+            mes=mes+1;
+            String fecha=dia+"-"+String.valueOf(mes)+"-"+annio;
+            int total=Integer.valueOf(this.vistaProducto.Totaltext.getText());
           
             
         }

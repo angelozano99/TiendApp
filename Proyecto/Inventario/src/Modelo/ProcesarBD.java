@@ -274,6 +274,12 @@ public class ProcesarBD {
 
     }
 
+    public void ingresarVenta(int id_venta, String fecha, int preciototal, int gananciaventa) {
+
+        String datos[] = {String.valueOf(id_venta),fecha,String.valueOf(preciototal), String.valueOf(gananciaventa)};
+        insertar(datos, "INSERT INTO ventas (id_venta,fecha,preciototal,gananciaventa) VALUES(?,?,?,?)");
+
+    }
     public String[] leerProducto(String nombre) {
 
         boolean resultado = false;

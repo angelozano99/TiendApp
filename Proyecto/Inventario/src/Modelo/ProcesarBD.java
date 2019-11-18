@@ -318,7 +318,7 @@ public class ProcesarBD {
 
             String read = "SELECT * FROM productos";
             PreparedStatement ps = con.conectado().prepareStatement(read);
-
+          
             ResultSet resultSet = ps.executeQuery();
 
             while (resultSet.next()) {

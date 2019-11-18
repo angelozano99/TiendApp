@@ -73,13 +73,12 @@
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace min="-2" pref="145" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="ComboBox" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="ComboBox" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="BotonDiaria" alignment="0" min="-2" pref="93" max="-2" attributes="0"/>
                                       <Component id="BotonSemanal" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="BotonMensual" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="BotonAnual" alignment="0" min="-2" pref="93" max="-2" attributes="0"/>
-                                      <Component id="jDateChooser1" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
                               </Group>
@@ -123,9 +122,7 @@
                   <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Component id="jDateChooser1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
                           <Component id="ComboBox" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -393,8 +390,6 @@
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
-        </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
         </Component>
       </SubComponents>
     </Container>

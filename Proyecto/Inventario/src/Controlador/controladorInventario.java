@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Controlador;
-//Prueba
+//Prueba2
 
 import Modelo.Conexion;
 import Modelo.ProcesarBD;

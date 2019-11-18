@@ -57,45 +57,10 @@ public class controladorRecordatorio implements ActionListener {
 
         if (e.getSource() == this.vistaRecordatorio.BotonFiltrar) {
             
-            String[] registros = new String[5];
-
-            String sql = "SELECT *FROM pedido WHERE fecha_entrega LIKE '%" + this.vistaRecordatorio.fechatext.getText() + "%' ";
-            
-       
+            String fecha=this.vistaRecordatorio.fechatext.getText();
             DefaultTableModel model = new DefaultTableModel();
-            model = (DefaultTableModel) this.vistaRecordatorio.tablaRecordatorio.getModel();
-            //DefaultTableModel model = new DefaultTableModel(null,titulos);
-          
-            Conexion con = new Conexion();
+            model=procesarBD.leerpedido(this.vistaRecordatorio.tablaRecordatorio,fecha);
             
-            int p = model.getRowCount();
-            
-            for (int i = 0; i < p; i++) {
-                model.removeRow(0);
-            
-               
-            }
-                 
-           
-            try {
-                Statement st = (Statement) con.conectado().createStatement();
-                ResultSet rs = st.executeQuery(sql);
- 
-                while (rs.next()) {
-                     
-                    registros[0] = rs.getString("proveedor");
-                    registros[1] = rs.getString("fecha");
-                    registros[2] = rs.getString("fecha_entrega");
-                    registros[3] = rs.getString("valortotal");
-                 
-                    
-                    model.addRow(registros);
-                  
-                }   
-             
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, ex);
-            }
             
             //llenarTabla();
             /*
@@ -141,7 +106,7 @@ public class controladorRecordatorio implements ActionListener {
                 i++;
             }while(tabla2.getValueAt(i, 0) != null);
              */
-            //this.vistaRecordatorio.tablaRecordatorio.setModel(tabla2);
+            this.vistaRecordatorio.tablaRecordatorio.setModel(model);
         }
     }
 

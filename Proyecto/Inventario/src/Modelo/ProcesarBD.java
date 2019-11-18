@@ -263,10 +263,7 @@ public class ProcesarBD {
 
     }
 
-    public void eliminarCliente(int nit) {
-        String deleteSQL = "DELETE FROM clientes WHERE nit = ?";
-        delete(String.valueOf(nit), deleteSQL);
-    }
+  
 
     public void ingresarProducto(String nombre,
             Integer precioCompra, Integer precioVenta, Integer ganancia, Integer unidades, String proveedor) throws SQLException {
@@ -409,95 +406,8 @@ public class ProcesarBD {
         }
     }
 
-    public void updateCliente(int nit, String nombre, String direccion, String telefono, String ciudad, String tipo) {
-        int resultado = 0;
-        try {
+   
 
-            String updateSQL = "UPDATE clientes SET  nombre  = ?, direccion =  ? ,telefono =  ? , ciudad = ?, tipo = ? " + "  WHERE nit =  ?";
-            PreparedStatement ps = con.conectado().prepareStatement(updateSQL);
-
-            ps.setString(1, nombre);
-            ps.setString(2, direccion);
-            ps.setString(3, telefono);
-            ps.setString(4, ciudad);
-            ps.setString(5, tipo);
-            ps.setInt(6, nit);
-
-            ps.execute();
-            ps.close();
-
-            JOptionPane.showMessageDialog(null, "Cliente modificado");
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null, "Problemas con la actualizacion de un Contacto Comuniquese con el Administrador");
-        }
-    }
-
-//    public void ingresarComprobante(String comprobante, String descripcion, String tipo, int cuenta) {
-//        String datos[] = {comprobante, descripcion, tipo, String.valueOf(cuenta)};
-//        insertar(datos, "INSERT INTO comprobante (comprobante, descripcion,tipo,cuenta) VALUES(?,?,?,?)");
-//
-//    }
-//
-//    public void eliminarComprobante(String comprobante) {
-//        String deleteSQL = "DELETE FROM comprobante WHERE comprobante = ?";
-//        delete(comprobante, deleteSQL);
-//    }
-/*
-    public String[] leerComprobante(String comprobante) {
-
-        boolean resultado = false;
-        String[] datos = new String[3];
-        try {
-            vistaClientes vistaClientes;
-            String read = "SELECT * FROM comprobante WHERE comprobante = ?";
-            PreparedStatement ps = con.conectado().prepareStatement(read);
-
-            ps.setString(1, comprobante);
-
-            ResultSet resultSet = ps.executeQuery();
-
-            while (resultSet.next()) {
-
-                datos[0] = resultSet.getString("descripcion");
-                datos[1] = resultSet.getString("tipo");
-                datos[2] = resultSet.getString("cuenta");
-
-            }
-
-            ps.execute();
-            ps.close();
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null, "Problemas en la Consulta Comuniquese con el Administrador");
-        }
-        return datos;
-    }
-     */
-//    public void updateComprobante(String comprobante, String descripcion, String tipo, String cuenta) {
-//        int resultado = 0;
-//        try {
-//
-//            String updateSQL = "UPDATE comprobante SET  descripcion  = ?, tipo =  ? ,cuenta =  ?" + "  WHERE comprobante =  ?";
-//            PreparedStatement ps = con.conectado().prepareStatement(updateSQL);
-//
-//            ps.setString(1, descripcion);
-//            ps.setString(2, tipo);
-//            ps.setString(3, cuenta);
-//            ps.setString(4, comprobante);
-//
-//            ps.execute();
-//            ps.close();
-//
-//            JOptionPane.showMessageDialog(null, "Comprobante modificado");
-//
-//        } catch (SQLException e) {
-//            System.out.println(e.getMessage());
-//            JOptionPane.showMessageDialog(null, "Problemas con la actualizacion de un Contacto Comuniquese con el Administrador");
-//        }
-//    }
     public void ingresarProducto(int id, String descripcion, String linea, double precio) {
         String datos[] = {String.valueOf(id), descripcion, linea, String.valueOf(precio)};
         insertar(datos, "INSERT INTO productos (id, descripcion,linea,precio) VALUES(?,?,?,?)");
@@ -509,188 +419,9 @@ public class ProcesarBD {
         delete(nombre, deleteSQL);
     }
 
-    /*
-    public String[] leerProducto(int id) {
+   
+ 
 
-        boolean resultado = false;
-        String[] datos = new String[3];
-        try {
-            vistaClientes vistaClientes;
-            String read = "SELECT * FROM productos WHERE id = ?";
-            PreparedStatement ps = con.conectado().prepareStatement(read);
-
-            ps.setString(1, String.valueOf(id));
-
-            ResultSet resultSet = ps.executeQuery();
-
-            while (resultSet.next()) {
-
-                datos[0] = resultSet.getString("descripcion");
-                datos[1] = resultSet.getString("linea");
-                datos[2] = resultSet.getString("precio");
-
-            }
-
-            ps.execute();
-            ps.close();
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null, "Problemas en la Consulta Comuniquese con el Administrador");
-        }
-        return datos;
-    }
-     */
-    public void ingresarVendedor(int id_Vdor, String nombre, String direccion, int telefono, String ciudad) {
-        String datos[] = {String.valueOf(id_Vdor), nombre, direccion, String.valueOf(telefono), ciudad};
-        insertar(datos, "INSERT INTO vendedor (id_Vdor, nombre,direccion,telefono,ciudad) VALUES(?,?,?,?,?)");
-
-    }
-
-    public void eliminarVendedor(int id_Vdor) {
-        String deleteSQL = "DELETE FROM vendedor WHERE id_Vdor = ?";
-        delete(String.valueOf(id_Vdor), deleteSQL);
-    }
-
-    public String[] leerVendedor(int id_Vdor) {
-
-        boolean resultado = false;
-        String[] datos = new String[4];
-        try {
-            String read = "SELECT * FROM vendedor WHERE id_Vdor = ?";
-            PreparedStatement ps = con.conectado().prepareStatement(read);
-
-            ps.setString(1, String.valueOf(id_Vdor));
-
-            ResultSet resultSet = ps.executeQuery();
-
-            while (resultSet.next()) {
-
-                datos[0] = resultSet.getString("nombre");
-                datos[1] = resultSet.getString("direccion");
-                datos[2] = resultSet.getString("telefono");
-                datos[3] = resultSet.getString("ciudad");
-
-            }
-
-            ps.execute();
-            ps.close();
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null, "Problemas en la Consulta Comuniquese con el Administrador");
-        }
-        return datos;
-    }
-
-    public void updateVendedor(int id_Vdor, String nombre, String direccion, int telefono, String ciudad) {
-        int resultado = 0;
-        try {
-
-            String updateSQL = "UPDATE vendedor SET  nombre  = ?, direccion =  ? ,telefono =  ?, ciudad = ?" + "  WHERE id_Vdor =  ?";
-            PreparedStatement ps = con.conectado().prepareStatement(updateSQL);
-
-            ps.setString(1, nombre);
-            ps.setString(2, direccion);
-            ps.setInt(3, telefono);
-            ps.setString(4, ciudad);
-            ps.setInt(5, id_Vdor);
-
-            ps.execute();
-            ps.close();
-
-            JOptionPane.showMessageDialog(null, "Vendedor modificado");
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null, "Problemas con la actualizacion de un Contacto Comuniquese con el Administrador");
-        }
-    }
-
-    public void ingresarMovimiento(int numFactura, int id_Vdor, int nit, Date fechaFactura,
-            int id, int cantidad, int valorFactura, String FPago, String comprobante) {
-
-        String datos[] = {String.valueOf(numFactura), String.valueOf(id_Vdor), String.valueOf(nit),
-            String.valueOf(fechaFactura), String.valueOf(id), String.valueOf(cantidad),
-            String.valueOf(valorFactura), FPago, comprobante};
-
-        insertar(datos, "INSERT INTO movimientos (numFactura,id_Vdor ,nit,fechaFactura,id,cantidad,valorFactura,FPago,comprobante) VALUES(?,?,?,?,?,?,?,?,?)");
-
-    }
-
-    public void eliminarMovimiento(int numFactura) {
-
-        String deleteSQL = "DELETE FROM movimientos WHERE numFactura = ?";
-        delete(String.valueOf(numFactura), deleteSQL);
-
-    }
-
-    public String[] leerMovimiento(int numFactura) {
-
-        boolean resultado = false;
-        String[] datos = new String[8];
-        try {
-            String read = "SELECT * FROM movimientos WHERE numFactura = ?";
-            PreparedStatement ps = con.conectado().prepareStatement(read);
-
-            ps.setString(1, String.valueOf(numFactura));
-
-            ResultSet resultSet = ps.executeQuery();
-
-            while (resultSet.next()) {
-
-                datos[0] = resultSet.getString("id_Vdor");
-                datos[1] = resultSet.getString("nit");
-                datos[2] = resultSet.getString("fechaFactura");
-                datos[3] = resultSet.getString("id");
-                datos[4] = resultSet.getString("cantidad");
-                datos[5] = resultSet.getString("valorFactura");
-                datos[6] = resultSet.getString("FPago");
-                datos[7] = resultSet.getString("comprobante");
-
-            }
-            System.out.println("Entra");
-
-            ps.execute();
-            ps.close();
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null, "Problemas en la Consulta Comuniquese con el Administrador");
-        }
-        return datos;
-    }
-
-    public void updateMovimientos(int numFactura, int id_Vdor, int nit, Date fechaFactura,
-            int id, int cantidad, int valorFactura, String FPago, String comprobante) {
-        int resultado = 0;
-        try {
-
-            String updateSQL = "UPDATE movimientos SET "
-                    + "id_Vdor =  ? ,nit =  ?, fechaFactura = ?, id = ?,"
-                    + "cantidad = ?, valorFactura = ?, FPago = ?,  comprobante = ?" + "  WHERE numFactura =  ?";
-            PreparedStatement ps = con.conectado().prepareStatement(updateSQL);
-
-            ps.setInt(1, id_Vdor);
-            ps.setInt(2, nit);
-            ps.setDate(3, (java.sql.Date) fechaFactura);
-            ps.setInt(4, id);
-            ps.setInt(5, cantidad);
-            ps.setInt(6, valorFactura);
-            ps.setString(7, FPago);
-            ps.setString(8, comprobante);
-            ps.setInt(9, numFactura);
-
-            ps.execute();
-            ps.close();
-
-            JOptionPane.showMessageDialog(null, "Movimiento modificado");
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null, "Problemas con la actualizacion de un Contacto Comuniquese con el Administrador");
-        }
-    }
 
     public boolean insertar(String datos[], String insert) {
         boolean estado = false;
@@ -739,14 +470,9 @@ public class ProcesarBD {
 
     }
 
-    /*
-    public void eliminarUsuario(String nombre) {
-        String delete = "DELETE FROM usuario WHERE nombre = ?";
-        delete(nombre, deleteSQL);
-        
-         PreparedStatement ps = con.conectado().prepareStatement(delete);
-    }
-     */public DefaultTableModel listarpedido(DefaultTableModel tabla) {
+   //Metodos PEDIDO
+    
+     public DefaultTableModel listarpedido(DefaultTableModel tabla) {
         String strConsulta = "SELECT *FROM pedido";
         try {
             PreparedStatement ps = con.conectado().prepareStatement(strConsulta);
@@ -777,40 +503,61 @@ public class ProcesarBD {
 
         return tabla;
     }
-     /*public String[] leerPedido(String fecha) {
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+     public DefaultTableModel leerpedido(JTable tabla,String fecha) {
+        String[] registros = new String[5];
 
-        boolean resultado = false;
-        String[] datos = new String[4];
-        try {
-            //vistaClientes vistaClientes;
-            String read = "SELECT * FROM pedido WHERE fecha_entrega = ?";
-            PreparedStatement ps = con.conectado().prepareStatement(read);
-
-            ps.setString(1, fecha);
-
-            ResultSet resultSet = ps.executeQuery();
-
-            while (resultSet.next()) {
-
-                datos[0] = resultSet.getString("proveedor");
-                datos[1] = resultSet.getString("fecha");
-                datos[2] = resultSet.getString("fecha_entrega");
-                datos[3] = resultSet.getString("valortotal");
-                
-
+            String sql = "SELECT *FROM pedido WHERE fecha_entrega LIKE '%" +fecha+ "%' ";
+            
+       
+            DefaultTableModel model = new DefaultTableModel();
+            model = (DefaultTableModel) tabla.getModel();
+            //DefaultTableModel model = new DefaultTableModel(null,titulos);
+          
+            Conexion con = new Conexion();
+            
+            int p = model.getRowCount();
+            
+            for (int i = 0; i < p; i++) {
+                model.removeRow(0);
+            
             }
-            System.out.println(datos[0]);
-            System.out.println(datos[3]);
-            ps.execute();
-            ps.close();
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null, "Problemas en la Consulta Comuniquese con el Administrador");
-        }
-        return datos;
+                 
+            try {
+                Statement st = (Statement) con.conectado().createStatement();
+                ResultSet rs = st.executeQuery(sql);
+ 
+                while (rs.next()) {
+                     
+                    registros[0] = rs.getString("proveedor");
+                    registros[1] = rs.getString("fecha");
+                    registros[2] = rs.getString("fecha_entrega");
+                    registros[3] = rs.getString("valortotal");
+                 
+                    
+                    model.addRow(registros);
+                  
+                }   
+             
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+            return model;
     }
-     */
+
+     
     public DefaultTableModel listar(DefaultTableModel tabla) {
         String strConsulta = "SELECT *FROM productos";
         try {

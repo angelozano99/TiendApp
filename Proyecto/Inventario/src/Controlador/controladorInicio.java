@@ -46,6 +46,15 @@ public class controladorInicio implements ActionListener {
         if (e.getSource() == this.vistainicio2.BotonIngresar) {
             String nombre=this.vistainicio2.textNombre.getText();
             String contrasena=this.vistainicio2.textContra.getText();
+            boolean campovacio=false;
+            campovacio=ProcesarDB.campoVacio(nombre);
+            if(!campovacio){
+                campovacio=ProcesarDB.campoVacio(contrasena);
+            }
+        
+            if (campovacio) {
+                JOptionPane.showMessageDialog(null, "Existen campos vacios en la vista");
+            }else{
             boolean a = ProcesarDB.tipoUsuario(nombre);
             if ((nombre.equals("root") && 
                     contrasena.equals("root"))||(a)) {
@@ -71,6 +80,7 @@ public class controladorInicio implements ActionListener {
             
             
             }
+        }
         }
 
       

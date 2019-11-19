@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.util.Calendar;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -143,12 +144,17 @@ public class controladorProductos implements ActionListener{
                 if(IsSelected(i, 5, this.vistaProducto.jTableproductos)){
                     datos[0]=String.valueOf(this.vistaProducto.jTableproductos.getValueAt(i, 0));
                     datos[1]=String.valueOf(this.vistaProducto.jTableproductos.getValueAt(i, 4));
-                    int cant=Integer.valueOf(String.valueOf(this.vistaProducto.jTableproductos.getValueAt(i, 4)));
-                    int pre=Integer.valueOf(String.valueOf(this.vistaProducto.jTableproductos.getValueAt(i, 3)));
-                    int to=cant*pre;
-                    total+=to;
-                    datos[2]=String.valueOf(to);
-                    model.addRow(datos);
+                    String cant1=String.valueOf(this.vistaProducto.jTableproductos.getValueAt(i, 4));
+                    
+                   
+                        int cant=Integer.valueOf(cant1);
+                        int pre=Integer.valueOf(String.valueOf(this.vistaProducto.jTableproductos.getValueAt(i, 3)));
+                        int to=cant*pre;
+                        total+=to;
+                        datos[2]=String.valueOf(to);
+                        model.addRow(datos);
+                    
+                    
                     //int ganancia2=procesarBD.leerTablaProducto2(datos[0]);
                     //ganancia+=ganancia2*cant;
                 }

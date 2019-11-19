@@ -784,6 +784,7 @@ public int leerTablaProducto2(String nom_producto) {
             String proveedor = "";
             int unidades = 0;
             int precio_venta = 0;
+            int cantidad=1;
 
             int p = tabla.getRowCount();
 
@@ -796,7 +797,7 @@ public int leerTablaProducto2(String nom_producto) {
                 proveedor = res.getString("proveedor");
                 unidades = res.getInt("unidades");
                 precio_venta = res.getInt("precioventa");
-                Object entrada[] = {nom_producto, proveedor, unidades, precio_venta};
+                Object entrada[] = {nom_producto, proveedor, unidades, precio_venta,cantidad};
                 //System.out.println(codigo + "\t" + nombre + "\t" + precio);
 
                 tabla.addRow(entrada);
@@ -810,6 +811,13 @@ public int leerTablaProducto2(String nom_producto) {
         }
 
         return tabla;
+    }
+    public boolean campoVacio(Object a){
+        if(a.equals("")){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     String result = "";

@@ -59,6 +59,12 @@ public class controladorContabilidad implements ActionListener {
         DefaultTableModel model = (DefaultTableModel) this.vistaContabilidad.TableProductos.getModel();
 
         procesarBD.leerTablaVentas(model);
+        int total = 0;
+        for (int i = 0; i < model.getRowCount(); i++) {
+            total+=Integer.valueOf(String.valueOf( this.vistaContabilidad.TableProductos.getValueAt(i, 4) ));
+        }
+        
+        this.vistaContabilidad.textGananciaTotal.setText(String.valueOf(total));
 
     }
 

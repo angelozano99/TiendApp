@@ -47,6 +47,8 @@ public class vistaContabilidad extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         ComboBox = new javax.swing.JComboBox<>();
         ButtonSalir = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        textGananciaTotal = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Contabilidad");
@@ -127,6 +129,11 @@ public class vistaContabilidad extends javax.swing.JFrame {
 
         ButtonSalir.setText("Salir");
 
+        jLabel3.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        jLabel3.setText("Total Ganancia:");
+
+        textGananciaTotal.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -147,7 +154,12 @@ public class vistaContabilidad extends javax.swing.JFrame {
                 .addContainerGap(127, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 842, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 842, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(36, 36, 36)
+                                .addComponent(textGananciaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(158, 158, 158)
@@ -204,7 +216,12 @@ public class vistaContabilidad extends javax.swing.JFrame {
                         .addComponent(BotonMensual)
                         .addGap(18, 18, 18)
                         .addComponent(BotonAnual))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(textGananciaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(ButtonSalir)
                 .addGap(23, 23, 23))
@@ -279,8 +296,10 @@ public class vistaContabilidad extends javax.swing.JFrame {
     public javax.swing.JTable TableProductos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTextField jTextField1;
+    public javax.swing.JTextField textGananciaTotal;
     // End of variables declaration//GEN-END:variables
 }

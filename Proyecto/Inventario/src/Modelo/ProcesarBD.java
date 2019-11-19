@@ -240,7 +240,7 @@ public class ProcesarBD {
 
     public boolean tipoUsuario(String nombre) {
         String datos[] = leerUsuario(nombre);
-       
+
         if (nombre.equals("root")) {
             return true;
         } else if (datos[5].equals("y")) {
@@ -249,12 +249,13 @@ public class ProcesarBD {
             return false;
         }
     }
+
     public boolean Usuarioexist(String nombre) {
         String datos[] = leerUsuario(nombre);
         System.out.println(datos[3]);
-        if(datos[3]==null){
+        if (datos[3] == null) {
             return false;
-        }else{
+        } else {
             return true;
         }
     }
@@ -286,17 +287,18 @@ public class ProcesarBD {
 
     public void ingresarVenta(int id_venta, String fecha, int preciototal, int gananciaventa) {
 
-        String datos[] = {String.valueOf(id_venta),fecha,String.valueOf(preciototal), String.valueOf(gananciaventa)};
+        String datos[] = {String.valueOf(id_venta), fecha, String.valueOf(preciototal), String.valueOf(gananciaventa)};
         insertar(datos, "INSERT INTO ventas (id_venta,fecha,preciototal,gananciaventa) VALUES(?,?,?,?)");
 
     }
-    
+
     public void ingresarVenta_producto(int id_venta, String nom_producto, int cantidad) {
 
-        String datos[] = {String.valueOf(id_venta),nom_producto,String.valueOf(cantidad)};
+        String datos[] = {String.valueOf(id_venta), nom_producto, String.valueOf(cantidad)};
         insertar(datos, "INSERT INTO venta_productos (id_venta,nom_producto,cantidad) VALUES(?,?,?)");
 
     }
+
     public String[] leerProducto(String nombre) {
 
         boolean resultado = false;
@@ -341,7 +343,7 @@ public class ProcesarBD {
 
             String read = "SELECT * FROM productos";
             PreparedStatement ps = con.conectado().prepareStatement(read);
-          
+
             ResultSet resultSet = ps.executeQuery();
 
             while (resultSet.next()) {
@@ -359,26 +361,23 @@ public class ProcesarBD {
         }
         return i;
     }
-    
-    
+
     public int ProductoC(String nom_producto) {
 
         //boolean resultado = false;
-
         //vistaInventario vistaInventario = new vistaInventario();
         String[] datos = null;
-       int unidades=0;
+        int unidades = 0;
         try {
-            String read = "SELECT * FROM productos WHERE nom_producto = '"+nom_producto+"'";
+            String read = "SELECT * FROM productos WHERE nom_producto = '" + nom_producto + "'";
             PreparedStatement ps = con.conectado().prepareStatement(read);
 
             ResultSet resultSet = ps.executeQuery();
 
-           while (resultSet.next()) {
-               unidades = Integer.valueOf(resultSet.getString("unidades"));
-           }
-                
-            
+            while (resultSet.next()) {
+                unidades = Integer.valueOf(resultSet.getString("unidades"));
+            }
+
             ps.execute();
             ps.close();
 
@@ -388,24 +387,23 @@ public class ProcesarBD {
         }
         return unidades;
     }
-public int leerTablaProducto2(String nom_producto) {
+
+    public int leerTablaProducto2(String nom_producto) {
 
         //boolean resultado = false;
-
         //vistaInventario vistaInventario = new vistaInventario();
         String[] datos = null;
-       int ganancia=0;
+        int ganancia = 0;
         try {
-            String read = "SELECT * FROM productos WHERE nom_producto = '"+nom_producto+"'";
+            String read = "SELECT * FROM productos WHERE nom_producto = '" + nom_producto + "'";
             PreparedStatement ps = con.conectado().prepareStatement(read);
 
             ResultSet resultSet = ps.executeQuery();
 
-           while (resultSet.next()) {
-               ganancia = Integer.valueOf(resultSet.getString("ganancia"));
-           }
-                
-            
+            while (resultSet.next()) {
+                ganancia = Integer.valueOf(resultSet.getString("ganancia"));
+            }
+
             ps.execute();
             ps.close();
 
@@ -415,8 +413,6 @@ public int leerTablaProducto2(String nom_producto) {
         }
         return ganancia;
     }
-
-
 
     public void leerTablaProducto(DefaultTableModel model) {
 
@@ -456,18 +452,15 @@ public int leerTablaProducto2(String nom_producto) {
         }
     }
 
-    public void updateProductoVenta(String nombre_producto,int cantidad) {
+    public void updateProductoVenta(String nombre_producto, int cantidad) {
         int resultado = 0;
         try {
 
-            String updateSQL = "UPDATE productos SET unidades =" +cantidad+ "  WHERE nom_producto = '"+nombre_producto+"'";
+            String updateSQL = "UPDATE productos SET unidades =" + cantidad + "  WHERE nom_producto = '" + nombre_producto + "'";
 
             PreparedStatement ps = con.conectado().prepareStatement(updateSQL);
 
             //ResultSet resultSet = ps.executeQuery();
-            
-           
-
             ps.execute();
             ps.close();
 
@@ -478,6 +471,7 @@ public int leerTablaProducto2(String nom_producto) {
             JOptionPane.showMessageDialog(null, "Problemas con la actualizacion de un Contacto Comuniquese con el Administrador");
         }
     }
+
     public void updateProducto(String nombre,
             Integer precioCompra, Integer precioVenta, Integer ganancia, Integer unidades, String proveedor) {
         int resultado = 0;
@@ -523,7 +517,6 @@ public int leerTablaProducto2(String nom_producto) {
 
         vistaInventario vistaInventario = new vistaInventario();
         String[] datos = new String[6];
-        
 
         try {
             String read = "SELECT * FROM ventas";
@@ -533,10 +526,8 @@ public int leerTablaProducto2(String nom_producto) {
             while (resultSet.next()) {
 
                 datos[0] = resultSet.getString("id_venta");
-                leerTablaVentasAux(datos[0],model);
+                leerTablaVentasAux(datos[0], model);
             }
-
-       
 
             ps.execute();
             ps.close();
@@ -546,18 +537,19 @@ public int leerTablaProducto2(String nom_producto) {
             JOptionPane.showMessageDialog(null, "Problemas en la Consulta Comuniquese con el Administrador");
         }
     }
-    
-      public void leerTablaVentasAux(String aux,DefaultTableModel model) {
+
+    public void leerTablaVentasAux(String aux, DefaultTableModel model) {
 
         boolean resultado = false;
 
         String[] datos = new String[6];
 
         try {
-             String read = "select V.cantidad,V.nom_producto,P.precioventa,P.preciocompra,P.ganancia  "
-                  + "from venta_productos as V, productos as P where P.nom_producto = V.nom_producto and V.id_venta = " + aux;
+            String read = "select V.cantidad,V.nom_producto,P.precioventa,P.preciocompra,P.ganancia  "
+                    + "from venta_productos as V, productos as P where P.nom_producto = V.nom_producto and V.id_venta = " + aux;
             PreparedStatement ps = con.conectado().prepareStatement(read);
 
+            int total = 0;
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()) {
 
@@ -565,21 +557,22 @@ public int leerTablaProducto2(String nom_producto) {
                 datos[1] = resultSet.getString("V.nom_producto");
                 datos[2] = resultSet.getString("P.precioventa");
                 datos[3] = resultSet.getString("P.preciocompra");
-                
-                int f = Integer.valueOf(datos[0])*Integer.valueOf(resultSet.getString("P.ganancia"));
+
+                int f = Integer.valueOf(datos[0]) * Integer.valueOf(resultSet.getString("P.ganancia"));
                 datos[4] = String.valueOf(f);
-                
-                  Object filas[] = {datos[0], datos[1], Integer.valueOf(datos[2]),
-                    datos[3],datos[4]};
+
+                Object filas[] = {datos[0], datos[1], Integer.valueOf(datos[2]),
+                    datos[3], datos[4]};
+
+                total += Integer.valueOf(datos[4]);
 
                 model.addRow(filas);
-                
-                
+
             }
+            
 
             //String read = "select M.numfactura,M.fechaFactura,M.cantidad,M.valorFactura  "
-              //      + "from clientes as C, movimientos as M where C.nit = M.nit and M.nit = " + nit;
-
+            //      + "from clientes as C, movimientos as M where C.nit = M.nit and M.nit = " + nit;
             ps.execute();
             ps.close();
 
@@ -588,7 +581,6 @@ public int leerTablaProducto2(String nom_producto) {
             JOptionPane.showMessageDialog(null, "Problemas en la Consulta Comuniquese con el Administrador");
         }
     }
-    
 
     public boolean insertar(String datos[], String insert) {
         boolean estado = false;
@@ -668,7 +660,8 @@ public int leerTablaProducto2(String nom_producto) {
 
         return tabla;
     }
- public DefaultTableModel leerpedido(JTable tabla, String fecha) {
+
+    public DefaultTableModel leerpedido(JTable tabla, String fecha) {
         String[] registros = new String[5];
 
         String sql = "SELECT *FROM pedido WHERE fecha_entrega LIKE '%" + fecha + "%' ";
@@ -706,17 +699,17 @@ public int leerTablaProducto2(String nom_producto) {
         }
         return model;
     }
+
     public DefaultTableModel filtrar(JTable tabla, String texto) {
         String[] registros = new String[4];
 
-        String sql = "SELECT *FROM productos WHERE nom_producto LIKE '%" + texto + "%' OR proveedor LIKE '%"+ texto+"%'";
+        String sql = "SELECT *FROM productos WHERE nom_producto LIKE '%" + texto + "%' OR proveedor LIKE '%" + texto + "%'";
 
         DefaultTableModel model = new DefaultTableModel();
         model = (DefaultTableModel) tabla.getModel();
         //DefaultTableModel model = new DefaultTableModel(null,titulos);
 
         //Conexion con = new Conexion();
-
         int p = model.getRowCount();
 
         for (int i = 0; i < p; i++) {
@@ -783,7 +776,6 @@ public int leerTablaProducto2(String nom_producto) {
         return model;
     }
 
-    
     public DefaultTableModel listar(DefaultTableModel tabla) {
         String strConsulta = "SELECT *FROM productos";
         try {
@@ -794,7 +786,7 @@ public int leerTablaProducto2(String nom_producto) {
             String proveedor = "";
             int unidades = 0;
             int precio_venta = 0;
-            int cantidad=1;
+            int cantidad = 1;
 
             int p = tabla.getRowCount();
 
@@ -807,7 +799,7 @@ public int leerTablaProducto2(String nom_producto) {
                 proveedor = res.getString("proveedor");
                 unidades = res.getInt("unidades");
                 precio_venta = res.getInt("precioventa");
-                Object entrada[] = {nom_producto, proveedor, unidades, precio_venta,cantidad};
+                Object entrada[] = {nom_producto, proveedor, unidades, precio_venta, cantidad};
                 //System.out.println(codigo + "\t" + nombre + "\t" + precio);
 
                 tabla.addRow(entrada);
@@ -822,10 +814,11 @@ public int leerTablaProducto2(String nom_producto) {
 
         return tabla;
     }
-    public boolean campoVacio(Object a){
-        if(a.equals("")){
+
+    public boolean campoVacio(Object a) {
+        if (a.equals("")) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }

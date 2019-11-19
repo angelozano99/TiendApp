@@ -13,6 +13,7 @@ import Vista.vistaInicio2;
 import Vista.vistaInventario;
 import Vista.vistaPedidos;
 import Vista.vistaProducto;
+import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
@@ -87,7 +88,15 @@ public class controladorProductos implements ActionListener{
     }
     
     public boolean IsSelected(int row,int column,JTable table){
-        return table.getValueAt(row, column) != null;
+        
+        boolean a = true;
+        if(table.getValueAt(row, column) == null){
+            a=false;  
+        }else if(table.getValueAt(row, column).equals(false)){
+            a=false; 
+        }
+        
+        return a;
     }
     
     public void llenarTabla(){
@@ -140,14 +149,14 @@ public class controladorProductos implements ActionListener{
             String[] datos=new String[3];
             DefaultTableModel model= new DefaultTableModel();
             model = (DefaultTableModel) this.vistaProducto.tablaVenta.getModel();
+            
             for(int i=0;i<this.vistaProducto.jTableproductos.getRowCount();i++){
                 if(IsSelected(i, 5, this.vistaProducto.jTableproductos)){
+                    
                     datos[0]=String.valueOf(this.vistaProducto.jTableproductos.getValueAt(i, 0));
                     datos[1]=String.valueOf(this.vistaProducto.jTableproductos.getValueAt(i, 4));
                     String cant1=String.valueOf(this.vistaProducto.jTableproductos.getValueAt(i, 4));
-                    
-                   
-                        int cant=Integer.valueOf(cant1);
+                     int cant=Integer.valueOf(cant1);
                         int pre=Integer.valueOf(String.valueOf(this.vistaProducto.jTableproductos.getValueAt(i, 3)));
                         int to=cant*pre;
                         total+=to;
@@ -160,8 +169,11 @@ public class controladorProductos implements ActionListener{
                 }
             }
             
+           
             this.vistaProducto.tablaVenta.setModel(model);
+            
             this.vistaProducto.Totaltext.setText(String.valueOf(total));
+            
             //System.out.println(ganancia);
             
         }

@@ -184,6 +184,9 @@ public class controladorProductos implements ActionListener{
                 int cantidad = Integer.valueOf(String.valueOf(model.getValueAt(i3, 1)));
 
                 int ganancia2=procesarBD.leerTablaProducto2(nom_producto);
+                int unidades=procesarBD.ProductoC(nom_producto);
+                unidades=unidades-cantidad;
+                procesarBD.updateProductoVenta(nom_producto, unidades);
                 
                 ganancia+=ganancia2*cantidad;
                 

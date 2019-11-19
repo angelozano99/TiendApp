@@ -349,6 +349,35 @@ public class ProcesarBD {
         }
         return i;
     }
+    
+    
+    public int ProductoC(String nom_producto) {
+
+        //boolean resultado = false;
+
+        //vistaInventario vistaInventario = new vistaInventario();
+        String[] datos = null;
+       int unidades=0;
+        try {
+            String read = "SELECT * FROM productos WHERE nom_producto = '"+nom_producto+"'";
+            PreparedStatement ps = con.conectado().prepareStatement(read);
+
+            ResultSet resultSet = ps.executeQuery();
+
+           while (resultSet.next()) {
+               unidades = Integer.valueOf(resultSet.getString("unidades"));
+           }
+                
+            
+            ps.execute();
+            ps.close();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Problemas en la Consulta Comuniquese con el Administrador");
+        }
+        return unidades;
+    }
 public int leerTablaProducto2(String nom_producto) {
 
         //boolean resultado = false;
@@ -376,6 +405,9 @@ public int leerTablaProducto2(String nom_producto) {
         }
         return ganancia;
     }
+
+
+
     public void leerTablaProducto(DefaultTableModel model) {
 
         boolean resultado = false;
@@ -414,6 +446,28 @@ public int leerTablaProducto2(String nom_producto) {
         }
     }
 
+    public void updateProductoVenta(String nombre_producto,int cantidad) {
+        int resultado = 0;
+        try {
+
+            String updateSQL = "UPDATE productos SET unidades =" +cantidad+ "  WHERE nom_producto = '"+nombre_producto+"'";
+
+            PreparedStatement ps = con.conectado().prepareStatement(updateSQL);
+
+            //ResultSet resultSet = ps.executeQuery();
+            
+           
+
+            ps.execute();
+            ps.close();
+
+            JOptionPane.showMessageDialog(null, "Producto modificado");
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Problemas con la actualizacion de un Contacto Comuniquese con el Administrador");
+        }
+    }
     public void updateProducto(String nombre,
             Integer precioCompra, Integer precioVenta, Integer ganancia, Integer unidades, String proveedor) {
         int resultado = 0;

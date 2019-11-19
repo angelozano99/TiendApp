@@ -55,7 +55,11 @@ public class controladorInicio implements ActionListener {
             if (campovacio) {
                 JOptionPane.showMessageDialog(null, "Existen campos vacios en la vista");
             }else{
-            boolean a = ProcesarDB.tipoUsuario(nombre);
+               
+          boolean exist=ProcesarDB.Usuarioexist(nombre);
+           if (exist || nombre.equals("root")) {
+                    boolean a = ProcesarDB.tipoUsuario(nombre);
+            
             if ((nombre.equals("root") && 
                     contrasena.equals("root"))||(a)) {
                 
@@ -80,6 +84,10 @@ public class controladorInicio implements ActionListener {
             
             
             }
+                }else{
+                    JOptionPane.showMessageDialog(null, "No existe usuario");
+                }
+            
         }
         }
 

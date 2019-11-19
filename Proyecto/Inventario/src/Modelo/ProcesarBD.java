@@ -240,12 +240,22 @@ public class ProcesarBD {
 
     public boolean tipoUsuario(String nombre) {
         String datos[] = leerUsuario(nombre);
+       
         if (nombre.equals("root")) {
             return true;
         } else if (datos[5].equals("y")) {
             return true;
         } else {
             return false;
+        }
+    }
+    public boolean Usuarioexist(String nombre) {
+        String datos[] = leerUsuario(nombre);
+        System.out.println(datos[3]);
+        if(datos[3]==null){
+            return false;
+        }else{
+            return true;
         }
     }
 

@@ -43,5 +43,33 @@ public class Increment {
         }
         return id;
     }
+    public int id_increment2() {
+        int id = 1;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Conexion db = new Conexion();
+
+        try {
+
+            ps = db.conectado().prepareStatement("SELECT MAX(id_venta) FROM ventas");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                id = rs.getInt(1) + 1;
+            }
+        } catch (Exception ex) {
+            System.out.println("error" + ex.getMessage());
+        }
+       finally{
+            try{
+                ps.close();
+                rs.close();
+                db.desconectar();
+            }catch(Exception ex){
+                
+            }
+            
+        }
+        return id;
+    }
 
 }

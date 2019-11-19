@@ -24,7 +24,7 @@ create table pedido(id_pedido int not null primary key , proveedor varchar(45), 
 create table pedido_productos(id_pedido int, nom_producto varchar(20), cantidad int,
 foreign key(id_pedido) references pedido(id_pedido));
  
-create table ventas(id_venta int not null auto_increment primary key, fecha date, preciototal int, gananciaventa int);
+create table ventas(id_venta int not null auto_increment primary key, fecha varchar(20), preciototal int, gananciaventa int);
 
 create table venta_productos(id_venta int, nom_producto varchar(20), cantidad int,
 foreign key(id_venta) references ventas(id_venta), foreign key(nom_producto) references productos(nom_producto));

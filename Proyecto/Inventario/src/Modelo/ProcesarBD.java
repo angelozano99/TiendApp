@@ -280,6 +280,13 @@ public class ProcesarBD {
         insertar(datos, "INSERT INTO ventas (id_venta,fecha,preciototal,gananciaventa) VALUES(?,?,?,?)");
 
     }
+    
+    public void ingresarVenta_producto(int id_venta, String nom_producto, int cantidad) {
+
+        String datos[] = {String.valueOf(id_venta),nom_producto,String.valueOf(cantidad)};
+        insertar(datos, "INSERT INTO venta_productos (id_venta,nom_producto,cantidad) VALUES(?,?,?)");
+
+    }
     public String[] leerProducto(String nombre) {
 
         boolean resultado = false;
@@ -342,7 +349,33 @@ public class ProcesarBD {
         }
         return i;
     }
+public int leerTablaProducto2(String nom_producto) {
 
+        //boolean resultado = false;
+
+        //vistaInventario vistaInventario = new vistaInventario();
+        String[] datos = null;
+       int ganancia=0;
+        try {
+            String read = "SELECT * FROM productos WHERE nom_producto = '"+nom_producto+"'";
+            PreparedStatement ps = con.conectado().prepareStatement(read);
+
+            ResultSet resultSet = ps.executeQuery();
+
+           while (resultSet.next()) {
+               ganancia = Integer.valueOf(resultSet.getString("ganancia"));
+           }
+                
+            
+            ps.execute();
+            ps.close();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Problemas en la Consulta Comuniquese con el Administrador");
+        }
+        return ganancia;
+    }
     public void leerTablaProducto(DefaultTableModel model) {
 
         boolean resultado = false;

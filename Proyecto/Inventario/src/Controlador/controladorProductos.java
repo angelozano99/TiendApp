@@ -15,10 +15,12 @@ import Vista.vistaPedidos;
 import Vista.vistaProducto;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
 import java.util.Calendar;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+
 
 /**
  *
@@ -36,7 +38,8 @@ public class controladorProductos implements ActionListener{
     private vistaInicio2 vistaInicio;
     private ProcesarBD procesarBD = new ProcesarBD();
     private String globalNombre;
-    
+    private int ganancia=0;
+    int total=0;
     
     
     public controladorProductos (vistaProducto vistaProducto, String nombre){
@@ -132,7 +135,7 @@ public class controladorProductos implements ActionListener{
             
         }
         if(e.getSource()==this.vistaProducto.BotonAnadir){
-            int total=0;
+            
             String[] datos=new String[3];
             DefaultTableModel model= new DefaultTableModel();
             model = (DefaultTableModel) this.vistaProducto.tablaVenta.getModel();
@@ -146,26 +149,58 @@ public class controladorProductos implements ActionListener{
                     total+=to;
                     datos[2]=String.valueOf(to);
                     model.addRow(datos);
-                    
+                    //int ganancia2=procesarBD.leerTablaProducto2(datos[0]);
+                    //ganancia+=ganancia2*cant;
                 }
             }
             
             this.vistaProducto.tablaVenta.setModel(model);
             this.vistaProducto.Totaltext.setText(String.valueOf(total));
+            //System.out.println(ganancia);
             
         }
         if(e.getSource()==this.vistaProducto.BotonConfirmar){
+            
+            //ID
             Increment incre=new Increment();
             int id;
-            id=incre.id_increment();
+            id=incre.id_increment2();
+            
+            //Fecha
             Calendar c1 = Calendar.getInstance();
             String dia = Integer.toString(c1.get(Calendar.DATE));
             int mes = c1.get(Calendar.MONTH);
             String annio = Integer.toString(c1.get(Calendar.YEAR));
-            mes=mes+1;
-            String fecha=dia+"-"+String.valueOf(mes)+"-"+annio;
-            int total=Integer.valueOf(this.vistaProducto.Totaltext.getText());
-          
+            mes = mes + 1;
+            String fecha = dia + "-" + String.valueOf(mes) + "-" + annio;
+            
+            //Total
+            DefaultTableModel model= new DefaultTableModel();
+            model = (DefaultTableModel) this.vistaProducto.tablaVenta.getModel();
+            int p = model.getRowCount();
+
+            for (int i3 = 0; i3 < p; i3++) {
+                String nom_producto = String.valueOf(model.getValueAt(i3, 0));
+                int cantidad = Integer.valueOf(String.valueOf(model.getValueAt(i3, 1)));
+
+                int ganancia2=procesarBD.leerTablaProducto2(nom_producto);
+                
+                ganancia+=ganancia2*cantidad;
+                
+            }
+            
+            procesarBD.ingresarVenta(id, fecha, total, ganancia);
+            for (int i3 = 0; i3 < p; i3++) {
+                String nom_producto = String.valueOf(model.getValueAt(i3, 0));
+                int cantidad = Integer.valueOf(String.valueOf(model.getValueAt(i3, 1)));
+
+               
+                
+                procesarBD.ingresarVenta_producto(id,nom_producto, cantidad);
+            }
+            
+            ganancia=0;
+            total=0;
             
         }
             

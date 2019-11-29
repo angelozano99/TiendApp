@@ -701,7 +701,7 @@ public class ProcesarBD {
     }
 
     public DefaultTableModel filtrar(JTable tabla, String texto) {
-        String[] registros = new String[4];
+        String[] registros = new String[5];
 
         String sql = "SELECT *FROM productos WHERE nom_producto LIKE '%" + texto + "%' OR proveedor LIKE '%" + texto + "%'";
 
@@ -727,6 +727,7 @@ public class ProcesarBD {
                 registros[1] = rs.getString("proveedor");
                 registros[2] = String.valueOf(rs.getInt("unidades"));
                 registros[3] = String.valueOf(rs.getInt("precioventa"));
+                registros[4] = "1";
 
                 model.addRow(registros);
 
@@ -825,4 +826,21 @@ public class ProcesarBD {
 
     String result = "";
 
+    public boolean validarnumero(String dato){
+        try {
+            int dato1=Integer.parseInt(dato);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+        
+    }
+    public boolean validarnumpos(int dato){
+        if (dato<0) {
+            return false;
+        }else{
+            return true;
+        }
+        
+    }
 }

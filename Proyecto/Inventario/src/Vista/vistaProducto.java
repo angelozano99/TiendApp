@@ -28,7 +28,8 @@ public class vistaProducto extends javax.swing.JFrame {
     public vistaProducto() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
-         
+         TableColumn columna = this.jTableproductos.getColumn("Nombre de Productos");
+         columna.setPreferredWidth(400); 
     }
 
     /**

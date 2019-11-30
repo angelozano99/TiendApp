@@ -701,7 +701,7 @@ public class ProcesarBD {
     }
 
     public DefaultTableModel filtrar(JTable tabla, String texto) {
-        String[] registros = new String[5];
+        String[] registros = new String[4];
 
         String sql = "SELECT *FROM productos WHERE nom_producto LIKE '%" + texto + "%' OR proveedor LIKE '%" + texto + "%'";
 
@@ -727,7 +727,7 @@ public class ProcesarBD {
                 registros[1] = rs.getString("proveedor");
                 registros[2] = String.valueOf(rs.getInt("unidades"));
                 registros[3] = String.valueOf(rs.getInt("precioventa"));
-                registros[4] = "1";
+                //registros[4] = "1";
 
                 model.addRow(registros);
 
@@ -787,7 +787,7 @@ public class ProcesarBD {
             String proveedor = "";
             int unidades = 0;
             int precio_venta = 0;
-            int cantidad = 1;
+            //int cantidad = 1;
 
             int p = tabla.getRowCount();
 
@@ -800,7 +800,7 @@ public class ProcesarBD {
                 proveedor = res.getString("proveedor");
                 unidades = res.getInt("unidades");
                 precio_venta = res.getInt("precioventa");
-                Object entrada[] = {nom_producto, proveedor, unidades, precio_venta, cantidad};
+                Object entrada[] = {nom_producto, proveedor, unidades, precio_venta};
                 //System.out.println(codigo + "\t" + nombre + "\t" + precio);
 
                 tabla.addRow(entrada);

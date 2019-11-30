@@ -8,6 +8,7 @@ package Vista;
 import Controlador.controladorInventario;
 import Modelo.Conexion;
 import Modelo.ProcesarBD;
+import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -22,14 +23,21 @@ import javax.swing.table.TableColumn;
  */
 public class vistaProducto extends javax.swing.JFrame {
 
+    private ProcesarBD procesarBD = new ProcesarBD();
     /**
      * Creates new form vistaProducto
      */
     public vistaProducto() {
         initComponents();
+        
         this.setExtendedState(MAXIMIZED_BOTH);
          TableColumn columna = this.jTableproductos.getColumn("Nombre de Productos");
          columna.setPreferredWidth(400); 
+    }
+    public void addCheckBox(int column, JTable table) {
+        TableColumn tc = table.getColumnModel().getColumn(column);
+        tc.setCellEditor(table.getDefaultEditor(Boolean.class));
+        tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
     }
 
     /**
@@ -129,6 +137,9 @@ public class vistaProducto extends javax.swing.JFrame {
         jtextBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jtextBuscarKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtextBuscarKeyReleased(evt);
             }
         });
 
@@ -282,7 +293,25 @@ public class vistaProducto extends javax.swing.JFrame {
     private void jtextBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtextBuscarKeyPressed
         // TODO add your handling code here:
         
+//        if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
+//            String text = jtextBuscar.getText();
+//            DefaultTableModel tabla = new DefaultTableModel();
+//            tabla = procesarBD.filtrar(jTableproductos, text);
+//
+//            jTableproductos.setModel(tabla);
+//            addCheckBox(5, jTableproductos);
+//        }
     }//GEN-LAST:event_jtextBuscarKeyPressed
+
+    private void jtextBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtextBuscarKeyReleased
+        // TODO add your handling code here:
+        String text = jtextBuscar.getText();
+        DefaultTableModel tabla = new DefaultTableModel();
+        tabla = procesarBD.filtrar(jTableproductos, text);
+
+        jTableproductos.setModel(tabla);
+        addCheckBox(5, jTableproductos);
+    }//GEN-LAST:event_jtextBuscarKeyReleased
 
     /**
      * @param args the command line arguments

@@ -16,6 +16,7 @@ import Vista.vistaProducto;
 import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
@@ -103,9 +104,17 @@ public class controladorProductos implements ActionListener {
         addCheckBox(5, vistaProducto.jTableproductos);
     }
 
-    @Override
+//    //@Override
+//    public void jtextBuscarkeypressed (java.awt.event.KeyEvent evt){
+//        
+//        if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
+//            JOptionPane.showMessageDialog(null, "enter");
+//        }
+//    }
+    
+    
     public void actionPerformed(ActionEvent e) {
-
+        
         if (e.getSource() == this.vistaProducto.BotonPedidos4) {
             this.vistaProducto.dispose();
             controladorPedidos controladorPedidos = new controladorPedidos(vistaPedidos, globalNombre);
@@ -127,8 +136,18 @@ public class controladorProductos implements ActionListener {
 
         }
         if (e.getSource() == this.vistaProducto.ButonSalir) {
-            this.vistaProducto.dispose();
-            controladorInicio controladorInicio = new controladorInicio(vistaInicio);
+            
+            if (this.vistaProducto.tablaVenta.getRowCount()==0) {
+                this.vistaProducto.dispose();
+                controladorInicio controladorInicio = new controladorInicio(vistaInicio);  
+            }else{
+                int resp = JOptionPane.showConfirmDialog(null, "Existen productos en tabla de venta, desea salir?", "Alerta!", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (resp==0) {
+                    this.vistaProducto.dispose();
+                    controladorInicio controladorInicio = new controladorInicio(vistaInicio);
+                }
+            }
+            
 
         }
         if (e.getSource() == this.vistaProducto.BotonBuscar) {
@@ -149,26 +168,48 @@ public class controladorProductos implements ActionListener {
             for (int i = 0; i < this.vistaProducto.jTableproductos.getRowCount(); i++) {
 
                 if (IsSelected(i, 5, this.vistaProducto.jTableproductos)) {
-
-                    //  Object unidades = this.vistaProducto.tablaVenta.getValueAt(i, 2);
-                    int unidades = Integer.valueOf(String.valueOf(this.vistaProducto.jTableproductos.getValueAt(i, 2)));
-                    //System.out.println(String.valueOf(unidades));
-                    int cantidad = Integer.valueOf(String.valueOf(this.vistaProducto.jTableproductos.getValueAt(i, 4)));
-
-                    if (cantidad <= unidades) {
-                        datos[0] = String.valueOf(this.vistaProducto.jTableproductos.getValueAt(i, 0));
-                        datos[1] = String.valueOf(this.vistaProducto.jTableproductos.getValueAt(i, 4));
-                        String cant1 = String.valueOf(this.vistaProducto.jTableproductos.getValueAt(i, 4));
-                        int cant = Integer.valueOf(cant1);
-                        int pre = Integer.valueOf(String.valueOf(this.vistaProducto.jTableproductos.getValueAt(i, 3)));
-                        int to = cant * pre;
-                        total += to;
-                        datos[2] = String.valueOf(to);
-                        model.addRow(datos);
-
-                        this.vistaProducto.jTableproductos.setValueAt(unidades - cantidad, i, 2);
+                    String unidades = String.valueOf(this.vistaProducto.jTableproductos.getValueAt(i, 2));
+                    String cantidad = String.valueOf(this.vistaProducto.jTableproductos.getValueAt(i, 4));
+                    int cantidad2 = 0;
+                    int unidades2 = 0;
+                    if (cantidad.length() == 0) {
+                        JOptionPane.showMessageDialog(null, "No hay dato en cantidad");
+                        break;
                     } else {
-                        JOptionPane.showMessageDialog(null, "Cantidad excede unidades disponibles");
+                        try {
+                            cantidad2 = Integer.valueOf(cantidad);
+                        } catch (NumberFormatException s) {
+                            JOptionPane.showMessageDialog(null, "El dato ingresado en cantidad del producto " + this.vistaProducto.jTableproductos.getValueAt(i, 0) + " NO ES NUMERO", "Warning",JOptionPane.WARNING_MESSAGE);
+                            break;
+                        }
+
+                        unidades2 = Integer.valueOf(unidades);
+                        if (cantidad2 == 0) {
+                            JOptionPane.showMessageDialog(null, "El dato ingresado en cantidad del producto " + this.vistaProducto.jTableproductos.getValueAt(i, 0) + " es igual a CERO", "Warning",JOptionPane.WARNING_MESSAGE);
+                            break;
+                        } else {
+                            if (cantidad2 < 0) {
+                                JOptionPane.showMessageDialog(null, "El dato ingresado en cantidad del producto " + this.vistaProducto.jTableproductos.getValueAt(i, 0) + " es negativo", "Warning",JOptionPane.WARNING_MESSAGE);
+                                break;
+                            } else {
+                                if (cantidad2 <= unidades2) {
+                                    datos[0] = String.valueOf(this.vistaProducto.jTableproductos.getValueAt(i, 0));
+                                    datos[1] = String.valueOf(this.vistaProducto.jTableproductos.getValueAt(i, 4));
+                                    String cant1 = String.valueOf(this.vistaProducto.jTableproductos.getValueAt(i, 4));
+                                    int cant = Integer.valueOf(cant1);
+                                    int pre = Integer.valueOf(String.valueOf(this.vistaProducto.jTableproductos.getValueAt(i, 3)));
+                                    int to = cant * pre;
+                                    total += to;
+                                    datos[2] = String.valueOf(to);
+                                    model.addRow(datos);
+
+                                    this.vistaProducto.jTableproductos.setValueAt(unidades2 - cantidad2, i, 2);
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Cantidad excede unidades disponibles", "Warning",JOptionPane.WARNING_MESSAGE);
+                                }
+                            }
+                        }
+
                     }
 
                     //int ganancia2=procesarBD.leerTablaProducto2(datos[0]);
